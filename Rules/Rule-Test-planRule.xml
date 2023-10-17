@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="Test-plan rule" type="Validation">
+          
+    
+    <Source><![CDATA[
+ 				import sailpoint.object.*;
+        import sailpoint.api.*;
+        import sailpoint.object.ProvisioningPlan.AccountRequest;
+        import sailpoint.object.ProvisioningPlan.AttributeRequest;
+        import sailpoint.api.Provisioner;
+
+
+        Identity identityObj = context.getObjectByName(Identity.class,"Joseph Marvel");
+        ProvisioningPlan plan = new ProvisioningPlan();
+        if(plan!=null)
+        {
+        plan.setIdentity(identityObj);
+
+        AccountRequest acctReqAD = new AccountRequest();
+        acctReqAD.setApplication("AD");
+        acctReqAD.setOp(ProvisioningPlan.ObjectOperation.Create);
+        String nativeIdentity = "CN="+identityObj.getName()+","+"OU=People,OU=Demo,DC=IIQ,DC=com";
+        acctReqAD.add(new AttributeRequest("sAMAccountName", ProvisioningPlan.Operation.Add,identityObj.getName()));
+        acctReqAD.add(new AttributeRequest("distinguishedName", ProvisioningPlan.Operation.Add,nativeIdentity));
+        acctReqAD.add(new AttributeRequest("employeeID", ProvisioningPlan.Operation.Add,identityObj.getAttribute("EmployeeID")));
+        acctReqAD.add(new AttributeRequest("givenName", ProvisioningPlan.Operation.Add,identityObj.getFirstname()));
+        acctReqAD.add(new AttributeRequest("sn", ProvisioningPlan.Operation.Add,identityObj.getLastname()));
+
+        plan.add(acctReqAD);
+        Provisioner provisioner = new Provisioner(context);
+        provisioner.execute(plan);
+        context.saveObject(identityObj);
+        context.commitTransaction();
+        }
+
+        return plan;
+
+]]></Source>
+        
+
+</Rule>
