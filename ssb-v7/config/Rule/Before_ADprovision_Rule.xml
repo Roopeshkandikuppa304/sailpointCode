@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="Before_ADprovision_Rule" type="BeforeProvisioning">
+  <Description>An identityiq82 server-side rule that is executed before the connector's provisioning method is called. This gives the customer the ability to customize or react to anything in the ProvisioningPlan BEFORE it is sent to the underlying connectors used in provisioning. 
+
+This rule will be called for any application found in a plan that also has a configured 'beforeProvisioningRule' configured.  
+
+The plan can be updated directly in the rule by reference and does not need to return the plan.</Description>
+  <Signature>
+    <Inputs>
+      <Argument name="log">
+        <Description>
+          The log object associated with the SailPointContext.
+        </Description>
+      </Argument>
+      <Argument name="context">
+        <Description>
+          A sailpoint.api.SailPointContext object that can be used to query the database if necessary.
+        </Description>
+      </Argument>
+      <Argument name="plan">
+        <Description>
+          The ProvisioningPlan object on its way to the Connector.
+        </Description>
+      </Argument>
+      <Argument name="application">
+        <Description>
+          The application object that references this before/after script.
+        </Description>
+      </Argument>
+    </Inputs>
+  </Signature>
+  <Source>import sailpoint.object.*;
+  import sailpoint.api.*;
+  import sailpoint.object.ProvisioningPlan.AccountRequest;
+  import sailpoint.object.ProvisioningPlan.AttributeRequest;
+  
+   System.out.println("BeforeProvision==="+plan.toXml());
+/*
+  Identity idobj = context.getObjectByName(Identity.class,"Jesse Pinkman");
+  if(plan != null){
+    
+      String nativeIdentity = "CN="+idobj.getName()+","+"OU=People,OU=Demo,DC=Eshiam,DC=com";
+    	AccountRequest acctreq = new AccountRequest();
+      acctreq.setNativeIdentity(nativeIdentity);
+    	acctreq.setApplication("AD");
+      acctreq.setOp(ProvisioningPlan.ObjectOperation.Create);
+      
+      acctreq.add(new AttributeRequest("sAMAccountName", ProvisioningPlan.Operation.Add,idobj.getName()));
+      acctreq.add(new AttributeRequest("distinguishedName", ProvisioningPlan.Operation.Add,nativeIdentity));
+      acctreq.add(new AttributeRequest("employeeID", ProvisioningPlan.Operation.Add,idobj.getAttribute("EmployeeID")));
+      acctreq.add(new AttributeRequest("givenName", ProvisioningPlan.Operation.Add,idobj.getFirstname()));
+      acctreq.add(new AttributeRequest("sn", ProvisioningPlan.Operation.Add,idobj.getLastname()));
+      acctreq.add(new AttributeRequest("password", ProvisioningPlan.Operation.Add,"Password@123"));
+     plan.add(acctreq);
+    
+    
+    
+    System.out.println("I'm in after before provision rule-"+plan.toXml());
+       // Provisioner provisioner = new Provisioner(context);
+        //provisioner.execute(subplan);
+        //context.saveObject(idobj);
+        //context.commitTransaction();
+        
+  }
+*/</Source>
+</Rule>

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskDefinition name="Identity attributes report" resultAction="Delete" subType="Identity and User Reports" type="LiveReport">
+  <Attributes>
+    <Map>
+      <entry key="TaskDefinition.runLengthAverage" value="2"/>
+      <entry key="TaskDefinition.runLengthTotal" value="9"/>
+      <entry key="TaskDefinition.runs" value="4"/>
+      <entry key="TaskSchedule.host"/>
+      <entry key="_attr_inactive">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="_attr_manager">
+        <value>
+          <List>
+            <String>James Smith</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="disableDetail" value="false"/>
+      <entry key="disableHeader" value="false"/>
+      <entry key="disableSummary" value="false"/>
+      <entry key="dontEmailEmptyReport">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="emailFileFormat">
+        <value>
+          <List>
+            <String>PDF</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="emailIdentities">
+        <value>
+          <List>
+            <String>AA141</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="enableCsvHeader" value="false"/>
+      <entry key="identityApplication">
+        <value>
+          <List>
+            <String>HR</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="reportColumnOrder" value="identity, firstname, application, account, displayName, email, lastname"/>
+      <entry key="reportGroupBy" value="identity"/>
+      <entry key="reportSortAsc">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="reportSortBy" value="identity"/>
+      <entry key="showScopes">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <Description>A detailed view of each identity and the entitlements that they are assigned.</Description>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <Parent>
+    <Reference class="sailpoint.object.TaskDefinition" name="Account Attributes Live Report"/>
+  </Parent>
+  <Signature>
+    <Inputs>
+      <Argument multi="true" name="groupDefinitions" type="string">
+        <Description>rept_input_user_report_group_definition</Description>
+      </Argument>
+      <Argument name="firstname" type="string">
+        <Description>rept_input_user_report_fname</Description>
+      </Argument>
+      <Argument name="lastname" type="string">
+        <Description>rept_input_user_report_lname</Description>
+      </Argument>
+      <Argument name="capabilities" type="string">
+        <Description>rept_input_user_report_capabilities</Description>
+      </Argument>
+      <Argument name="inactive" type="boolean">
+        <Description>rept_input_user_report_inactive</Description>
+      </Argument>
+      <Argument name="showScopes" type="boolean">
+        <Description>rept_input_user_report_scopes_caps</Description>
+      </Argument>
+      <Argument name="lastLogin" type="date">
+        <Description>rept_input_user_report_last_login</Description>
+      </Argument>
+      <Argument name="lastRefresh" type="date">
+        <Description>rept_input_user_report_last_refresh</Description>
+      </Argument>
+      <Argument name="email" type="string">
+        <Description>rept_input_user_report_email</Description>
+      </Argument>
+      <Argument multi="true" name="identityApplication" type="Application">
+        <Description>rept_input_user_report_apps</Description>
+      </Argument>
+      <Argument filterString="managerStatus == true" multi="true" name="managers" type="Identity">
+        <Description>rept_input_user_report_mgrs</Description>
+      </Argument>
+      <Argument name="_attr_firstname" type="string"/>
+      <Argument name="_attr_lastname" type="string"/>
+      <Argument name="_attr_displayName" type="string"/>
+      <Argument name="_attr_email" type="string"/>
+      <Argument name="_attr_manager" type="sailpoint.object.Identity"/>
+      <Argument name="_attr_inactive" type="boolean"/>
+      <Argument name="_attr_NetworkID" type="string"/>
+      <Argument name="_attr_Department" type="string"/>
+      <Argument name="_attr_EmployeeID" type="string"/>
+      <Argument name="_attr_HR_Start_Date" type="string"/>
+    </Inputs>
+  </Signature>
+</TaskDefinition>

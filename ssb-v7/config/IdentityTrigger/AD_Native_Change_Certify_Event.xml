@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE IdentityTrigger PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<IdentityTrigger handler="sailpoint.api.CertificationTriggerHandler" name="AD Native Change Certify Event" type="NativeChange">
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <HandlerParameters>
+    <Attributes>
+      <Map>
+        <entry key="certificationDefinitionId" value="a9fef0a782b413f28182cf32f70d07ed"/>
+      </Map>
+    </Attributes>
+  </HandlerParameters>
+</IdentityTrigger>

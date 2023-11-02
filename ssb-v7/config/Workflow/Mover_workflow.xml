@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" libraries="Identity" name="Mover workflow" type="IdentityLifecycle">
+  <Variable initializer="joiner" name="flow">
+    <Description>The flow</Description>
+  </Variable>
+  <Variable initializer="joiner" input="true" name="trace"/>
+  <Variable input="true" name="event" transient="true">
+    <Description>
+      The IdentityChangeEvent.  It can be used to build
+      the provisioning plan, but does not need to be
+      persisted with the case, so marked as transient.
+    </Description>
+  </Variable>
+  <Variable input="true" name="identityName">
+    <Description>The name of the identity.</Description>
+  </Variable>
+  <Description>Process a new employee.</Description>
+  <Step icon="Start" name="Start" posX="28" posY="10">
+    <Transition to="Process user"/>
+  </Step>
+  <Step icon="Message" name="Process user" posX="148" posY="10" resultVariable="adPlan">
+    <Description>Process the user that joined.</Description>
+    <Script>
+      <Source>
+       import sailpoint.object.*;
+       import sailpoint.api.*;
+        Identity id = context.getObjectByName(Identity.class,identityName);
+        ProvisioningPlan plan = new ProvisioningPlan();
+        
+        String g1="CN=Cost-SavingsAnalysis,OU=Groups,OU=Demo,DC=Eshiam,DC=com";
+        String g2="CN=DBAs,OU=Groups,OU=Demo,DC=Eshiam,DC=com";
+        
+        plan.setIdentity(id);
+        AccountRequest ar = new AccountRequest();
+        ar.setApplication("AD");
+        ar.setOp(ProvisioningPlan.ObjectOperation.Modify);
+        String nativeIdentity = "CN="+id.getName()+","+"OU=People,OU=Demo,DC=Eshiam,DC=com";
+        ar.setNativeIdentity(nativeIdentity);
+        
+        ar.add(new AttributeRequest("memberOf",ProvisioningPlan.Operation.Add,g1));
+        ar.add(new AttributeRequest("memberOf",ProvisioningPlan.Operation.Add,g2));
+        
+        plan.add(ar);
+        Provisioner provisioner = new Provisioner(context);
+		    provisioner.execute(plan);
+        context.saveObject(id);
+        context.commitTransaction();
+        
+      </Source>
+    </Script>
+    <Transition to="Workflow Schedule"/>
+  </Step>
+  <Step icon="Message" name="Workflow Schedule" posX="148" posY="10">
+    <Script>
+      <Source>
+    import sailpoint.object.Workflow;
+        import sailpoint.object.Identity;
+        import sailpoint.object.Attributes;
+        import sailpoint.workflow.StandardWorkflowHandler;
+        import sailpoint.request.WorkflowRequestExecutor;
+        import sailpoint.object.Request;
+        import sailpoint.object.RequestDefinition;
+        import sailpoint.api.RequestManager;
+        import java.util.Calendar;
+
+          String workflowName = "Mover-sub";
+          String requestName = "Run '" + workflowName + "' for: " + identityName;
+          String requesterId = "spadmin";
+
+          Workflow eventWorkflow = context.getObject(Workflow.class, workflowName);
+          Identity id = context.getObjectByName(Identity.class, requesterId);
+         
+          Attributes reqArgs = new Attributes();
+          reqArgs.put(StandardWorkflowHandler.ARG_REQUEST_DEFINITION, WorkflowRequestExecutor.DEFINITION_NAME);
+          reqArgs.put(StandardWorkflowHandler.ARG_WORKFLOW, workflowName);
+          reqArgs.put(StandardWorkflowHandler.ARG_REQUEST_NAME, requestName);
+         
+          Attributes wfArgs = new Attributes();
+          wfArgs.put("identityName", identityName);
+          wfArgs.put("workflow", eventWorkflow.getName());
+          reqArgs.putAll(wfArgs);
+
+          Calendar calendar = Calendar.getInstance();
+          calendar.add(Calendar.MINUTE, 3);
+
+          Request req = new Request();
+          RequestDefinition reqdef = context.getObject(RequestDefinition.class, "Workflow Request");
+          req.setDefinition(reqdef);
+          req.setOwner(id);
+          req.setName(requestName);
+          req.setEventDate(calendar.getTime());
+          req.setAttributes( reqdef, reqArgs );
+          RequestManager.addRequest(context, req);
+    </Source>
+    </Script>
+    <Transition to="Stop"/>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="268" posY="10"/>
+</Workflow>

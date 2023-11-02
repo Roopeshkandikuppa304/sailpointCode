@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="Comparing list Entitlements with IIQ and App">
+  <Source>
+  import sailpoint.object.*;
+  import sailpoint.api.*;
+  import sailpoint.object.TaskDefinition;
+  
+  Filter f = Filter.like(
+  </Source>
+</Rule>

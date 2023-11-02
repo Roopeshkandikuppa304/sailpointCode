@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" libraries="Identity" name="Get Object Xml Workflow" type="IdentityLifecycle">
+  <Variable initializer="joiner" name="flow"/>
+  <Variable initializer="joiner" input="true" name="trace"/>
+  <Variable input="true" name="event" transient="true"/>
+  <Step icon="Start" name="Start" posX="28" posY="10">
+    <Transition to="ObjectConfig"/>
+  </Step>
+  <Step icon="Default" name="ObjectConfig" posX="148" posY="10">
+    <Approval name="getObjectConfigXml" owner="spadmin">
+      <Form name="getObjectXml">
+        <Attributes>
+          <Map>
+            <entry key="pageTitle" value="Get Object XML"/>
+          </Map>
+        </Attributes>
+        <Button action="next" label="Submit"/>
+        <Button action="back" label="Cancel"/>
+        <Section label="ObjectXml">
+          <Field displayName="Enter Class Object" displayType="combobox" name="object" postBack="true" type="string">
+            <AllowedValuesDefinition>
+              <Script>
+                <Source>
+                  import sailpoint.object.*;
+                  import sailpoint.api.*;
+                  List list = new ArrayList();
+                  Custom cus = context.getObject(Custom.class,"Custom Object");
+                  list = cus.getAttributes().getMap().get("objectTypes");
+                  return list;
+                </Source>
+              </Script>
+            </AllowedValuesDefinition>
+          </Field>
+          <Field displayName="Enter Object Name" displayType="combobox" name="objectName" postBack="true" type="string"/>
+          <Field displayName="Select Obj File Name" displayType="combobox" dynamic="true" name="objectFileName" postBack="true" type="string">
+            <AllowedValuesDefinition>
+              <Script>
+                <Source>
+                  import sailpoint.object.*;
+                  import sailpoint.api.*;
+                  import java.lang.Class.*;
+                  List ff = new ArrayList();
+                  Class classStr;
+                  if(object != null &amp;&amp; object != void &amp;&amp; !object.equalsIgnoreCase("ManagedAttribute")){
+                  	String str = "sailpoint.object."+object;
+                  	classStr = Class.forName(str);
+                  	Filter f = Filter.like("name",objectName,Filter.MatchMode.ANYWHERE);
+                  	QueryOptions qo = new QueryOptions();
+                  	qo.addFilter(f);
+                  	List objs = context.getObjects(classStr,qo);
+                  	for(Object o:objs){
+                  		ff.add(o.getName());
+                    }
+                  }
+                  if(object != null &amp;&amp; object != void &amp;&amp; object.equalsIgnoreCase("ManagedAttribute")){
+                  	String str = "sailpoint.object."+object;
+                  	Class classStr = Class.forName(str);
+                  	Filter f = Filter.like("displayName",objectName,Filter.MatchMode.ANYWHERE);
+                  	QueryOptions qo = new QueryOptions();
+                  	qo.add(f);
+                  	List entObjs = context.getObjects(classStr,qo);
+                  	for(Object o : entObjs){
+                  		ff.add(o.getDisplayName());
+                  	}
+                  }
+                  return ff;
+                </Source>
+              </Script>
+            </AllowedValuesDefinition>
+          </Field>
+        </Section>
+        <Section>
+          <Field displayName="XML" displayType="textarea" dynamic="true" name="objXml" postBack="true" readOnly="true" type="string">
+            <Attributes>
+              <Map>
+                <entry key="height" value="600"/>
+                <entry key="hidden">
+                  <value>
+                    <Script>
+                      <Source>
+                        if (object != null &amp;&amp; objectFileName != null ) 
+                        return false;
+                        else
+                        return true;
+                      </Source>
+                    </Script>
+                  </value>
+                </entry>
+              </Map>
+            </Attributes>
+            <Script>
+              <Source>
+                import sailpoint.object.*;
+                import sailpoint.api.*;
+                if(object != null &amp;&amp; objectFileName != null &amp;&amp; !(object.equalsIgnoreCase("ManagedAttribute"))){
+                	String str = "sailpoint.object."+object;
+                	Class clas = Class.forName(str);
+                System.out.println("------yyyyesssss");
+                	if ( context.getObject(clas,objectFileName) != null) {
+                System.out.println("------nnnnnnnnnnnnnooooooooooooooooooo");
+                  	return (context.getObject(clas,objectFileName)).toXml();
+                  }
+                }
+                if(object != null &amp;&amp; object.equalsIgnoreCase("ManagedAttribute") &amp;&amp; objectFileName != null){
+                	String str = "sailpoint.object."+object;
+                	Class clas = Class.forName(str);
+                System.out.println("------hhhhhiiiii");
+                	Filter f = Filter.eq("displayName",objectFileName);
+                	ManagedAttribute ma = context.getUniqueObject(clas,f);
+                	if ( context.getUniqueObject(clas,f) != null) {
+                  	return (context.getUniqueObject(clas,f)).toXml();
+                  }
+                }
+                return null;
+                
+              </Source>
+            </Script>
+          </Field>
+        </Section>
+      </Form>
+    </Approval>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="268" posY="10"/>
+</Workflow>
