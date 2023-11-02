@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE DynamicScope PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<DynamicScope name="IT Depertment">
+  <Description>Custom dynamic scope </Description>
+  <Selector>
+    <IdentitySelector>
+      <PopulationRef>
+        <Reference class="sailpoint.object.GroupDefinition" name="IT Department"/>
+      </PopulationRef>
+    </IdentitySelector>
+  </Selector>
+</DynamicScope>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="groups" displayName="WebApplicationAccess" hash="598d86a1ce1b46254e381efe5e97b6fbfe9db492" lastRefresh="1650522313222" requestable="true" type="group" value="cn=WebApplicationAccess,ou=Group,dc=my-domain,dc=com">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Oldap"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="cn" value="WebApplicationAccess"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

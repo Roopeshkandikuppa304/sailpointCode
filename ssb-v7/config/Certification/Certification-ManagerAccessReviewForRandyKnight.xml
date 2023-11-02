@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1691676590837" certificationDefinitionId="c0a8017389971da58189dfc44d490e85" creator="spadmin" entitlementGranularity="Value" expiration="1694354990837" manager="Randy Knight" name="Manager Access Review for Randy Knight" phase="Active" processRevokesImmediately="true" shortName="Access Review for Randy Knight" taskScheduleId="Manager Certification [DATE] [8/10/23 7:36 PM]" totalEntities="2" totalItems="3" type="Manager">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Manager Certification [8/10/23 7:36:53 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Randy Knight</String>
+  </Certifiers>
+  <Parent>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Aaron Nichols"/>
+  </Parent>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="2" totalItems="3" totalRoles="3"/>
+  <WorkItemRefs>
+    <Reference class="sailpoint.object.WorkItem" name="0000000442"/>
+  </WorkItemRefs>
+  <CertificationRefs>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Andrea Hudson"/>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Carlos Perkins"/>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Kathryn Gardner"/>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Russell Spencer"/>
+  </CertificationRefs>
+  <CertificationEntity firstname="Andrea" identity="Andrea Hudson" lastname="Hudson" newUser="true" snapshotId="c0a8017389971da58189dfc5a6fe0eeb" summaryStatus="Open" targetDisplayName="Andrea Hudson" targetName="Andrea Hudson" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="1ea550c381884a66b40f8460f7d5e9f6" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648566263992" roleName="Test_Bussiness" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Andrea Hudson" nativeIdentity="CN=Andrea Hudson,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="2d69ec5af6b1435481c364f20c1f23fa" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1672982921239" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Andrea Hudson" nativeIdentity="CN=Andrea Hudson,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Carlos" identity="Carlos Perkins" lastname="Perkins" newUser="true" snapshotId="c0a8017389971da58189dfc5a90d0ef6" summaryStatus="Open" targetDisplayName="Carlos Perkins" targetName="Carlos Perkins" type="Identity">
+    <CertificationItem bundle="Ex-Business" bundleAssignmentId="e86ee3381b5e48458eec147d8cf2a641" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Ex-Business" targetName="Ex-Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648714315967" roleName="Ex-Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Carlos Perkins" nativeIdentity="CN=Carlos Perkins,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

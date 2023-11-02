@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE IntegrationConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<IntegrationConfig executor="com.integration.NYUIntegration" name="NYUIntegration" roleSyncStyle="none">
+  <Attributes>
+    <Map>
+      <entry key="operations" value="Create,Modify,Delete"/>
+      <entry key="ruleName" value="NYU-CSV Integration Config Rule"/>
+    </Map>
+  </Attributes>
+  <ManagedResources>
+    <ManagedResource>
+      <ApplicationRef>
+        <Reference class="sailpoint.object.Application" name="Test HR"/>
+      </ApplicationRef>
+    </ManagedResource>
+  </ManagedResources>
+</IntegrationConfig>

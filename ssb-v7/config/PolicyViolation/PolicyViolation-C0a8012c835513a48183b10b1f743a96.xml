@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE PolicyViolation PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<PolicyViolation active="true" constraintId="c0a8ae0180da11028180db9cfcee00ee" constraintName="The Condition when Conflict occurs" policyName="Entitlement AD Policy" status="Open">
+  <Attributes>
+    <Map>
+      <entry key="RelevantApplications">
+        <value>
+          <List>
+            <String>AD</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="ViolatingEntitlements">
+        <value>
+          <List>
+            <MatchTerm name="memberOf" type="Entitlement" value="CN=AccountsPayable,OU=Groups,OU=Demo,DC=Eshiam,DC=com">
+              <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="AD"/>
+              </ApplicationRef>
+            </MatchTerm>
+            <MatchTerm name="memberOf" type="Entitlement" value="CN=AccountsReceivable,OU=Groups,OU=Demo,DC=Eshiam,DC=com">
+              <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="AD"/>
+              </ApplicationRef>
+            </MatchTerm>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <IdentityRef>
+    <Reference class="sailpoint.object.Identity" name="Clarence Harper"/>
+  </IdentityRef>
+</PolicyViolation>

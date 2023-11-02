@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ACR_SITE_CLERK" hash="58cfb476e2e6ab9ab3f48900e22314f1f4bf89af" lastRefresh="1658477543387" requestable="true" type="Group" value="ACR_SITE_CLERK">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Accra Site Clerk - This role allows access to Accounts Payable Vendors, Purchase Orders, Vouchers, Query Viewer"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

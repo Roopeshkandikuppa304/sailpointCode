@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE BatchRequest PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<BatchRequest completedDate="1674454223598" errorCount="1" fileContents="operation,roles,identityName&#10;AddRole,AD_Business,Eric Howard" fileName="Addrole.csv" header="operation, roles, identityname" recordCount="1" runDate="1674454220930" status="Executed">
+  <BatchRequestItems>
+    <BatchRequestItem identityRequestId="0000000395" requestData="AddRole,AD_Business,Eric Howard" result="Failed" status="Finished" targetIdentityId="c0a89d017f8810ba817f8bdd61310110">
+      <ErrorMessage>
+        <Message key="sailpoint.tools.GeneralException: The application script threw an exception: java.lang.ClassCastException: Cannot cast java.lang.String to java.util.List BSF info: Before_ADprovision_Rule at line: 0 column: columnNo" type="Error"/>
+      </ErrorMessage>
+    </BatchRequestItem>
+  </BatchRequestItems>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <RunConfig>
+    <Attributes>
+      <Map>
+        <entry key="generateIdentityRequests">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="handleExistingCreate">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ignoreErrors">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="policyScheme" value="none"/>
+        <entry key="runDate">
+          <value>
+            <Date>1674454200000</Date>
+          </value>
+        </entry>
+        <entry key="runNow">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipManualWorkItems">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipProvisioningForms">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="stopNumber">
+          <value>
+            <Integer>0</Integer>
+          </value>
+        </entry>
+      </Map>
+    </Attributes>
+  </RunConfig>
+</BatchRequest>

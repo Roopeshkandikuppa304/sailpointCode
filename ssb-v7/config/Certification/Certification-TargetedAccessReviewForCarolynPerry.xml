@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification certificationDefinitionId="c0a81d538610115381861184354201f1" creator="spadmin" entitlementGranularity="Value" excludeInactive="true" name="Targeted Access Review for Carolyn Perry" phase="Staged" shortName="Access Review for Carolyn Perry" totalEntities="3" totalItems="5" type="Focused">
+  <Attributes>
+    <Map>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation" value="false"/>
+      <entry key="requireReassignmentCompletion" value="true"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Test_TargetedCertification"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Carolyn Perry</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Challenge">
+      <Duration>
+        <TimeDuration amount="1" scale="Week"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="3" totalExceptions="2" totalItems="5" totalRoles="3"/>
+  <CertificationEntity compositeScore="250" firstname="Teresa" identity="Teresa Cole" lastname="Cole" newUser="true" snapshotId="c0a81d53861011538186118454d2025b" summaryStatus="Open" targetDisplayName="Teresa Cole" targetName="Teresa Cole" type="Identity">
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="6de11ced61c940bfa63897596bd546ba" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1674239686946" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Teresa Cole" nativeIdentity="CN=Teresa Cole,OU=People,OU=Demo,DC=IIQ,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="JDBC" exceptionAttributeName="GroupId" exceptionAttributeValue="3" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>JDBC</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="JDBC" displayName="Teresa Cole" nativeIdentity="1b2a3d4a">
+          <Attributes>
+            <Map>
+              <entry key="GroupId" value="3"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity compositeScore="250" firstname="Jonathan" identity="Jonathan West" lastname="West" newUser="true" snapshotId="c0a81d53861011538186118455390268" summaryStatus="Open" targetDisplayName="Jonathan West" targetName="Jonathan West" type="Identity">
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="a4e6d618e8ce4355b392d84cb239899e" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1674454553735" roleName="AD_Business" source="Batch">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Jonathan West" nativeIdentity="CN=Jonathan West,OU=People,OU=Demo,DC=IIQ,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+      <BundleEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Jonathan West" nativeIdentity="CN=Jonathan West,OU=People,OU=Demo,DC=IIQ,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf">
+                <value>
+                  <Set>
+                    <String>CN=DEV_Europe,OU=Groups,OU=Demo,DC=IIQ,DC=com</String>
+                  </Set>
+                </value>
+              </entry>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </BundleEntitlements>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="JDBC" exceptionAttributeName="GroupId" exceptionAttributeValue="3" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>JDBC</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="JDBC" displayName="Jonathan West" nativeIdentity="1b2a3d4b">
+          <Attributes>
+            <Map>
+              <entry key="GroupId" value="3"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Doris" identity="Doris Jordan" lastname="Jordan" newUser="true" snapshotId="c0a81d5386101153818611845571026c" summaryStatus="Open" targetDisplayName="Doris Jordan" targetName="Doris Jordan" type="Identity">
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="79841ceded774115b04cb6248f259068" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1674127810677" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Doris Jordan" nativeIdentity="CN=Doris Jordan,OU=People,OU=Demo,DC=IIQ,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

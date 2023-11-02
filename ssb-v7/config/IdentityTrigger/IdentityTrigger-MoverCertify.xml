@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE IdentityTrigger PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<IdentityTrigger disabled="true" handler="sailpoint.api.CertificationTriggerHandler" name="Mover Certify" type="Rule">
+  <Description>Hi</Description>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <HandlerParameters>
+    <Attributes>
+      <Map>
+        <entry key="businessProcess"/>
+        <entry key="certificationDefinitionId" value="c0a81d5386bc10a88186f32a186713bb"/>
+        <entry key="identityProcessingThreshold"/>
+        <entry key="identityProcessingThresholdType"/>
+      </Map>
+    </Attributes>
+  </HandlerParameters>
+  <TriggerRule>
+    <Reference class="sailpoint.object.Rule" name="Mover_CertifyEvent_Rule"/>
+  </TriggerRule>
+</IdentityTrigger>

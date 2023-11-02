@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1661333847959" automaticClosingDate="1661341047959" certificationDefinitionId="a9fef0a782b413f28182cf36ae8c07fe" complete="true" creator="spadmin" entitlementGranularity="Value" expiration="1661337447959" finished="1661341262613" itemPercentComplete="100" name="Identity Access Review for Aaron Nichols" percentComplete="100" phase="End" processRevokesImmediately="true" shortName="Access Review for Aaron Nichols" signed="1661341247043" triggerId="a9fef0a782b413f28182cf16a01807ae" type="Identity">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="AD Native Change 24/08/22, 3:07:24 PM ISTEvent Certification [24/08/22, 3:07:24 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Katherine Langford</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <SignOffHistory>
+    <SignOffHistoryItem date="1661341247008" signerDisplayName="The Administrator" signerId="c0a800687f7c124c817f7c1383fe00e6" signerName="spadmin"/>
+  </SignOffHistory>
+  <CertificationStatistics itemPercentComplete="100" percentComplete="100"/>
+  <CertificationRefs>
+    <Reference class="sailpoint.object.Certification" name="Reassignment from 'Identity Access Review for Aaron Nichols' to James Smith1"/>
+  </CertificationRefs>
+</Certification>

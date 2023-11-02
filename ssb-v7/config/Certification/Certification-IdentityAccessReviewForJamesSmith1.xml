@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1666948427586" automaticClosingDate="1666955627586" certificationDefinitionId="c0a8008f84171ce281841dde6baf06fd" complete="true" completedEntities="1" completedItems="2" creator="spadmin" entitlementGranularity="Value" expiration="1666952027586" finished="1666955702963" itemPercentComplete="100" name="Identity Access Review for James Smith1" percentComplete="100" phase="End" processRevokesImmediately="true" remediationsKickedOff="2" shortName="Access Review for James Smith1" signed="1666955702751" totalEntities="1" totalItems="2" triggerId="a9fef0a782b413f28182cf16a01807ae" type="Identity">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="AD Native Change 24/08/22, 3:07:24 PM ISTEvent Certification [24/08/22, 3:07:24 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Katherine Langford</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <SignOffHistory>
+    <SignOffHistoryItem date="1666955702735" signerDisplayName="The Administrator" signerId="c0a800687f7c124c817f7c1383fe00e6" signerName="spadmin"/>
+  </SignOffHistory>
+  <CertificationStatistics accountsRemediated="2" completedEntities="1" completedItems="2" itemPercentComplete="100" percentComplete="100" remediationsKickedOff="2" totalAccounts="2" totalEntities="1" totalItems="2"/>
+  <CertificationEntity bulkCertified="true" completed="1666955702703" compositeScore="250" firstname="James" identity="James Smith" lastname="Smith1" newUser="true" snapshotId="c0a8008f84171ce281841dde6d9306ff" summaryStatus="Complete" targetDisplayName="James Smith" targetName="James Smith" type="Identity">
+    <CertificationItem completed="1666955702703" exceptionApplication="Oldap" summaryStatus="Complete" type="Account">
+      <CertificationAction actorDisplayName="The Administrator" actorName="spadmin" bulkCertified="true" decisionCertificationId="c0a8008f84171ce281841dde6ce106fe" decisionDate="1666955700219" ownerName="James Smith" remediationAction="SendProvisionRequest" remediationKickedOff="true" reviewed="true" revokeAccount="true" status="Remediated">
+        <Description>Remove entitlements on 'James Smith1'</Description>
+        <Owner>
+          <Reference class="sailpoint.object.Identity" name="James Smith"/>
+        </Owner>
+        <RemediationPlan>
+          <ProvisioningPlan>
+            <AccountRequest application="Oldap" nativeIdentity="cn=James.Smith,ou=People,dc=my-domain,dc=com" op="Delete"/>
+            <Requesters>
+              <Reference class="sailpoint.object.Identity" name="spadmin"/>
+            </Requesters>
+          </ProvisioningPlan>
+        </RemediationPlan>
+      </CertificationAction>
+      <ApplicationNames>
+        <String>Oldap</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot accountOnly="true" application="Oldap" displayName="James.Smith" nativeIdentity="cn=James.Smith,ou=People,dc=my-domain,dc=com"/>
+      </ExceptionEntitlements>
+    </CertificationItem>
+    <CertificationItem completed="1666955702703" exceptionApplication="AD" summaryStatus="Complete" type="Account">
+      <CertificationAction actorDisplayName="The Administrator" actorName="spadmin" bulkCertified="true" decisionCertificationId="c0a8008f84171ce281841dde6ce106fe" decisionDate="1666955700243" ownerName="Katherine Langford" remediationAction="SendProvisionRequest" remediationKickedOff="true" reviewed="true" revokeAccount="true" status="Remediated">
+        <Description>Remove entitlements on 'James Smith1'</Description>
+        <Owner>
+          <Reference class="sailpoint.object.Identity" name="Katherine Langford"/>
+        </Owner>
+        <RemediationPlan>
+          <ProvisioningPlan>
+            <AccountRequest application="AD" nativeIdentity="CN=James Smith,OU=People,OU=Demo,DC=Eshiam,DC=com" op="Delete"/>
+            <Requesters>
+              <Reference class="sailpoint.object.Identity" name="spadmin"/>
+            </Requesters>
+          </ProvisioningPlan>
+        </RemediationPlan>
+      </CertificationAction>
+      <ApplicationNames>
+        <String>AD</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot accountOnly="true" application="AD" displayName="James Smith" nativeIdentity="CN=James Smith,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

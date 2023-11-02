@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_AR_BI_CONF_ADMIN" hash="6f693846ced0f8c7d33b3ea6ffd740d54a9a7dc9" lastRefresh="1658477546129" requestable="true" type="Group" value="ADH_AR_BI_CONF_ADMIN">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Abu Dhabi Accounts Receivable/Billing configuration and/or administration role"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

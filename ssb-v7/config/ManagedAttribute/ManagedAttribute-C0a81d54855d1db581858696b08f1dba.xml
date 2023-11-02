@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="memberOf" displayName="IIQ\campusAccess" hash="e989869bc91374e909db29a72e263fd3557bb027" lastRefresh="1673000300695" requestable="true" type="group" uuid="{e50f6ed6-a5f0-48c7-8f92-9493477c0c26}" value="CN=campusAccess,OU=Groups,OU=Demo,DC=IIQ,DC=com">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="AD"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="GroupScope" value="Global"/>
+      <entry key="GroupType" value="Security"/>
+      <entry key="cn" value="campusAccess"/>
+      <entry key="msDS-PrincipalName" value="IIQ\campusAccess"/>
+      <entry key="objectSid" value="S-1-5-21-1842740495-2205561152-817635398-1347"/>
+      <entry key="objectguid" value="{e50f6ed6-a5f0-48c7-8f92-9493477c0c26}"/>
+      <entry key="sAMAccountName" value="campusAccess"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

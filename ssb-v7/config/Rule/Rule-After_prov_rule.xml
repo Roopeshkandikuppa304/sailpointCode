@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="after_Prov_Rule" type="AfterProvisioning">
+  <Description>An identityiq82 server-side rule that is executed after the connector's provisioning method is called. This gives the customer the ability to customize or react to anything in the ProvisioningPlan AFTER it has been sent out to the specific applications. 
+
+    This rule will be called for any application found in a plan that also has a configured 'afterProvisioningRule' configured.</Description>
+  <Signature>
+    <Inputs>
+      <Argument name="log">
+        <Description>
+          The log object associated with the SailPointContext.
+        </Description>
+      </Argument>
+      <Argument name="context">
+        <Description>
+          A sailpoint.api.SailPointContext object that can be used to query the database if necessary.
+        </Description>
+      </Argument>
+      <Argument name="plan">
+        <Description>
+          The ProvisioningPlan object on its way to the Connector.
+        </Description>
+      </Argument>
+      <Argument name="application">
+        <Description>
+          The application object that references this before/after script.
+        </Description>
+      </Argument>
+      <Argument name="result">
+        <Description>
+          The ProvisioningResult object returned by the connectors provision method. This can be null and in many cases the connector will  not return a result and instead will annotate the plan's ProvisioningResult either at the plan or account level.        
+        </Description>
+      </Argument>
+    </Inputs>
+  </Signature>
+  <Source><![CDATA[import java.util.Map;
+  import java.util.List;
+  import sailpoint.object.EmailOptions;
+  import sailpoint.object.EmailTemplate;
+  import sailpoint.object.Identity;
+  import sailpoint.api.IdentityService;
+  import sailpoint.object.*;
+  import sailpoint.api.*;
+  import sailpoint.object.ProvisioningPlan.AccountRequest;
+  import sailpoint.object.ProvisioningPlan.AccountRequest.Operation;
+  import sailpoint.object.ProvisioningPlan.AttributeRequest;
+
+  EmailOptions eo = null;
+  List usrMail = new ArrayList();
+  List mainList = new ArrayList();
+  List removeList = new ArrayList();
+  String privilegeName = null;
+  String SUCCESS_EMAIL_TEMPLATE_NAME="ONEPASS_Success_email";
+  String REVOKE_EMAIL_TEMPLATE_NAME="ONEPASS_Revoke_email";
+
+  EmailTemplate emailTemplate = null;
+  log.error("plan..." + plan.toXml());
+
+  Map args = new HashMap();
+
+  Identity identity = plan.getIdentity();
+  List acrs = plan.getAccountRequests();
+
+  for(AccountRequest ar : acrs){
+    if(ar.getOperation() != null && ar.getOperation().equals(ProvisioningPlan.AccountRequest.Operation.Create)) {
+      emailTemplate= context.getObjectByName(EmailTemplate.class,SUCCESS_EMAIL_TEMPLATE_NAME);
+      usrMail.add("kk@singtel.com");
+      args.put("userId",identity.getName());
+      args.put("email",identity.getEmail());
+      args.put("appName",application.getName());
+      args.put("privilegeName",privilegeName);
+
+      eo = new EmailOptions(usrMail,args);
+      eo.setCc("kk@singtel.com");
+      eo.setSendImmediate(true);
+      eo.setNoRetry(true);
+
+      log.error("plan..." + plan.toXml());
+      context.sendEmailNotification(addEmailTemplate,eo);
+      log.error("successfully sent email");
+    }
+
+    if(ar.getOperation() != null && ar.getOperation().equals(ProvisioningPlan.AccountRequest.Operation.Modify)) {
+      List attrReqs = ar.getAttributeRequests("memberOf");
+      for(AttributeRequest atr : attrReqs){
+        if(atr.getOperation().equals(ProvisioningPlan.Operation.Add)){
+          mainList.add(atr.getValue());
+        }
+        if(atr.getOperation().equals(ProvisioningPlan.Operation.Remove)){
+          removeList.add(atr.getValue());
+        }
+      }
+
+      if(!mainList.isEmpty() && mainList.size() > 0){
+        privilegeName = sailpoint.tools.Util.listToCsv(mainList);
+
+        usrMail.add("kk@singtel.com");
+        args.put("userId",identity.getName());
+        args.put("email",identity.getEmail());
+        args.put("appName",application.getName());
+        args.put("privilegeName",privilegeName);
+        EmailTemplate addEmailTemplate = context.getObjectByName(EmailTemplate.class,SUCCESS_EMAIL_TEMPLATE_NAME);
+
+        eo = new EmailOptions(usrMail,args);
+        eo.setCc("kk@singtel.com");
+        eo.setSendImmediate(true);
+        eo.setNoRetry(true);
+
+        log.error("plan..." + plan.toXml());
+        context.sendEmailNotification(addEmailTemplate,eo);
+        log.error("successfully sent email");
+      }
+      if(!removeList.isEmpty() && removeList.size() > 0){
+        privilegeName = sailpoint.tools.Util.listToCsv(removeList);
+
+        usrMail.add("kk@singtel.com");
+        args.put("userId",identity.getName());
+        args.put("email",identity.getEmail());
+        args.put("appName",application.getName());
+        args.put("privilegeName",privilegeName);
+        EmailTemplate removeEmailTemplate = context.getObjectByName(EmailTemplate.class,REVOKE_EMAIL_TEMPLATE_NAME);
+
+        eo = new EmailOptions(usrMail,args);
+        eo.setCc("kk@singtel.com");
+        eo.setSendImmediate(true);
+        eo.setNoRetry(true);
+
+        log.error("plan..." + plan.toXml());
+        context.sendEmailNotification(removeEmailTemplate,eo);
+        log.error("successfully sent email");
+      }
+
+    }
+
+  }
+
+  ]]></Source>
+</Rule>

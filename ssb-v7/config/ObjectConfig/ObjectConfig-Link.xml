@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ObjectConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ObjectConfig name="Link">
+  <ObjectAttribute displayName="samA" editMode="ReadOnly" extendedNumber="1" name="samA" type="string"/>
+</ObjectConfig>

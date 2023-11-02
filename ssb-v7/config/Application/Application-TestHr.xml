@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="PROVISIONING, DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA, ADDITIONAL_ACCOUNT_REQUEST, ACCOUNT_ONLY_REQUEST" icon="enterpriseIcon" name="Test HR" profileClass="" type="DelimitedFile">
+  <Attributes>
+    <Map>
+      <entry key="Group.columnNames"/>
+      <entry key="Group.commentCharacter"/>
+      <entry key="Group.delimiter" value=","/>
+      <entry key="Group.file" value="C:\Sailpoint\NYU_SailPoint_Roles_2022Q3.csv"/>
+      <entry key="Group.fileEncoding" value="UTF-8"/>
+      <entry key="Group.filterEmptyRecords">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="Group.filterString"/>
+      <entry key="Group.hasHeader">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="Group.indexColumn"/>
+      <entry key="Group.isCaseInsensitiveMerge">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="Group.isSortedByIndexColumn">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="Group.mergeColumns"/>
+      <entry key="Group.mergeRows">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="Group.numberOfLinesToSkip"/>
+      <entry key="Group.regularExpression"/>
+      <entry key="Group.stopIfLineHasWrongColumnLength">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="PassphraseForPrivateKey"/>
+      <entry key="PrivateKeyFilePath"/>
+      <entry key="afterProvisioningRule"/>
+      <entry key="beforeProvisioningRule"/>
+      <entry key="compositeDefinition"/>
+      <entry key="delimiter" value=","/>
+      <entry key="file" value="C:\Sailpoint\NYU_Sailpoint_Approvers_2022Q3.csv"/>
+      <entry key="fileEncoding" value="UTF-8"/>
+      <entry key="filetransport" value="local"/>
+      <entry key="filterEmptyRecords">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="ftpsClientCertificateFilePath"/>
+      <entry key="ftpsClientCertificatePassphrase"/>
+      <entry key="group.filetransport" value="local"/>
+      <entry key="group.filterEmptyRecords">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="group.partitionMode" value="auto"/>
+      <entry key="hasHeader">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="isCaseInsensitiveMerge">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="isSortedByIndexColumn">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="mergeRows">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+      <entry key="nativeChangeDetectionAttributes"/>
+      <entry key="nativeChangeDetectionEnabled">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionOperations"/>
+      <entry key="parseType" value="delimited"/>
+      <entry key="partitionMode" value="auto"/>
+      <entry key="port"/>
+      <entry key="sftpAuthMethod" value="password"/>
+      <entry key="stopIfLineHasWrongColumnLength">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="templateApplication" value="DelimitedFile Template"/>
+    </Map>
+  </Attributes>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <ProvisioningForms>
+    <Form name="Create" objectType="account" type="Create">
+      <Attributes>
+        <Map>
+          <entry key="pageTitle" value="Create "/>
+        </Map>
+      </Attributes>
+      <Section name="CREATE">
+        <Field displayName="fame_User_NETID" name="fame_User_NETID" type="string"/>
+      </Section>
+    </Form>
+  </ProvisioningForms>
+  <Schemas>
+    <Schema displayAttribute="Roles" identityAttribute="﻿fame_User_NETID" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+      <AttributeDefinition name="﻿fame_User_NETID" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="Manager_NETID" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="Roles" type="string">
+        <Description/>
+      </AttributeDefinition>
+    </Schema>
+    <Schema aggregationType="group" descriptionAttribute="" displayAttribute="Description" identityAttribute="﻿ROLENAME" instanceAttribute="" nativeObjectType="Group" objectType="Group" permissionsRemediationModificationType="None">
+      <AttributeDefinition name="﻿ROLENAME" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="Description" type="string">
+        <Description/>
+      </AttributeDefinition>
+    </Schema>
+  </Schemas>
+  <ApplicationScorecard/>
+</Application>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1679326835296" certificationDefinitionId="c0a81d5386bc10a88186ffadf15d1963" creator="spadmin" entitlementGranularity="Value" expiration="1682005235296" name="Americana-Mover Identity Cert" phase="End" shortName="Americana-Mover Identity Cert" taskScheduleId="Americana-Mover Identity Cert Raymond James [Mar 20, 2023 10:40:34 AM] [3/20/23 10:40 AM]" totalEntities="1" totalItems="3" type="Identity">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Americana-Mover Identity Cert Raymond James [Mar 20, 2023 10:40:34 AM]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Aaron Nichols</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="1" totalExceptions="1" totalItems="3" totalRoles="2"/>
+  <WorkItemRefs>
+    <Reference class="sailpoint.object.WorkItem" name="0000000405"/>
+  </WorkItemRefs>
+  <CertificationEntity compositeScore="250" firstname="Raymond" identity="Raymond James" lastname="James" newUser="true" snapshotId="c0a81d5386bc10a88186ffadf21e1968" summaryStatus="Open" targetDisplayName="Raymond James" targetName="Raymond James" type="Identity">
+    <CertificationItem bundle="Ex-Business" bundleAssignmentId="bbcdd2c0419b4014a4d7fa410680bdbd" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Ex-Business" targetName="Ex-Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1665687366460" roleName="Ex-Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" nativeIdentity="CN=Raymond James,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="4bf95bba7663474796142b8a0dbb8ccb" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1670411764537" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" nativeIdentity="CN=Raymond James,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="JDBC" exceptionAttributeName="GroupId" exceptionAttributeValue="3" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>JDBC</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="JDBC" displayName="Raymond James" nativeIdentity="1a2c3c4e">
+          <Attributes>
+            <Map>
+              <entry key="GroupId" value="3"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

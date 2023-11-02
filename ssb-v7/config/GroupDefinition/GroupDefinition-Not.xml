@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE GroupDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<GroupDefinition indexed="true" name="not" private="true">
+  <GroupFilter>
+    <CompositeFilter operation="NOT">
+      <Filter matchMode="START" operation="LIKE" property="links.application.name" value="T"/>
+      <Filter matchMode="START" operation="LIKE" property="links.application.name" value="A"/>
+    </CompositeFilter>
+  </GroupFilter>
+  <Index>
+    <Reference class="sailpoint.object.GroupIndex" name="not"/>
+  </Index>
+</GroupDefinition>

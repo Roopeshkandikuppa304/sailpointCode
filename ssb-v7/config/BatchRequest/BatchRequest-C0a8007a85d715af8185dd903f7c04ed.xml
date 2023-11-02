@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE BatchRequest PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<BatchRequest fileContents="operation,roles,identityName,application,attributename,attributevalue,nativeidentity&#10;AddRole,AD_Business,Laura Turner&#10;AddEntitlement,,,AD,memberOf,&quot;CN=Buyer,OU=Groups,OU=Demo,DC=IIQ,DC=com&quot;,&quot;CN=Laura Turner,OU=People,OU=Demo,DC=IIQ,DC=com&quot;" fileName="Addrole.csv" runDate="1674459496324" status="Invalid">
+  <ErrorMessage>
+    <Message key="org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: sailpoint.object.BatchRequestItem" type="Error"/>
+  </ErrorMessage>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <RunConfig>
+    <Attributes>
+      <Map>
+        <entry key="generateIdentityRequests">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="handleExistingCreate">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ignoreErrors">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="policyScheme" value="none"/>
+        <entry key="runDate">
+          <value>
+            <Date>1674459480000</Date>
+          </value>
+        </entry>
+        <entry key="runNow">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipManualWorkItems">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipProvisioningForms">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="stopNumber">
+          <value>
+            <Integer>0</Integer>
+          </value>
+        </entry>
+      </Map>
+    </Attributes>
+  </RunConfig>
+</BatchRequest>

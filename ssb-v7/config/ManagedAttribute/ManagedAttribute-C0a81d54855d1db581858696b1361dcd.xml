@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="memberOf" displayName="IIQ\DNSAdministration" hash="1ea7481887ef6675a3afa1ec07a3f55aa000765e" lastRefresh="1673000300858" requestable="true" type="group" uuid="{f74aa0f0-a3c8-455a-84c3-a2ac006603e5}" value="CN=DNSAdministration,OU=Groups,OU=Demo,DC=IIQ,DC=com">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="AD"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="GroupScope" value="Global"/>
+      <entry key="GroupType" value="Security"/>
+      <entry key="cn" value="DNSAdministration"/>
+      <entry key="msDS-PrincipalName" value="IIQ\DNSAdministration"/>
+      <entry key="objectSid" value="S-1-5-21-1842740495-2205561152-817635398-1366"/>
+      <entry key="objectguid" value="{f74aa0f0-a3c8-455a-84c3-a2ac006603e5}"/>
+      <entry key="sAMAccountName" value="DNSAdministration"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

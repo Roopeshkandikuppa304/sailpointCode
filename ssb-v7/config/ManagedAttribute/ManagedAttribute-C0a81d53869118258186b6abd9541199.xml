@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="GroupId" displayName="Testers" hash="22334229227bbf05aae3cc380ce33345b1abbf22" requestable="true" type="Group" value="Tester">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="JDBC"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US" value="the access is for Tester"/>
+          </Map>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_AM_IB_ADMIN" hash="94f09df65f91a2234f19ab1f5f9251c379c6b5e9" lastRefresh="1658477544388" requestable="true" type="Group" value="ADH_AM_IB_ADMIN">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="This role allows access to Abu Dhabi AM Integration with CAFM (Facilities Mgmt System) &amp; ServiceLink System to adminsiter REST service"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

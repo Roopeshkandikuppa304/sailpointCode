@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CertificationGroup PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<CertificationGroup name="Mover Certify3/16/23 3:25:21 AM GMT-05:00" percentComplete="100" status="Complete" type="Certification">
+  <Definition>
+    <Reference class="sailpoint.object.CertificationDefinition" name="Mover Certify"/>
+  </Definition>
+  <Messages>
+    <Message key="err_exception" type="Error">
+      <Parameters>
+        <Message key="msg_plain_text" type="Error">
+          <Parameters>
+            <String>The application script threw an exception: java.lang.NullPointerException: Null Pointer in Method Invocation BSF info: CertificateItemCustomization_Rule at line: 0 column: columnNo</String>
+          </Parameters>
+        </Message>
+      </Parameters>
+    </Message>
+    <Message key="err_exception" type="Error">
+      <Parameters>
+        <Message key="msg_plain_text" type="Error">
+          <Parameters>
+            <String>BeanShell script error: bsh.EvalError: Sourced file: inline evaluation of: ``import sailpoint.object.Identity;    Map results = new HashMap();    String curr . . . '' : Typed variable declaration : Class: Custom not found in namespace : at Line: 5 : in file: inline evaluation of: ``import sailpoint.object.Identity;    Map results = new HashMap();    String curr . . . '' : Custom 
+ BSF info: Mover_Certify_Pre-Delegation at line: 0 column: columnNo</String>
+          </Parameters>
+        </Message>
+      </Parameters>
+    </Message>
+  </Messages>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</CertificationGroup>

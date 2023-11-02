@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CertificationGroup PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<CertificationGroup completedCertifications="2" name="AD Native Change 24/08/22, 2:35:25 PM ISTEvent Certification [24/08/22, 2:35:25 PM IST]" percentComplete="100" status="Complete" totalCertifications="2" type="Certification">
+  <Definition>
+    <Reference class="sailpoint.object.CertificationDefinition" name="AD Native Change Certify Event"/>
+  </Definition>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</CertificationGroup>

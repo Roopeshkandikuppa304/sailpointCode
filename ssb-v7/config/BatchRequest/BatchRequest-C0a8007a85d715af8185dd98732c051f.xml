@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE BatchRequest PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<BatchRequest completedCount="1" fileContents="operation,application,attributename,attributevalue,nativeidentity&#10;RemoveEntitlement,AD,memberOf,&quot;CN=DEV_Europe,OU=Groups,OU=Demo,DC=IIQ,DC=com&quot;,&quot;CN=George Wright,OU=People,OU=Demo,DC=IIQ,DC=com&quot;&#10;RemoveEntitlement,AD,memberOf,&quot;CN=Buyer,OU=Groups,OU=Demo,DC=IIQ,DC=com&quot;,&quot;CN=George Wright,OU=People,OU=Demo,DC=IIQ,DC=com&quot;" fileName="Remove_ent.csv" header="operation, application, attributename, attributevalue, nativeidentity" recordCount="2" runDate="1674460033838" status="Executed">
+  <BatchRequestItems>
+    <BatchRequestItem identityRequestId="0000000405" requestData="RemoveEntitlement,AD,memberOf,&quot;CN=DEV_Europe,OU=Groups,OU=Demo,DC=IIQ,DC=com&quot;,&quot;CN=George Wright,OU=People,OU=Demo,DC=IIQ,DC=com&quot;" result="Skipped" status="Invalid" targetIdentityId="c0a89d017f8810ba817f8bdce0c700b4">
+      <ErrorMessage>
+        <Message key="Filtered due to Dependency" type="Error"/>
+      </ErrorMessage>
+    </BatchRequestItem>
+    <BatchRequestItem identityRequestId="0000000406" requestData="RemoveEntitlement,AD,memberOf,&quot;CN=Buyer,OU=Groups,OU=Demo,DC=IIQ,DC=com&quot;,&quot;CN=George Wright,OU=People,OU=Demo,DC=IIQ,DC=com&quot;" result="Success" status="Finished" targetIdentityId="c0a89d017f8810ba817f8bdce0c700b4"/>
+  </BatchRequestItems>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <RunConfig>
+    <Attributes>
+      <Map>
+        <entry key="generateIdentityRequests">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="handleExistingCreate">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ignoreErrors">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="policyScheme" value="none"/>
+        <entry key="runDate">
+          <value>
+            <Date>1674459960000</Date>
+          </value>
+        </entry>
+        <entry key="runNow">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipManualWorkItems">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipProvisioningForms">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="stopNumber">
+          <value>
+            <Integer>0</Integer>
+          </value>
+        </entry>
+      </Map>
+    </Attributes>
+  </RunConfig>
+</BatchRequest>

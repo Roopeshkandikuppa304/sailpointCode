@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1661333866671" automaticClosingDate="1661341066671" bulkReassignment="true" certificationDefinitionId="a9fef0a782b413f28182cf36f93d080d" complete="true" completedEntities="1" completedItems="1" creator="Katherine Langford" entitlementGranularity="Value" expiration="1661337466671" finished="1661341253702" itemPercentComplete="100" name="Reassignment from 'Identity Access Review for Native Changer' to Katherine Langford" percentComplete="100" phase="End" processRevokesImmediately="true" remediationsCompleted="1" remediationsKickedOff="1" shortName="Reassignment from Access Review for Native Changer" signed="1661341208425" totalEntities="1" totalItems="1" triggerId="a9fef0a782b413f28182cf16a01807ae" type="Identity">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="bulkReassignmentDescription" value="Certify Native Changer"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="AD Native Change 24/08/22, 3:07:24 PM ISTEvent Certification [24/08/22, 3:07:24 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Katherine Langford</String>
+  </Certifiers>
+  <Parent>
+    <Reference class="sailpoint.object.Certification" name="Identity Access Review for Native Changer"/>
+  </Parent>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <SignOffHistory>
+    <SignOffHistoryItem date="1661341208408" signerDisplayName="The Administrator" signerId="c0a800687f7c124c817f7c1383fe00e6" signerName="spadmin"/>
+  </SignOffHistory>
+  <CertificationStatistics accountsRemediated="1" completedEntities="1" completedItems="1" itemPercentComplete="100" percentComplete="100" remediationsCompleted="1" remediationsKickedOff="1" totalAccounts="1" totalEntities="1" totalItems="1"/>
+  <CertificationEntity bulkCertified="true" completed="1661341205886" identity="Native Changer" newUser="true" snapshotId="a9fef0a782b413f28182cf36feb8080f" summaryStatus="Complete" targetDisplayName="Native Changer" targetName="Native Changer" type="Identity">
+    <CertificationItem completed="1661341205882" exceptionApplication="AD" summaryStatus="Complete" type="Account">
+      <CertificationAction actorDisplayName="The Administrator" actorName="spadmin" bulkCertified="true" decisionCertificationId="a9fef0a782b413f28182cf3711830813" decisionDate="1661341204177" remediationAction="OpenWorkItem" remediationCompleted="true" remediationKickedOff="true" reviewed="true" revokeAccount="true" status="Remediated">
+        <Description>Remove entitlements on 'Native Changer'</Description>
+      </CertificationAction>
+      <ApplicationNames>
+        <String>AD</String>
+      </ApplicationNames>
+      <Attributes>
+        <Map>
+          <entry key="domainAccess" value="Native"/>
+        </Map>
+      </Attributes>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot accountOnly="true" application="AD" displayName="Native Changer" nativeIdentity="CN=Native Changer,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

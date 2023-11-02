@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_ASSET_MGMT_ACCT_TEMPL_UPD" hash="34100f0aa8b7a9d4d4163d2c364ae2492d2936a2" lastRefresh="1658477547452" requestable="true" type="Group" value="ADH_ASSET_MGMT_ACCT_TEMPL_UPD">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="This role grants the access to maintain the asset accounting custom template for ADH01 business unit."/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

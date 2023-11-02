@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form hidden="true" name="Base Bundle Identity Form" type="Report">
+  <Section columns="2" label="rept_identity_roles_section_props" name="Identity Properties">
+    <Field columnSpan="1" displayName="rept_identity_roles_field_roles" helpKey="rept_identity_roles_help_roles" multi="true" name="identityRoles" type="Bundle" value="ref:identityRoles"/>
+  </Section>
+</Form>

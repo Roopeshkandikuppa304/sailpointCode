@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_ASSET_UPDATE_ON_PO" hash="999d331841acc1f823f638d04f2f4d18bae46e30" lastRefresh="1658477547637" requestable="true" type="Group" value="ADH_ASSET_UPDATE_ON_PO">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Grant access to Fixed asset accountant to update PO distribution only to set/remove the asset profile."/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

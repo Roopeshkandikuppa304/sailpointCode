@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE DynamicScope PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<DynamicScope name="HK-Manage CustomObject">
+  <Description>Dynamic Scope to Manage Custom Object</Description>
+  <Selector>
+    <IdentitySelector>
+      <MatchExpression>
+        <MatchTerm name="capabilities" value="HK-Manage CustomObject"/>
+        <MatchTerm name="capabilities" type="Entitlement" value="HK-Manage CustomObject Administrator"/>
+      </MatchExpression>
+    </IdentitySelector>
+  </Selector>
+</DynamicScope>

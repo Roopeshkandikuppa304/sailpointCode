@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="groups" displayName="WS_GROUP_125" hash="f250fb0409f71ae729981b1828c3ff8288bf56bc" lastRefresh="1659520230756" requestable="true" type="group" value="WS_GROUP_125">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="WebServices"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="group_desc" value="WS_GROUP_125"/>
+      <entry key="group_name" value="WS_GROUP_125"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

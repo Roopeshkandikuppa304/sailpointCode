@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="checking identities frm Population Rule" type="Validation">
+  <Source><![CDATA[
+  import sailpoint.object.*;
+  import sailpoint.api.*;
+  import sailpoint.object.ProvisioningPlan.AccountRequest;
+  import sailpoint.object.ProvisioningPlan.AttributeRequest;
+  import sailpoint.api.Provisioner;
+
+
+  List ids = new ArrayList();
+  GroupDefinition gd = context.getObjectByName(GroupDefinition.class,"Population-AD joiner trigger");
+  Identity identity = context.getObjectByName(Identity.class,"AA141");
+  Filter f = gd.getFilter();
+  QueryOptions qo = new QueryOptions();
+  qo.add(f);
+  List list = context.getObjects(Identity.class,qo);
+  for(Identity id : list){
+    ids.add(id.getName());
+  }
+  if(ids.contains(identity.getName()))
+    return "hi";
+  else
+    return "bye";
+
+
+
+  ]]></Source>
+</Rule>

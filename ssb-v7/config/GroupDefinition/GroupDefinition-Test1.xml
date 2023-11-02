@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE GroupDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<GroupDefinition indexed="true" name="Test1" private="true">
+  <Description/>
+  <GroupFilter>
+    <CompositeFilter operation="AND">
+      <Filter ignoreCase="true" matchMode="START" operation="LIKE" property="displayName" value="A"/>
+      <Filter ignoreCase="true" operation="EQ" property="links.application.id" value="c0a89d017f8810ba817f9112ad8a0570"/>
+    </CompositeFilter>
+  </GroupFilter>
+  <Index>
+    <Reference class="sailpoint.object.GroupIndex" name="Test1"/>
+  </Index>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</GroupDefinition>

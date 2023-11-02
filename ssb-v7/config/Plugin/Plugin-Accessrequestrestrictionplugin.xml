@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Plugin PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Plugin certificationLevel="None" displayName="Access Request Restriction" installDate="1667286390839" minSystemVersion="7.2" name="AccessRequestRestrictionPlugin" version="2.2">
+  <Attributes>
+    <Map>
+      <entry key="restResources">
+        <value>
+          <List>
+            <String>sailpoint.services.plugin.accessrequestrestriction.rest.AccessRequestRestrictionPluginResource</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="settings">
+        <value>
+          <List>
+            <Setting dataType="int" defaultValue="2" helpText="This will restrict the number of Access which can be selected for Request" label="Maximum Allowed Access Selection" name="maxAllowedAccessSelection"/>
+            <Setting dataType="string" defaultValue="" helpText="To be updated for debugging to execute workflow on a specifc host" label="Host" name="reqHostName"/>
+            <Setting dataType="boolean" defaultValue="false" helpText="This will enable debugging in codes" label="Enable Debugging" name="isDebuggingEnabled"/>
+          </List>
+        </value>
+      </entry>
+      <entry key="snippets">
+        <value>
+          <List>
+            <Snippet regexPattern="/accessRequest/accessRequest\.jsf.*" rightRequired="">
+              <Scripts>
+                <String>ui/js/headerInject.js</String>
+              </Scripts>
+            </Snippet>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <File>
+    <Reference class="sailpoint.object.PersistedFile" name="AccessRequestRestrictionPlugin.1.0.1.zip"/>
+  </File>
+</Plugin>

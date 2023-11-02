@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_AP_VENDOR_ENTRY" hash="d6ac928134d32538b3c2bc5d612d083f1ce15d6f" lastRefresh="1658477545429" requestable="true" type="Group" value="ADH_AP_VENDOR_ENTRY">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Abu Dhabi Vendor/Supplier role to Create Vendors, Inactivate Vendors, Inquire supplier, and run Reports"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

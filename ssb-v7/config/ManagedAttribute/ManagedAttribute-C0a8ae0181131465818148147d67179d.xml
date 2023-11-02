@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_AP_VCHR_PAYMENT_SCHEDULE" hash="f9a82f34cd4965a764b06f26a16e23546a5ba6ea" lastRefresh="1658477545261" requestable="true" type="Group" value="ADH_AP_VCHR_PAYMENT_SCHEDULE">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="NYUAD Voucher payment schedule"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>
