@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_ASSET_MANAGEMENT_OPERATION" hash="fed9152d110cf32495dfb932fe197d3e3ddff1ef" lastRefresh="1658477546942" requestable="true" type="Group" value="ADH_ASSET_MANAGEMENT_OPERATION">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Access to setup Manufacturer details of assets"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

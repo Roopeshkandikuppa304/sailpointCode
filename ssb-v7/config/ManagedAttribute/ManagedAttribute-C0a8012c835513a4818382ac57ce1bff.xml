@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute attribute="memberof" hash="421218def54719a96d16df0373219ef148c8afe5" requestable="true" type="Entitlement" value="AcctsPayableAccess">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Training HR"/>
+  </ApplicationRef>
+</ManagedAttribute>

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification certificationDefinitionId="c0a81d538610115381861184354201f1" creator="spadmin" entitlementGranularity="Value" excludeInactive="true" name="Targeted Access Review for James Smith" phase="Staged" shortName="Access Review for James Smith" totalEntities="1" totalItems="5" type="Focused">
+  <Attributes>
+    <Map>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation" value="false"/>
+      <entry key="requireReassignmentCompletion" value="true"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Test_TargetedCertification"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>James Smith</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Challenge">
+      <Duration>
+        <TimeDuration amount="1" scale="Week"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="1" totalExceptions="4" totalItems="5" totalRoles="1"/>
+  <CertificationEntity compositeScore="250" firstname="Hannah" identity="Hannah Baker" lastname="Baker" newUser="true" snapshotId="c0a81d53861011538186118452f4021f" summaryStatus="Open" targetDisplayName="Hannah Baker" targetName="Hannah Baker" type="Identity">
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="eeedb3e8c9ef418e9d3e231f5ed38097" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1674625665723" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Hannah Baker" nativeIdentity="CN=Hannah Baker,OU=People,OU=Demo,DC=IIQ,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+      <BundleEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Hannah Baker" nativeIdentity="CN=Hannah Baker,OU=People,OU=Demo,DC=IIQ,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf">
+                <value>
+                  <Set>
+                    <String>CN=DEV_Europe,OU=Groups,OU=Demo,DC=IIQ,DC=com</String>
+                  </Set>
+                </value>
+              </entry>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </BundleEntitlements>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="WebServices" exceptionAttributeName="groups" exceptionAttributeValue="WS_GROUP_103" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>WebServices</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="WebServices" displayName="Hannah Baker" nativeIdentity="h00143">
+          <Attributes>
+            <Map>
+              <entry key="groups" value="WS_GROUP_103"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="JDBC" exceptionAttributeName="GroupId" exceptionAttributeValue="1" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>JDBC</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="JDBC" displayName="Hannah Baker" nativeIdentity="h00143">
+          <Attributes>
+            <Map>
+              <entry key="GroupId" value="1"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="JDBC" exceptionAttributeName="GroupId" exceptionAttributeValue="4" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>JDBC</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="JDBC" displayName="Hannah Baker" nativeIdentity="h00143">
+          <Attributes>
+            <Map>
+              <entry key="GroupId" value="4"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="JDBC" exceptionAttributeName="GroupId" exceptionAttributeValue="3" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>JDBC</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="JDBC" displayName="Hannah Baker" nativeIdentity="h00143">
+          <Attributes>
+            <Map>
+              <entry key="GroupId" value="3"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

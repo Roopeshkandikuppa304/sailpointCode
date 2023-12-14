@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="groups" displayName="Users" hash="12163a40083b4422537273818c37509f1ecada04" lastRefresh="1650522311073" requestable="true" type="group" value="cn=Users,ou=Group,dc=my-domain,dc=com">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Oldap"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="cn" value="Users"/>
+      <entry key="description" value="All users at the company"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

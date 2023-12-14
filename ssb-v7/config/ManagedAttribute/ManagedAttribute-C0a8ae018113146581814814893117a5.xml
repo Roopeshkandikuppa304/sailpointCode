@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_ASSET_MANAGEMENT_ITEM_MSTR" hash="c519728f74959e9473fb78a90a9430db14a06c8c" lastRefresh="1658477546645" requestable="true" type="Group" value="ADH_ASSET_MANAGEMENT_ITEM_MSTR">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="This role allows access to Abu Dhabi AM Item Master group to maintain items"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

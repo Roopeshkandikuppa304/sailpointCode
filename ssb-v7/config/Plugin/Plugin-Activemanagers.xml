@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Plugin PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Plugin certificationLevel="None" displayName="Active Managers Plugin" installDate="1668772396713" minSystemVersion="7.1" name="ActiveManagers" version="1.0">
+  <Attributes>
+    <Map>
+      <entry key="fullPage">
+        <value>
+          <FullPage title="Managers-SubOrdinates List"/>
+        </value>
+      </entry>
+      <entry key="minUpgradableVersion" value="1.0"/>
+      <entry key="restResources">
+        <value>
+          <List>
+            <String>com.demo.AllResources</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="snippets">
+        <value>
+          <List>
+            <Snippet regexPattern=".*" rightRequired="SystemAdministrator">
+              <Scripts>
+                <String>ui/js/snippets/header.js</String>
+              </Scripts>
+            </Snippet>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <File>
+    <Reference class="sailpoint.object.PersistedFile" name="ActiveManagers.1.0.0.zip"/>
+  </File>
+</Plugin>

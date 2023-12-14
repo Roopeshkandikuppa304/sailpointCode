@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1663656580950" automaticClosingDate="1663663780950" certificationDefinitionId="c0a8012c835513a4818359a2b8190292" complete="true" completedEntities="3" completedItems="3" creator="spadmin" entitlementGranularity="Value" expiration="1663660180950" finished="1663663865034" itemPercentComplete="100" manager="Walter Henderson" name="Manager Access Review for Walter Henderson" percentComplete="100" phase="End" processRevokesImmediately="true" remediationsKickedOff="3" shortName="Access Review for Walter Henderson" signed="1663663864740" taskScheduleId="Test Certification for Re-assign&amp;Challenge [20/9/22 12:12 PM]" totalEntities="3" totalItems="3" type="Manager">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Test Certification for Re-assign&amp;Challenge"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Walter Henderson</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <SignOffHistory>
+    <SignOffHistoryItem date="1663663864738" signerDisplayName="The Administrator" signerId="c0a800687f7c124c817f7c1383fe00e6" signerName="spadmin"/>
+  </SignOffHistory>
+  <CertificationStatistics completedEntities="3" completedItems="3" exceptionsRemediated="1" itemPercentComplete="100" percentComplete="100" remediationsKickedOff="3" rolesRemediated="2" totalEntities="3" totalExceptions="1" totalItems="3" totalRoles="2"/>
+  <CertificationEntity bulkCertified="true" completed="1663663864638" compositeScore="250" firstname="Ann" identity="Ann Alexander" lastname="Alexander" newUser="true" snapshotId="a9fef0a782b413f28182cf633cc310af" summaryStatus="Complete" targetDisplayName="Ann Alexander" targetName="Ann Alexander" type="Identity">
+    <CertificationItem completed="1663663864634" exceptionApplication="AD" exceptionAttributeName="memberOf" exceptionAttributeValue="CN=DBAs,OU=Groups,OU=Demo,DC=Eshiam,DC=com" phase="End" summaryStatus="Complete" type="Exception">
+      <CertificationAction actorDisplayName="The Administrator" actorName="spadmin" bulkCertified="true" decisionCertificationId="c0a8012c835513a4818359a2b9630295" decisionDate="1663663800157" ownerName="Katherine Langford" remediationAction="SendProvisionRequest" remediationKickedOff="true" reviewed="true" status="Remediated">
+        <Description>Remove the 'AD' entitlement on  'Ann Alexander'</Description>
+        <Owner>
+          <Reference class="sailpoint.object.Identity" name="Katherine Langford"/>
+        </Owner>
+        <RemediationPlan>
+          <ProvisioningPlan>
+            <AccountRequest application="AD" nativeIdentity="CN=Ann Alexander,OU=People,OU=Demo,DC=Eshiam,DC=com" op="Modify" targetIntegration="AD">
+              <AttributeRequest name="memberOf" op="Remove" value="CN=DBAs,OU=Groups,OU=Demo,DC=Eshiam,DC=com"/>
+            </AccountRequest>
+            <Requesters>
+              <Reference class="sailpoint.object.Identity" name="spadmin"/>
+            </Requesters>
+          </ProvisioningPlan>
+        </RemediationPlan>
+      </CertificationAction>
+      <ApplicationNames>
+        <String>AD</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Ann Alexander" nativeIdentity="CN=Ann Alexander,OU=People,OU=Demo,DC=Eshiam,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf" value="CN=DBAs,OU=Groups,OU=Demo,DC=Eshiam,DC=com"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity bulkCertified="true" completed="1663663864648" compositeScore="250" firstname="Arthur" identity="Arthur Bryant" lastname="Bryant" newUser="true" snapshotId="a9fef0a782b413f28182cf631fab10a3" summaryStatus="Complete" targetDisplayName="Arthur Bryant" targetName="Arthur Bryant" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="43de8bdcde0144fa9a4763ce7516e589" completed="1663663864644" phase="End" subType="AssignedRole" summaryStatus="Complete" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <CertificationAction actorDisplayName="The Administrator" actorName="spadmin" bulkCertified="true" decisionCertificationId="c0a8012c835513a4818359a2b9630295" decisionDate="1663663800175" remediationAction="SendProvisionRequest" remediationKickedOff="true" reviewed="true" status="Remediated">
+        <Description>Remove entitlements on 'Arthur Bryant'</Description>
+        <RemediationPlan>
+          <ProvisioningPlan>
+            <AccountRequest application="IIQ" op="Modify" targetIntegration="AD">
+              <AttributeRequest name="assignedRoles" op="Remove" value="Test_Bussiness">
+                <Attributes>
+                  <Map>
+                    <entry key="deassignEntitlements">
+                      <value>
+                        <Boolean>true</Boolean>
+                      </value>
+                    </entry>
+                  </Map>
+                </Attributes>
+              </AttributeRequest>
+            </AccountRequest>
+            <AccountRequest application="AD" nativeIdentity="CN=Arthur Bryant,OU=People,OU=Demo,DC=Eshiam,DC=com" op="Modify" targetIntegration="AD">
+              <AttributeRequest name="memberOf" op="Remove" value="CN=AuditMgmt,OU=Groups,OU=Demo,DC=Eshiam,DC=com">
+                <Attributes>
+                  <Map>
+                    <entry key="allowSimplification" value="true"/>
+                    <entry key="assignment" value="true"/>
+                    <entry key="preferRemoveOverRetain" value="true"/>
+                  </Map>
+                </Attributes>
+              </AttributeRequest>
+            </AccountRequest>
+            <Requesters>
+              <Reference class="sailpoint.object.Identity" name="spadmin"/>
+            </Requesters>
+          </ProvisioningPlan>
+        </RemediationPlan>
+      </CertificationAction>
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648722645328" roleName="Test_Bussiness" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Arthur Bryant" nativeIdentity="CN=Arthur Bryant,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+      <BundleEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Arthur Bryant" nativeIdentity="CN=Arthur Bryant,OU=People,OU=Demo,DC=Eshiam,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf">
+                <value>
+                  <Set>
+                    <String>CN=AuditMgmt,OU=Groups,OU=Demo,DC=Eshiam,DC=com</String>
+                  </Set>
+                </value>
+              </entry>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </BundleEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity bulkCertified="true" completed="1663663864643" compositeScore="250" firstname="Carl" identity="Carl Foster" lastname="Foster" newUser="true" snapshotId="a9fef0a782b413f28182cf62fe351082" summaryStatus="Complete" targetDisplayName="Carl Foster" targetName="Carl Foster" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="ed249932da7143cbba1d3bd721f70678" completed="1663663864639" phase="End" subType="AssignedRole" summaryStatus="Complete" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <CertificationAction actorDisplayName="The Administrator" actorName="spadmin" bulkCertified="true" decisionCertificationId="c0a8012c835513a4818359a2b9630295" decisionDate="1663663800191" remediationAction="SendProvisionRequest" remediationKickedOff="true" reviewed="true" status="Remediated">
+        <Description>Remove entitlements on 'Carl Foster'</Description>
+        <RemediationPlan>
+          <ProvisioningPlan>
+            <AccountRequest application="IIQ" op="Modify" targetIntegration="AD">
+              <AttributeRequest name="assignedRoles" op="Remove" value="Test_Bussiness">
+                <Attributes>
+                  <Map>
+                    <entry key="deassignEntitlements">
+                      <value>
+                        <Boolean>true</Boolean>
+                      </value>
+                    </entry>
+                  </Map>
+                </Attributes>
+              </AttributeRequest>
+            </AccountRequest>
+            <AccountRequest application="AD" nativeIdentity="CN=Carl Foster,OU=People,OU=Demo,DC=Eshiam,DC=com" op="Modify" targetIntegration="AD">
+              <AttributeRequest name="memberOf" op="Remove" value="CN=AuditMgmt,OU=Groups,OU=Demo,DC=Eshiam,DC=com">
+                <Attributes>
+                  <Map>
+                    <entry key="allowSimplification" value="true"/>
+                    <entry key="assignment" value="true"/>
+                    <entry key="preferRemoveOverRetain" value="true"/>
+                  </Map>
+                </Attributes>
+              </AttributeRequest>
+            </AccountRequest>
+            <Requesters>
+              <Reference class="sailpoint.object.Identity" name="spadmin"/>
+            </Requesters>
+          </ProvisioningPlan>
+        </RemediationPlan>
+      </CertificationAction>
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648619214494" roleName="Test_Bussiness" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Carl Foster" nativeIdentity="CN=Carl Foster,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+      <BundleEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Carl Foster" nativeIdentity="CN=Carl Foster,OU=People,OU=Demo,DC=Eshiam,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf">
+                <value>
+                  <Set>
+                    <String>CN=AuditMgmt,OU=Groups,OU=Demo,DC=Eshiam,DC=com</String>
+                  </Set>
+                </value>
+              </entry>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </BundleEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

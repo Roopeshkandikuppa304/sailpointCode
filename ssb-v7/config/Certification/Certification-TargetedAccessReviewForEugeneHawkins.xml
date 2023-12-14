@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification certificationDefinitionId="c0a81d538610115381861184354201f1" creator="spadmin" entitlementGranularity="Value" excludeInactive="true" name="Targeted Access Review for Eugene Hawkins" phase="Staged" shortName="Access Review for Eugene Hawkins" totalEntities="1" totalItems="1" type="Focused">
+  <Attributes>
+    <Map>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation" value="false"/>
+      <entry key="requireReassignmentCompletion" value="true"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Test_TargetedCertification"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Eugene Hawkins</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Challenge">
+      <Duration>
+        <TimeDuration amount="1" scale="Week"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="1" totalExceptions="1" totalItems="1"/>
+  <CertificationEntity compositeScore="250" firstname="Alan" identity="Alan Bradley" lastname="Bradley" newUser="true" snapshotId="c0a81d538610115381861184527a0213" summaryStatus="Open" targetDisplayName="Alan Bradley" targetName="Alan Bradley" type="Identity">
+    <CertificationItem exceptionApplication="Training HR" exceptionAttributeName="memberof" exceptionAttributeValue="payRollAccess" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>Training HR</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="Training HR" displayName="Alan Bradley" nativeIdentity="1c2a3c4c5">
+          <Attributes>
+            <Map>
+              <entry key="memberof" value="payRollAccess"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

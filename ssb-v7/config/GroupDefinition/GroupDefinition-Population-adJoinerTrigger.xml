@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE GroupDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<GroupDefinition indexed="true" name="Population-AD joiner trigger" private="true">
+  <GroupFilter>
+    <CompositeFilter operation="AND">
+      <Filter operation="EQ" property="inactive">
+        <Value>
+          <Boolean/>
+        </Value>
+      </Filter>
+      <Filter operation="EQ" property="correlated">
+        <Value>
+          <Boolean>true</Boolean>
+        </Value>
+      </Filter>
+      <CompositeFilter operation="OR">
+        <Filter operation="EQ" property="Department" value="Information Technology"/>
+        <Filter operation="EQ" property="Department" value="Regional Operations"/>
+        <Filter operation="EQ" property="Department" value="Human Resources"/>
+      </CompositeFilter>
+    </CompositeFilter>
+  </GroupFilter>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</GroupDefinition>

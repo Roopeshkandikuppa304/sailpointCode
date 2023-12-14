@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_AP_DATA_ENTRY" hash="25b37037029b716050147fff77d415b1cdb0b105" lastRefresh="1658477544539" requestable="true" type="Group" value="ADH_AP_DATA_ENTRY">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Abu Dhabi Accounts Payable Data Entry role to enter Vouchers, Create manual payments, and Upload payfiles"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

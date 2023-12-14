@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification certificationDefinitionId="c0a81d538610115381861184354201f1" creator="spadmin" entitlementGranularity="Value" excludeInactive="true" name="Targeted Access Review for Marilyn Dunn" phase="Staged" shortName="Access Review for Marilyn Dunn" totalEntities="2" totalItems="3" type="Focused">
+  <Attributes>
+    <Map>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation" value="false"/>
+      <entry key="requireReassignmentCompletion" value="true"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Test_TargetedCertification"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Marilyn Dunn</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Challenge">
+      <Duration>
+        <TimeDuration amount="1" scale="Week"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="2" totalItems="3" totalRoles="2" totalViolations="1"/>
+  <CertificationEntity compositeScore="252" firstname="Clarence" identity="Clarence Harper" lastname="Harper" newUser="true" snapshotId="c0a81d53861011538186118453d70236" summaryStatus="Open" targetDisplayName="Clarence Harper" targetName="Clarence Harper" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="931feed7708c432591a7694ba672e09e" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648703941068" roleName="Test_Bussiness" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Clarence Harper" nativeIdentity="CN=Clarence Harper,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem summaryStatus="Open" type="PolicyViolation" violationSummary="The Condition when Conflict occurs">
+      <ApplicationNames>
+        <String>AD</String>
+      </ApplicationNames>
+      <PolicyViolation active="true" constraintId="c0a8ae0180da11028180db9cfcee00ee" constraintName="The Condition when Conflict occurs" policyName="Entitlement AD Policy" status="Open">
+        <Attributes>
+          <Map>
+            <entry key="RelevantApplications">
+              <value>
+                <List>
+                  <String>AD</String>
+                </List>
+              </value>
+            </entry>
+            <entry key="ViolatingEntitlements">
+              <value>
+                <List>
+                  <MatchTerm name="memberOf" type="Entitlement" value="CN=AccountsPayable,OU=Groups,OU=Demo,DC=Eshiam,DC=com">
+                    <ApplicationRef>
+                      <Reference class="sailpoint.object.Application" name="AD"/>
+                    </ApplicationRef>
+                  </MatchTerm>
+                  <MatchTerm name="memberOf" type="Entitlement" value="CN=AccountsReceivable,OU=Groups,OU=Demo,DC=Eshiam,DC=com">
+                    <ApplicationRef>
+                      <Reference class="sailpoint.object.Application" name="AD"/>
+                    </ApplicationRef>
+                  </MatchTerm>
+                </List>
+              </value>
+            </entry>
+          </Map>
+        </Attributes>
+        <IdentityRef>
+          <Reference class="sailpoint.object.Identity" name="Clarence Harper"/>
+        </IdentityRef>
+      </PolicyViolation>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Phyllis" identity="Phyllis Fox" lastname="Fox" newUser="true" snapshotId="c0a81d538610115381861184542e0246" summaryStatus="Open" targetDisplayName="Phyllis Fox" targetName="Phyllis Fox" type="Identity">
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="3d431fb66515455596773c32cb0d470b" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1674127533624" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Phyllis Fox" nativeIdentity="CN=Phyllis Fox,OU=People,OU=Demo,DC=IIQ,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

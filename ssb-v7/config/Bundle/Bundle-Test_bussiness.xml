@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Bundle PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Bundle displayName="Test_Bussiness" name="Test_Bussiness" type="business">
+  <Attributes>
+    <Map>
+      <entry key="Forest"/>
+      <entry key="accountSelectorRules"/>
+      <entry key="allowDuplicateAccounts" value="false"/>
+      <entry key="allowMultipleAssignments" value="false"/>
+      <entry key="mergeTemplates" value="false"/>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US"/>
+          </Map>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <Requirements>
+    <Reference class="sailpoint.object.Bundle" name="Test_IT"/>
+  </Requirements>
+  <RoleIndex assignedCount="22" lastAssigned="1657263916427"/>
+  <RoleScorecard permittedEntitlements="1" provisionedEntitlements="1"/>
+</Bundle>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_AP_PAY_DISP_INQUIRY" hash="c5e2ee50403cfc73b5131e41d9790a03f440469a" lastRefresh="1658477545111" requestable="true" type="Group" value="ADH_AP_PAY_DISP_INQUIRY">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="ADH Payment dispatch view access for AP"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

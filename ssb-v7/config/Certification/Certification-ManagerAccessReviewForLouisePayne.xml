@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1691676590433" certificationDefinitionId="c0a8017389971da58189dfc44d490e85" creator="spadmin" entitlementGranularity="Value" expiration="1694354990433" manager="Louise Payne" name="Manager Access Review for Louise Payne" phase="Active" processRevokesImmediately="true" shortName="Access Review for Louise Payne" taskScheduleId="Manager Certification [DATE] [8/10/23 7:36 PM]" totalEntities="4" totalItems="7" type="Manager">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Manager Certification [8/10/23 7:36:53 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Louise Payne</String>
+  </Certifiers>
+  <Parent>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Lori Ferguson"/>
+  </Parent>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="4" totalExceptions="2" totalItems="7" totalRoles="5"/>
+  <WorkItemRefs>
+    <Reference class="sailpoint.object.WorkItem" name="0000000439"/>
+  </WorkItemRefs>
+  <CertificationEntity firstname="Dale" identity="Dale Bishop" lastname="Bishop" newUser="true" snapshotId="c0a8017389971da58189dfc59ebd0eb2" summaryStatus="Open" targetDisplayName="Dale Bishop" targetName="Dale Bishop" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="77094f6829c0495bbb9b3b19eb6b9805" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648624488663" roleName="Test_Bussiness" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Dale Bishop" nativeIdentity="CN=Dale Bishop,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="c3292082dcfa4f6dbda186e97dbc1f6d" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1672983974795" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Dale Bishop" nativeIdentity="CN=Dale Bishop,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Edna" identity="Edna Mccoy" lastname="Mccoy" newUser="true" snapshotId="c0a8017389971da58189dfc59ef60eb6" summaryStatus="Open" targetDisplayName="Edna Mccoy" targetName="Edna Mccoy" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="b11d1739b4324beca640ea92f22c9e9a" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648721292386" roleName="Test_Bussiness" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Edna Mccoy" nativeIdentity="CN=Edna Mccoy,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="0c15747baaac4bce88f158149cf04fd6" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1672996962731" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Edna Mccoy" nativeIdentity="CN=Edna Mccoy,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Florence" identity="Florence Johnston" lastname="Johnston" newUser="true" snapshotId="c0a8017389971da58189dfc59f1a0eba" summaryStatus="Open" targetDisplayName="Florence Johnston" targetName="Florence Johnston" type="Identity">
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="db8618bda95d472ab7bb28cabf04ca7d" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1674120550397" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Florence Johnston" nativeIdentity="CN=Florence Johnston,OU=People,OU=Demo,DC=IIQ,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Tracy" identity="Tracy Meyer" lastname="Meyer" newUser="true" snapshotId="c0a8017389971da58189dfc59f5c0ebd" summaryStatus="Open" targetDisplayName="Tracy Meyer" targetName="Tracy Meyer" type="Identity">
+    <CertificationItem exceptionApplication="AD" exceptionAttributeName="memberOf" exceptionAttributeValue="CN=AccountsPayable,OU=Groups,OU=Demo,DC=IIQ,DC=com" phase="Active" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>AD</String>
+      </ApplicationNames>
+      <Attributes>
+        <Map>
+          <entry key="samA" value="Tracy Meyer"/>
+        </Map>
+      </Attributes>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Tracy Meyer" nativeIdentity="CN=Tracy Meyer,OU=People,OU=Demo,DC=IIQ,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf" value="CN=AccountsPayable,OU=Groups,OU=Demo,DC=IIQ,DC=com"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="AD" exceptionAttributeName="memberOf" exceptionAttributeValue="CN=AccountsReceivable,OU=Groups,OU=Demo,DC=IIQ,DC=com" phase="Active" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>AD</String>
+      </ApplicationNames>
+      <Attributes>
+        <Map>
+          <entry key="samA" value="Tracy Meyer"/>
+        </Map>
+      </Attributes>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Tracy Meyer" nativeIdentity="CN=Tracy Meyer,OU=People,OU=Demo,DC=IIQ,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf" value="CN=AccountsReceivable,OU=Groups,OU=Demo,DC=IIQ,DC=com"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

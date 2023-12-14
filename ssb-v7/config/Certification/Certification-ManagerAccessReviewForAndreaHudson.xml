@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1691676590946" certificationDefinitionId="c0a8017389971da58189dfc44d490e85" creator="spadmin" entitlementGranularity="Value" expiration="1694354990946" manager="Andrea Hudson" name="Manager Access Review for Andrea Hudson" phase="Active" processRevokesImmediately="true" shortName="Access Review for Andrea Hudson" taskScheduleId="Manager Certification [DATE] [8/10/23 7:36 PM]" totalEntities="2" totalItems="2" type="Manager">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Manager Certification [8/10/23 7:36:53 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Andrea Hudson</String>
+  </Certifiers>
+  <Parent>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Randy Knight"/>
+  </Parent>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="2" totalItems="2" totalRoles="2"/>
+  <WorkItemRefs>
+    <Reference class="sailpoint.object.WorkItem" name="0000000443"/>
+  </WorkItemRefs>
+  <CertificationEntity compositeScore="250" firstname="Annie" identity="Annie Chavez" lastname="Chavez" newUser="true" snapshotId="c0a8017389971da58189dfc5a79a0ef0" summaryStatus="Open" targetDisplayName="Annie Chavez" targetName="Annie Chavez" type="Identity">
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="34d8d21e0ecb43d099a931cbf0413022" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1674368768933" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Annie Chavez" nativeIdentity="CN=Annie Chavez,OU=People,OU=Demo,DC=IIQ,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+      <BundleEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Annie Chavez" nativeIdentity="CN=Annie Chavez,OU=People,OU=Demo,DC=IIQ,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf">
+                <value>
+                  <Set>
+                    <String>CN=DEV_Europe,OU=Groups,OU=Demo,DC=IIQ,DC=com</String>
+                  </Set>
+                </value>
+              </entry>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </BundleEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Earl" identity="Earl Sims" lastname="Sims" newUser="true" snapshotId="c0a8017389971da58189dfc5a7ef0ef3" summaryStatus="Open" targetDisplayName="Earl Sims" targetName="Earl Sims" type="Identity">
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="197300fefa1a47a0b43c6b01ab6446d8" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1674126410334" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Earl Sims" nativeIdentity="CN=Earl Sims,OU=People,OU=Demo,DC=IIQ,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

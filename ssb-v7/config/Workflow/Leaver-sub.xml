@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" libraries="Identity" name="Leaver-sub" type="IdentityLifecycle">
+  <Variable initializer="joiner" name="flow">
+    <Description>The flow</Description>
+  </Variable>
+  <Variable initializer="joiner" input="true" name="trace"/>
+  <Variable input="true" name="event" transient="true">
+    <Description>
+      The IdentityChangeEvent.  It can be used to build
+      the provisioning plan, but does not need to be
+      persisted with the case, so marked as transient.
+    </Description>
+  </Variable>
+  <Variable name="identityName" output="true">
+    <Description>The name of the identity.</Description>
+  </Variable>
+  <Description>Process a new employee.</Description>
+  <Step icon="Start" name="Start" posX="28" posY="10">
+    <Transition to="Process user"/>
+  </Step>
+  <Step icon="Message" name="Process user" posX="148" posY="10" resultVariable="adPlan">
+    <Description>Process the user that joined.</Description>
+    <Script>
+      <Source>
+        import sailpoint.object.*;
+        import sailpoint.api.*;
+        
+        if(identityName != null){
+					Identity id = context.getObjectByName(Identity.class,identityName);
+        	List links = id.getLinks();
+        ProvisioningPlan p = new ProvisioningPlan();
+        AccountRequest acctReq = new AccountRequest();
+        	for(Link link : links){
+        		if( !link.getApplicationName().equals("HR") &amp;&amp; link.isDisabled()){
+        			p.setIdentity(id);
+        			AccountRequest accReq = new AccountRequest();
+        			accReq.setApplication(link.getApplicationName());
+        			accReq.setOp(ProvisioningPlan.ObjectOperation.Delete);
+        		if(link.getApplicationName().equals("AD")){
+        			System.out.println("if AD******");
+        			accReq.add(new AttributeRequest("sAMAccountName",ProvisioningPlan.Operation.Add,id.getName()));
+        		}
+        		if(link.getApplicationName().equals("Oldap")){
+        			System.out.println("if Oldap******");
+        			accReq.add(new AttributeRequest("cn",ProvisioningPlan.Operation.Add,id.getAttribute("NetworkID")));
+        		}
+        		if(link.getApplicationName().equals("JDBC")){
+        			System.out.println("if JDBC******");
+        			acctReq.setApplication(link.getApplicationName());
+        			acctReq.setOp(ProvisioningPlan.ObjectOperation.Delete);
+        			acctReq.add(new AttributeRequest("EmployeeID",ProvisioningPlan.Operation.Add,id.getAttribute("EmployeeID")));
+        		}
+        		p.add(accReq);
+        		p.add(acctReq);
+        		}
+        }
+        Provisioner prov = new Provisioner(context);
+        prov.execute(p);
+        context.saveObject(id);
+        context.commitTransaction();
+        }
+        return p;
+      </Source>
+    </Script>
+    <Transition to="Stop"/>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="268" posY="10"/>
+</Workflow>

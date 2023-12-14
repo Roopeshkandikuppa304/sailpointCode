@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE BatchRequest PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<BatchRequest completedDate="1674208201016" errorCount="1" fileContents="operation,roles,identityName&#10;AddRole,AD_Business,Carolyn Perry" fileName="Addrole.csv" header="operation, roles, identityname" recordCount="1" runDate="1674197122452" status="Executed">
+  <BatchRequestItems>
+    <BatchRequestItem requestData="AddRole,AD_Business,Carolyn Perry" result="Failed" status="Finished" targetIdentityId="c0a89d017f8810ba817f8bddc7e70154">
+      <ErrorMessage>
+        <Message key="Connection timed out: connectError(s) reported back from the IQService - Failed to update attributes for identity CN=Carolyn Perry,OU=People,OU=Demo,DC=IIQ,DC=com. Failed to connect to the server for CN=Carolyn Perry,OU=People,OU=Demo,DC=IIQ,DC=com:There is no such object on the server. 0000208D: NameErr: DSID-03100238, problem 2001 (NO_OBJECT), data 0, best match of: &#9;'OU=People,OU=Demo,DC=IIQ,DC=com' . HRESULT:[0x80072030] Possible reasons for failure include a) The Domain Controller is currently not reachable b) The object has either been moved or renamed c) The object has been deleted &#10; Please Ensure the data has been aggregated before performing the operation " type="Error"/>
+      </ErrorMessage>
+    </BatchRequestItem>
+  </BatchRequestItems>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <RunConfig>
+    <Attributes>
+      <Map>
+        <entry key="generateIdentityRequests">
+          <value>
+            <Boolean/>
+          </value>
+        </entry>
+        <entry key="handleExistingCreate">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ignoreErrors">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="policyScheme" value="none"/>
+        <entry key="runDate">
+          <value>
+            <Date>1674197100000</Date>
+          </value>
+        </entry>
+        <entry key="runNow">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipManualWorkItems">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipProvisioningForms">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="stopNumber">
+          <value>
+            <Integer>0</Integer>
+          </value>
+        </entry>
+      </Map>
+    </Attributes>
+  </RunConfig>
+</BatchRequest>

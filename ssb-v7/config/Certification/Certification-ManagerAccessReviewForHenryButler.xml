@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification certificationDefinitionId="c0a8012c835513a4818359af59b502b7" creator="spadmin" entitlementGranularity="Value" manager="Henry Butler" name="Manager Access Review for Henry Butler" phase="Staged" processRevokesImmediately="true" shortName="Access Review for Henry Butler" taskScheduleId="Manager Certification of Test-1 [20/9/22 12:26 PM]" totalEntities="5" totalItems="6" type="Manager">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Manager Certification of Test-1"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Henry Butler</String>
+  </Certifiers>
+  <Parent>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Amanda Ross"/>
+  </Parent>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="5" totalExceptions="1" totalItems="6" totalRoles="5"/>
+  <CertificationEntity firstname="Beverly" identity="Beverly Rice" lastname="Rice" newUser="true" snapshotId="a9fef0a782b413f28182cf6071120e43" summaryStatus="Open" targetDisplayName="Beverly Rice" targetName="Beverly Rice" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="f29e7d63468d46ab8e16f1527d305c92" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141794347" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Billy" identity="Billy Holmes" lastname="Holmes" newUser="true" snapshotId="a9fef0a782b413f28182cf6047b60e2e" summaryStatus="Open" targetDisplayName="Billy Holmes" targetName="Billy Holmes" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="0ed30c24e117492697f5b6a0c1651f05" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141793472" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem exceptionApplication="AD" exceptionAttributeName="memberOf" exceptionAttributeValue="CN=DEV_Stage,OU=Groups,OU=Demo,DC=Eshiam,DC=com" phase="Active" summaryStatus="Open" type="Exception">
+      <ApplicationNames>
+        <String>AD</String>
+      </ApplicationNames>
+      <ExceptionEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Billy Holmes" nativeIdentity="CN=Billy Holmes,OU=People,OU=Demo,DC=Eshiam,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf" value="CN=DEV_Stage,OU=Groups,OU=Demo,DC=Eshiam,DC=com"/>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </ExceptionEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Steve" identity="Steve Robertson" lastname="Robertson" newUser="true" snapshotId="a9fef0a782b413f28182cf607f040e59" summaryStatus="Open" targetDisplayName="Steve Robertson" targetName="Steve Robertson" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="14774d6588fc496aa72ad8f95fa887e8" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141794974" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Theresa" identity="Theresa Shaw" lastname="Shaw" newUser="true" snapshotId="a9fef0a782b413f28182cf6035830e18" summaryStatus="Open" targetDisplayName="Theresa Shaw" targetName="Theresa Shaw" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="e2646de32100414e9b5892d741e1d33b" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141793036" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Wayne" identity="Wayne Gordon" lastname="Gordon" newUser="true" snapshotId="a9fef0a782b413f28182cf6014170e01" summaryStatus="Open" targetDisplayName="Wayne Gordon" targetName="Wayne Gordon" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="2aff4be0ba1941ac9923685e92ec9618" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141792373" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

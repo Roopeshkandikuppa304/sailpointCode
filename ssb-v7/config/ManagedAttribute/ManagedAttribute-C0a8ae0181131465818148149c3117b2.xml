@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_BI_DEFERRED_REVENUE" hash="4d0b9cf8c9551ba721c633d573a4ca41e7c53367" lastRefresh="1658477550071" requestable="true" type="Group" value="ADH_BI_DEFERRED_REVENUE">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Abu Dhabi deferred revenue custom role allows to override the revenue recognition date and Billing invoice amount."/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

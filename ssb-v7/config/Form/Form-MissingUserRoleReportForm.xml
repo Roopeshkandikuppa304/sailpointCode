@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form hidden="true" name="Missing User Role Report Form" type="Report">
+  <Section columns="1" label="rept_identity_roles_section_props" name="Identity Properties">
+    <Field columnSpan="1" displayName="rept_identity_roles_field_roles" helpKey="rept_identity_roles_help_roles" name="identityRoles" type="string" value="ref:identityRoles">
+      <AllowedValuesDefinition>
+        <Value>
+          <List>
+            <String>AD_Business</String>
+            <String>Ex-Business</String>
+          </List>
+        </Value>
+      </AllowedValuesDefinition>
+    </Field>
+  </Section>
+</Form>

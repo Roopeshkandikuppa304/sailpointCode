@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="certification creation rule">
+  <Source><![CDATA[
+  import sailpoint.api.TaskManager;
+  import sailpoint.object.Certification;
+  import sailpoint.object.CertificationDefinition;
+  import sailpoint.object.Identity;
+  import sailpoint.object.TaskDefinition;
+  import sailpoint.object.TaskResult;
+  import sailpoint.object.TaskSchedule;
+  import sailpoint.object.TaskResult;
+  import sailpoint.tools.xml.XMLObjectFactory;
+  import sailpoint.tools.xml.XMLReferenceResolver;
+  import sailpoint.tools.GeneralException;
+  import sailpoint.object.CertificationSchedule;
+  import sailpoint.api.CertificationScheduler;
+
+  Identity identity = context.getObjectByName(Identity.class,"Brenda Cooper");
+  Identity ide = context.getObjectByName(Identity.class,"George Wright");
+  String certifier = identity.getName();
+  List identities = new ArrayList();
+  identities.add(ide.getName());
+  Identity requestor = context.getObjectByName(Identity.class, "spadmin");
+  CertificationScheduler scheduler = new CertificationScheduler(context);
+  CertificationSchedule schedule = scheduler.initializeScheduleBean(requestor, Certification.Type.Identity);
+  schedule.setRunNow(true);
+  CertificationDefinition definitionTemplate = context.getObjectByName(CertificationDefinition.class, "Identity Certification [3/17/23 7:46 AM]");
+  CertificationDefinition definition = (CertificationDefinition) XMLObjectFactory.getInstance().cloneWithoutId(definitionTemplate, (XMLReferenceResolver)context);
+  definition.setNameTemplate("Test Identity Cert");
+  definition.setShortNameTemplate("Test Identity Cert");
+  definition.setName("Test Identity Cert");
+  definition.setCertificationNameTemplate("Test Identity Cert");
+
+  definition.setIdentitiesToCertify(identities);
+  definition.setCertifierName(certifier);
+
+
+  definition.setCertificationOwner(requestor);
+  //definition.setTags(tags);
+
+
+  schedule.setDefinition(definition);
+  TaskSchedule taskSchedule = scheduler.saveSchedule(schedule, false);
+  ]]></Source>
+</Rule>

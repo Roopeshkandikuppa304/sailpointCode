@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_ASSET_MANAGEMENT_RPT_INQ" hash="12842fedd62e09d170db6e8e73197e8d82f708c0" lastRefresh="1658477547083" requestable="true" type="Group" value="ADH_ASSET_MANAGEMENT_RPT_INQ">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Abu Dhabi AM role to inquire and run reports"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

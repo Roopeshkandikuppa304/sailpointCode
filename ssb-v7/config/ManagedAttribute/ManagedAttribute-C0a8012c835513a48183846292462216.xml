@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute attribute="memberof" hash="e79180bbe4ba84ee10f3ad17fb62961030610de5" requestable="true" type="Entitlement" value="WinterFell">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Training HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="Locale.US.toString()" value="We are Managed Attributes"/>
+          </Map>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

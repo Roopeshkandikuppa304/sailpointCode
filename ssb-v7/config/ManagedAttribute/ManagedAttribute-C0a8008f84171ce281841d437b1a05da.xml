@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="GroupId" displayName="Finance" hash="0e4fcc8d11589c4967e108f0f6a7e25c56cb3bbe" lastRefresh="1666938272540" requestable="true" type="Group" value="2">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="JDBC"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="This access is for Finance related people"/>
+      <entry key="GroupName" value="Finance"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE BatchRequest PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<BatchRequest completedCount="1" completedDate="1674454744720" fileContents="operation,roles,identityName&#10;AddRole,AD_Business,George Wright" fileName="Addrole.csv" header="operation, roles, identityname" recordCount="1" runDate="1674454742517" status="Executed">
+  <BatchRequestItems>
+    <BatchRequestItem identityRequestId="0000000400" requestData="AddRole,AD_Business,George Wright" result="Success" status="Finished" targetIdentityId="c0a89d017f8810ba817f8bdce0c700b4"/>
+  </BatchRequestItems>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <RunConfig>
+    <Attributes>
+      <Map>
+        <entry key="generateIdentityRequests">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="handleExistingCreate">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ignoreErrors">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="policyScheme" value="none"/>
+        <entry key="runDate">
+          <value>
+            <Date>1674454680000</Date>
+          </value>
+        </entry>
+        <entry key="runNow">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipManualWorkItems">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipProvisioningForms">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="stopNumber">
+          <value>
+            <Integer>0</Integer>
+          </value>
+        </entry>
+      </Map>
+    </Attributes>
+  </RunConfig>
+</BatchRequest>

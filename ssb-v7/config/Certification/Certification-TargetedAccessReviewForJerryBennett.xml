@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1663658709848" automaticClosingDate="1663665909848" certificationDefinitionId="c0a8012c835513a4818359c891010300" complete="true" completedEntities="1" completedItems="1" creator="spadmin" entitlementGranularity="Value" expiration="1663662309848" finished="1663659000307" itemPercentComplete="100" name="Targeted Access Review for Jerry Bennett" percentComplete="100" phase="End" shortName="Access Review for Jerry Bennett" signed="1663658919993" totalEntities="1" totalItems="1" type="Focused">
+  <Attributes>
+    <Map>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation" value="false"/>
+      <entry key="requireReassignmentCompletion" value="true"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Targeted Certification of amanda rossssssssssssss"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Jerry Bennett</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <SignOffHistory>
+    <SignOffHistoryItem date="1663658919991" signerDisplayName="Jerry Bennett" signerId="c0a89d017f8810ba817f8bdd9858012c" signerName="Jerry Bennett"/>
+  </SignOffHistory>
+  <CertificationStatistics completedEntities="1" completedItems="1" itemPercentComplete="100" percentComplete="100" rolesApproved="1" totalEntities="1" totalItems="1" totalRoles="1"/>
+  <CertificationEntity completed="1663658914759" compositeScore="250" firstname="Amanda" identity="Amanda Ross" lastname="Ross" newUser="true" snapshotId="a9fef0a782b413f28182cf5f37320ccd" summaryStatus="Complete" targetDisplayName="Amanda Ross" targetName="Amanda Ross" type="Identity">
+    <CertificationItem bundle="Ex-Business" bundleAssignmentId="14b5d0e36eef4bc0896664f838f4b177" completed="1663658914700" subType="AssignedRole" summaryStatus="Complete" targetDisplayName="Ex-Business" targetName="Ex-Business" type="Bundle">
+      <CertificationAction actorDisplayName="Jerry Bennett" actorName="Jerry Bennett" decisionCertificationId="c0a8012c835513a4818359c8a99a0307" decisionDate="1663658914511" reviewed="true" status="Approved"/>
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648721338180" roleName="Ex-Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Amanda Ross" nativeIdentity="CN=Amanda Ross,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+      <BundleEntitlements>
+        <EntitlementSnapshot application="AD" displayName="Amanda Ross" nativeIdentity="CN=Amanda Ross,OU=People,OU=Demo,DC=Eshiam,DC=com">
+          <Attributes>
+            <Map>
+              <entry key="memberOf">
+                <value>
+                  <Set>
+                    <String>CN=AuditMgmt,OU=Groups,OU=Demo,DC=Eshiam,DC=com</String>
+                  </Set>
+                </value>
+              </entry>
+            </Map>
+          </Attributes>
+        </EntitlementSnapshot>
+      </BundleEntitlements>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE GroupDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<GroupDefinition indexed="true" name="hiiiiiiii" private="true">
+  <GroupFilter>
+    <CompositeFilter operation="OR">
+      <Filter operation="IN" property="links.id" subqueryClass="sailpoint.object.Link" subqueryProperty="id">
+        <SubqueryFilter>
+          <Filter operation="EQ" property="disbaled" value="true"/>
+        </SubqueryFilter>
+      </Filter>
+    </CompositeFilter>
+  </GroupFilter>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</GroupDefinition>

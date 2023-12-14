@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_AP_VOUCHER_POSTING" hash="48494ed865efd568dfc998b1c68780e37de594c5" lastRefresh="1658477545841" requestable="true" type="Group" value="ADH_AP_VOUCHER_POSTING">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Abu Dhabi Accounts Payable Voucher posting and Payment posting role"/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

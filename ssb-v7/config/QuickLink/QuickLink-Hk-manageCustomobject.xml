@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE QuickLink PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<QuickLink action="external" category="CustomObjectPlugin" cssClass="quicklink-request-access" messageKey="Manage Customobject" name="HK-Manage CustomObject">
+  <Attributes>
+    <Map>
+      <entry key="url" value="plugins/pluginPage.jsf?pn=ManageCustomObjectPlugin"/>
+    </Map>
+  </Attributes>
+  <QuickLinkOptions allowSelf="true">
+    <DynamicScopeRef>
+      <Reference class="sailpoint.object.DynamicScope" name="HK-Manage CustomObject"/>
+    </DynamicScopeRef>
+  </QuickLinkOptions>
+</QuickLink>

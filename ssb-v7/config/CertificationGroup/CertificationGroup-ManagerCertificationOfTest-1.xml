@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CertificationGroup PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<CertificationGroup name="Manager Certification of Test-1" status="Staged" totalCertifications="3" type="Certification">
+  <Definition>
+    <Reference class="sailpoint.object.CertificationDefinition" name="Manager Certification [20/9/22 12:20 PM]"/>
+  </Definition>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</CertificationGroup>

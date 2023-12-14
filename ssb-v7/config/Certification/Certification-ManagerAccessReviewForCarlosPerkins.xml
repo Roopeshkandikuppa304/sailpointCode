@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1691676591131" certificationDefinitionId="c0a8017389971da58189dfc44d490e85" creator="spadmin" entitlementGranularity="Value" expiration="1694354991131" manager="Carlos Perkins" name="Manager Access Review for Carlos Perkins" phase="Active" processRevokesImmediately="true" shortName="Access Review for Carlos Perkins" taskScheduleId="Manager Certification [DATE] [8/10/23 7:36 PM]" totalEntities="1" totalItems="1" type="Manager">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Manager Certification [8/10/23 7:36:53 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Carlos Perkins</String>
+  </Certifiers>
+  <Parent>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Randy Knight"/>
+  </Parent>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="1" totalItems="1" totalRoles="1"/>
+  <WorkItemRefs>
+    <Reference class="sailpoint.object.WorkItem" name="0000000444"/>
+  </WorkItemRefs>
+  <CertificationEntity firstname="Diana" identity="Diana Lawrence" lastname="Lawrence" newUser="true" snapshotId="c0a8017389971da58189dfc5a9d30efa" summaryStatus="Open" targetDisplayName="Diana Lawrence" targetName="Diana Lawrence" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="87864fb45124417aad056dad108fda9b" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648636428718" roleName="Test_Bussiness" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Diana Lawrence" nativeIdentity="CN=Diana Lawrence,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

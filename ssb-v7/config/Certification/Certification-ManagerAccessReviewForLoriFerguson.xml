@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1691676590142" certificationDefinitionId="c0a8017389971da58189dfc44d490e85" creator="spadmin" entitlementGranularity="Value" expiration="1694354990142" manager="Lori Ferguson" name="Manager Access Review for Lori Ferguson" phase="Active" processRevokesImmediately="true" shortName="Access Review for Lori Ferguson" taskScheduleId="Manager Certification [DATE] [8/10/23 7:36 PM]" totalEntities="2" totalItems="2" type="Manager">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Manager Certification [8/10/23 7:36:53 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Lori Ferguson</String>
+  </Certifiers>
+  <Parent>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Aaron Nichols"/>
+  </Parent>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="2" totalItems="2" totalRoles="2"/>
+  <WorkItemRefs>
+    <Reference class="sailpoint.object.WorkItem" name="0000000437"/>
+  </WorkItemRefs>
+  <CertificationRefs>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Bobby Stephens"/>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Louise Payne"/>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Sara Berry"/>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Victor Pierce"/>
+  </CertificationRefs>
+  <CertificationEntity firstname="Sara" identity="Sara Berry" lastname="Berry" newUser="true" snapshotId="c0a8017389971da58189dfc5a0910ec1" summaryStatus="Open" targetDisplayName="Sara Berry" targetName="Sara Berry" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="c5826956c0a942c1aa3c525e4391cf23" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141847670" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Victor" identity="Victor Pierce" lastname="Pierce" newUser="true" snapshotId="c0a8017389971da58189dfc5a3760ed7" summaryStatus="Open" targetDisplayName="Victor Pierce" targetName="Victor Pierce" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="071fbdacffb04b038205aa7af5ab2943" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141842253" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

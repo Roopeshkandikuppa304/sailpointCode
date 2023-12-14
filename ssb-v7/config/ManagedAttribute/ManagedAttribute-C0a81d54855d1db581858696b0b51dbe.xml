@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="memberOf" displayName="IIQ\Cost-SavingsAnalysis" hash="b4bf239c859c537740c741bc430605775f6b108e" lastRefresh="1673000300729" requestable="true" type="group" uuid="{6b06ee52-fc68-471e-a30e-d7b5cb9c8b2d}" value="CN=Cost-SavingsAnalysis,OU=Groups,OU=Demo,DC=IIQ,DC=com">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="AD"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="GroupScope" value="Global"/>
+      <entry key="GroupType" value="Security"/>
+      <entry key="cn" value="Cost-SavingsAnalysis"/>
+      <entry key="msDS-PrincipalName" value="IIQ\Cost-SavingsAnalysis"/>
+      <entry key="objectSid" value="S-1-5-21-1842740495-2205561152-817635398-1351"/>
+      <entry key="objectguid" value="{6b06ee52-fc68-471e-a30e-d7b5cb9c8b2d}"/>
+      <entry key="sAMAccountName" value="Cost-SavingsAnalysis"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

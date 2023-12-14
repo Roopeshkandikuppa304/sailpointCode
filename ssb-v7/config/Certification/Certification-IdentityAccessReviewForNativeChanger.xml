@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1661333866671" automaticClosingDate="1661341066671" certificationDefinitionId="a9fef0a782b413f28182cf36f93d080d" complete="true" creator="spadmin" entitlementGranularity="Value" expiration="1661337466671" finished="1661341257355" itemPercentComplete="100" name="Identity Access Review for Native Changer" percentComplete="100" phase="End" processRevokesImmediately="true" shortName="Access Review for Native Changer" signed="1661341211512" triggerId="a9fef0a782b413f28182cf16a01807ae" type="Identity">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="AD Native Change 24/08/22, 3:07:24 PM ISTEvent Certification [24/08/22, 3:07:24 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Katherine Langford</String>
+  </Certifiers>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Hour"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <SignOffHistory>
+    <SignOffHistoryItem date="1661341211511" signerDisplayName="The Administrator" signerId="c0a800687f7c124c817f7c1383fe00e6" signerName="spadmin"/>
+  </SignOffHistory>
+  <CertificationStatistics itemPercentComplete="100" percentComplete="100"/>
+  <CertificationRefs>
+    <Reference class="sailpoint.object.Certification" name="Reassignment from 'Identity Access Review for Native Changer' to Katherine Langford"/>
+  </CertificationRefs>
+</Certification>

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Profile PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Profile>
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="AD"/>
+  </ApplicationRef>
+  <Constraints>
+    <Filter operation="CONTAINS_ALL" property="memberOf">
+      <Value>
+        <List>
+          <String>CN=Development,OU=Groups,OU=Demo,DC=IIQ,DC=com</String>
+          <String>CN=DEV_Stage,OU=Groups,OU=Demo,DC=IIQ,DC=com</String>
+          <String>CN=Employeement,OU=Groups,OU=Demo,DC=IIQ,DC=com</String>
+          <String>CN=ENG_EastCoast,OU=Groups,OU=Demo,DC=IIQ,DC=com</String>
+        </List>
+      </Value>
+    </Filter>
+  </Constraints>
+</Profile>

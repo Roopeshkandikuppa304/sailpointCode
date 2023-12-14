@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="Roles" displayName="ADH_BUDGET_REPORTS" hash="c111fe7f23e52db338f43a5081eb48febabf46b6" lastRefresh="1658477550302" requestable="true" type="Group" value="ADH_BUDGET_REPORTS">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="Test HR"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="Description" value="Abu Dhabi Commitment Control role providing access to run Budget Reporting Activity Log, Budget Check Status, Budget Control Report, Budget Status, Budget Transaction Detail and Ledger Detail."/>
+      <entry key="sysDescriptions"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

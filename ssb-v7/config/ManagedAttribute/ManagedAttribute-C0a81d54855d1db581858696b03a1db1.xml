@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="memberOf" displayName="IIQ\AccountingGeneral" hash="f7dbdce6e4a81225f1c697d7ecd7eea756f416e0" lastRefresh="1673000300607" requestable="true" type="group" uuid="{72a71d26-8c49-4e8f-b0d9-20e48b4c524b}" value="CN=AccountingGeneral,OU=Groups,OU=Demo,DC=IIQ,DC=com">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="AD"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="GroupScope" value="Global"/>
+      <entry key="GroupType" value="Security"/>
+      <entry key="cn" value="AccountingGeneral"/>
+      <entry key="msDS-PrincipalName" value="IIQ\AccountingGeneral"/>
+      <entry key="objectSid" value="S-1-5-21-1842740495-2205561152-817635398-1338"/>
+      <entry key="objectguid" value="{72a71d26-8c49-4e8f-b0d9-20e48b4c524b}"/>
+      <entry key="sAMAccountName" value="AccountingGeneral"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="Test HKR trainings___Rule" type="Validation">
+  <Source><![CDATA[
+  import sailpoint.object.*;
+  import sailpoint.api.*;
+  
+  
+ Filter f1 = Filter.ne("correlated",true);
+  QueryOptions qo =  new QueryOptions();
+  qo.add(f1);
+  List iden2 = context.getObjects(Identity.class,qo);
+  return iden2.size();
+  
+  List list = new ArrayList();
+  List rules = context.getObjects(Rule.class);
+  for(Rule rule:rules){
+    list.add(rule.getName());
+  }
+  return list;
+  
+  Filter f1 = Filter.eq("manager.name","Aaron Nichols");
+  QueryOptions qo =  new QueryOptions();
+  qo.add(f1);
+  List iden = context.getObjects(Identity.class,qo);
+  return iden.size();
+  
+  Filter f = Filter.eq("Department","Engineering");
+  QueryOptions qo = new QueryOptions();
+  qo.add(f);
+  List ide = context.getObjects(Identity.class,qo);
+  return ide.size();
+    
+  
+  List finalList = new ArrayList();
+  List list = new ArrayList();
+  list.add("James Smith");
+  list.add("Ned Stark");
+  list.add("Roopesh Kandikuppa");
+  list.add("Katherine Langford");
+  
+  for(String str :list){
+  	Identity identity = context.getObjectByName(Identity.class,str);
+    finalList.add(identity);
+  }
+  return finalList.size();
+  
+  
+  Identity identity = context.getObjectByName(Identity.class,"James Smith");
+  return identity;
+  
+  List identities = context.getObjects(Identity.class);
+  return identities.size();
+ 
+  
+  
+  ]]></Source>
+</Rule>

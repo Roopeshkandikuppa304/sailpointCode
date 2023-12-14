@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="create identity form workflow" type="IdentityLifecycle">
+  <Variable initializer="true" name="trace"/>
+  <Variable initializer="true" name="transient"/>
+  <Description>Creating Identity using Forms</Description>
+  <Step icon="Start" name="Start" posX="20" posY="20">
+    <Transition to="Create identity form"/>
+  </Step>
+  <Step icon="Default" name="Create identity form" posX="174" posY="16">
+    <Approval name="Create identity form" owner="spadmin" return="UserName,FirstName,LastName,EmailID,Manager">
+      <Form name="Create Identity">
+        <Attributes>
+          <Map>
+            <entry key="isWizard" value="true"/>
+            <entry key="pageTitle" value="Create Identity in iiq"/>
+          </Map>
+        </Attributes>
+        <Button action="next" label="Next"/>
+        <Button action="back" label="cancel"/>
+        <Section label="Name Info">
+          <Field displayName="userName" displayType="combobox" dynamic="true" name="UserName" postBack="true" required="true" type="string"/>
+          <Field displayName="manager" displayType="combobox" dynamic="true" name="Manager" required="true" type="string">
+            <AllowedValuesDefinition>
+              <Script>
+                <Source>
+                  import sailpoint.object.*;
+                  import sailpoint.api.*;
+                  List mngrs = new ArrayList();
+                  Filter f = Filter.eq("managerStatus",true);
+                  QueryOptions qo = new QueryOptions();
+                  qo.add(f);
+                  List managers = context.getObjects(Identity.class,qo);
+                  for(Identity ide: managers){
+                  mngrs.add(ide.getName());
+                  }
+                  return mngrs;
+
+                </Source>
+              </Script>
+            </AllowedValuesDefinition>
+          </Field>
+        </Section>
+        <Section>
+          <Attributes>
+            <Map>
+              <entry key="hidden">
+                <value>
+                  <Script>
+                    <Source>
+                      if(UserName != null){
+                      return false;
+                      }
+                      return true;
+                    </Source>
+                  </Script>
+                </value>
+              </entry>
+            </Map>
+          </Attributes>
+          <Field displayName="firstName" dynamic="true" name="FirstName" postBack="true" required="true" type="string">
+            <Script>
+              <Source>
+                import sailpoint.object.*;
+                import sailpoint.api.*;
+                if(UserName != null){
+                String splitName = UserName;
+                String[] arrOfSplit = splitName.split(" ");
+                String fName = arrOfSplit[0];
+                return fName;
+                }
+
+              </Source>
+            </Script>
+          </Field>
+          <Field displayName="lastName" dynamic="true" name="LastName" postBack="true" required="true" type="string">
+            <Script>
+              <Source>
+                import sailpoint.object.*;
+                import sailpoint.api.*;
+                if(UserName != null){
+                String splitName = UserName;
+                String[] arrOfSplit = splitName.split(" ");
+                String lName = arrOfSplit[1];
+                return lName;
+                }
+
+              </Source>
+            </Script>
+          </Field>
+          <Field displayName="email" dynamic="true" name="EmailID" required="true" type="String">
+            <Script>
+              <Source>
+                import sailpoint.object.*;
+                import sailpoint.api.*;
+                if(FirstName != null &amp;&amp; LastName != null){
+                if(FirstName.contains("@") || LastName.contains("@")){
+
+                return "the email format doesn't exists.Modify the email format";
+                }
+                return FirstName+"."+LastName+"@gmail.com";
+                }
+              </Source>
+            </Script>
+          </Field>
+        </Section>
+      </Form>
+    </Approval>
+    <Transition to="Identity create request" when="approved"/>
+  </Step>
+  <Step icon="Message" name="Identity create request" posX="124" posY="23" resultVariable="isValid">
+    <Script>
+      <Source>
+        Identity idObject=new Identity();
+        idObject.setName(UserName);
+        idObject.setFirstname(FirstName);
+        idObject.setLastname(LastName);
+        idObject.setEmail(EmailID);
+        System.out.println("***Manager "+Manager);
+        Identity id = context.getObjectByName(Identity.class,Manager);
+        idObject.setManager(id);
+        context.saveObject(idObject);
+        context.commitTransaction();
+      </Source>
+    </Script>
+    <Transition to="provision to AD"/>
+  </Step>
+  <Step icon="Task" name="provision to AD">
+    <Transition to="Stop"/>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="814" posY="34"/>
+</Workflow>

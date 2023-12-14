@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Custom PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Custom name="PostIterateCustom-Object">
+  <Attributes>
+    <Map>
+      <entry key="Application" value="Training HR"/>
+      <entry key="LastAggregation_Date" value="Fri Oct 07 12:58:13 IST 2022"/>
+    </Map>
+  </Attributes>
+</Custom>

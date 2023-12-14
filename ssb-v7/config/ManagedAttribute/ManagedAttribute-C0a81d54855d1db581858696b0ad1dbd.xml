@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ManagedAttribute PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ManagedAttribute aggregated="true" attribute="memberOf" displayName="IIQ\Corporate-VPN" hash="cce5e80c45a42743488e1538e8158db6a6f5c2d0" lastRefresh="1673000300719" requestable="true" type="group" uuid="{f1751886-96c6-4668-96a6-d17bca87b779}" value="CN=Corporate-VPN,OU=Groups,OU=Demo,DC=IIQ,DC=com">
+  <ApplicationRef>
+    <Reference class="sailpoint.object.Application" name="AD"/>
+  </ApplicationRef>
+  <Attributes>
+    <Map>
+      <entry key="GroupScope" value="Global"/>
+      <entry key="GroupType" value="Security"/>
+      <entry key="cn" value="Corporate-VPN"/>
+      <entry key="msDS-PrincipalName" value="IIQ\Corporate-VPN"/>
+      <entry key="objectSid" value="S-1-5-21-1842740495-2205561152-817635398-1350"/>
+      <entry key="objectguid" value="{f1751886-96c6-4668-96a6-d17bca87b779}"/>
+      <entry key="sAMAccountName" value="Corporate-VPN"/>
+    </Map>
+  </Attributes>
+</ManagedAttribute>

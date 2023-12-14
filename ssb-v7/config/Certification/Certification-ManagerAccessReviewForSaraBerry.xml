@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Certification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Certification activated="1691676590566" certificationDefinitionId="c0a8017389971da58189dfc44d490e85" creator="spadmin" entitlementGranularity="Value" expiration="1694354990566" manager="Sara Berry" name="Manager Access Review for Sara Berry" phase="Active" processRevokesImmediately="true" shortName="Access Review for Sara Berry" taskScheduleId="Manager Certification [DATE] [8/10/23 7:36 PM]" totalEntities="5" totalItems="8" type="Manager">
+  <Attributes>
+    <Map>
+      <entry key="autoSignOffWhenNothingToCertify" value="false"/>
+      <entry key="automateSignOffOnReassignment" value="false"/>
+      <entry key="certificationDelegationReview" value="false"/>
+      <entry key="notifyRemediation">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="requireReassignmentCompletion" value="true"/>
+      <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+    </Map>
+  </Attributes>
+  <CertificationGroups>
+    <Reference class="sailpoint.object.CertificationGroup" name="Manager Certification [8/10/23 7:36:53 PM IST]"/>
+  </CertificationGroups>
+  <Certifiers>
+    <String>Sara Berry</String>
+  </Certifiers>
+  <Parent>
+    <Reference class="sailpoint.object.Certification" name="Manager Access Review for Lori Ferguson"/>
+  </Parent>
+  <PhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Staged"/>
+    <CertificationPhaseConfig enabled="true" phase="Active">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+    </CertificationPhaseConfig>
+    <CertificationPhaseConfig enabled="true" phase="Remediation">
+      <Duration>
+        <TimeDuration amount="1" scale="Month"/>
+      </Duration>
+      <NotificationConfig>
+        <Configs>
+          <ReminderConfig before="true" emailTemplateName="Work Item Reminder" millis="1209600000" once="true"/>
+          <EscalationConfig before="true" emailTemplateName="Work Item Escalation" maxReminders="5" millis="604800000"/>
+        </Configs>
+      </NotificationConfig>
+    </CertificationPhaseConfig>
+  </PhaseConfig>
+  <CertificationStatistics totalEntities="5" totalItems="8" totalRoles="8"/>
+  <WorkItemRefs>
+    <Reference class="sailpoint.object.WorkItem" name="0000000440"/>
+  </WorkItemRefs>
+  <CertificationEntity firstname="Allen" identity="Allen Burton" lastname="Burton" newUser="true" snapshotId="c0a8017389971da58189dfc5a1680ec5" summaryStatus="Open" targetDisplayName="Allen Burton" targetName="Allen Burton" type="Identity">
+    <CertificationItem bundle="Ex-Business" bundleAssignmentId="11f78db626e844bf99a5a58e70e5b139" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Ex-Business" targetName="Ex-Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648713957567" roleName="Ex-Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Allen Burton" nativeIdentity="CN=Allen Burton,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="2b7cc7c2ef0d45cab75dd35cc1c63623" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141854220" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Cindy" identity="Cindy Little" lastname="Little" newUser="true" snapshotId="c0a8017389971da58189dfc5a19e0ec9" summaryStatus="Open" targetDisplayName="Cindy Little" targetName="Cindy Little" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="6d8c6e8f675f437380497f512c60dea8" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1648619957640" roleName="Test_Bussiness" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Cindy Little" nativeIdentity="CN=Cindy Little,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem bundle="Oldap-business" bundleAssignmentId="76aac44bdc104c6497fa4b3bef8c9c7a" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Oldap-business" targetName="Oldap-business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1672998309380" roleName="Oldap-business" source="LCM">
+                <RoleTarget applicationId="c0a8ae01804a17ef81804aca509500bb" applicationName="Oldap" displayName="Cindy.Little" nativeIdentity="cn=Cindy.Little,ou=People,dc=my-domain,dc=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Grace" identity="Grace Stanley" lastname="Stanley" newUser="true" snapshotId="c0a8017389971da58189dfc5a1da0ecd" summaryStatus="Open" targetDisplayName="Grace Stanley" targetName="Grace Stanley" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="7d7855ee6b854dc3b4a95cd1219e11c3" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141854927" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Norman" identity="Norman Harvey" lastname="Harvey" newUser="true" snapshotId="c0a8017389971da58189dfc5a20b0ed0" summaryStatus="Open" targetDisplayName="Norman Harvey" targetName="Norman Harvey" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="21b7ffd1209f4a6fbedec805557bd29f" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141853146" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+  <CertificationEntity firstname="Rosa" identity="Rosa Garza" lastname="Garza" newUser="true" snapshotId="c0a8017389971da58189dfc5a2490ed3" summaryStatus="Open" targetDisplayName="Rosa Garza" targetName="Rosa Garza" type="Identity">
+    <CertificationItem bundle="Test_Bussiness" bundleAssignmentId="187184fbaaaf4855bb909dcd3ca481bd" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="Test_Bussiness" targetName="Test_Bussiness" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment date="1658141851810" roleName="Test_Bussiness" source="Rule"/>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+    <CertificationItem bundle="AD_Business" bundleAssignmentId="6e135fbe09d54eb9992253c57ad0de04" phase="Active" subType="AssignedRole" summaryStatus="Open" targetDisplayName="AD_Business" targetName="AD_Business" type="Bundle">
+      <Attributes>
+        <Map>
+          <entry key="IIQ_roleAssignment">
+            <value>
+              <RoleAssignment assigner="spadmin" date="1672991077732" roleName="AD_Business" source="LCM">
+                <RoleTarget applicationId="c0a89d017f8810ba817f9112ad8a0570" applicationName="AD" displayName="Rosa Garza" nativeIdentity="CN=Rosa Garza,OU=People,OU=Demo,DC=Eshiam,DC=com"/>
+              </RoleAssignment>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </CertificationItem>
+  </CertificationEntity>
+</Certification>

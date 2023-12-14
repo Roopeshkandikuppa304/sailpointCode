@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CertificationGroup PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<CertificationGroup name="Americana-Mover Identity Cert Debra Wood" status="Active" totalCertifications="1" type="Certification">
+  <Definition>
+    <Reference class="sailpoint.object.CertificationDefinition" name="Americana-Mover Identity Cert Debra Wood"/>
+  </Definition>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</CertificationGroup>

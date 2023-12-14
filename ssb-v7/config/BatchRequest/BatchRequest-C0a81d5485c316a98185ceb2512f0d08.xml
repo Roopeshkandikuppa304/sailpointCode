@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE BatchRequest PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<BatchRequest fileContents="operation,application,attributename,attributevalue,nativeidentity&#10;RemoveEntitlement,AD,memberOf,&quot;CN=DEV_Europe,OU=Groups,OU=Demo,DC=IIQ,DC=com&quot;,&quot;CN=Daniel Lewis,OU=People,OU=Demo,DC=IIQ,DC=com&quot;" fileName="Remove_ent.csv" header="operation, application, attributename, attributevalue, nativeidentity" recordCount="1" runDate="1674210070834" status="Running">
+  <BatchRequestItems>
+    <BatchRequestItem identityRequestId="0000000376" requestData="RemoveEntitlement,AD,memberOf,&quot;CN=DEV_Europe,OU=Groups,OU=Demo,DC=IIQ,DC=com&quot;,&quot;CN=Daniel Lewis,OU=People,OU=Demo,DC=IIQ,DC=com&quot;" result="Skipped" status="Invalid" targetIdentityId="c0a89d017f8810ba817f8bdcc04400a2">
+      <ErrorMessage>
+        <Message key="Filtered due to Dependency" type="Error"/>
+      </ErrorMessage>
+    </BatchRequestItem>
+  </BatchRequestItems>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <RunConfig>
+    <Attributes>
+      <Map>
+        <entry key="generateIdentityRequests">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="handleExistingCreate">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ignoreErrors">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="policyScheme" value="none"/>
+        <entry key="runDate">
+          <value>
+            <Date>1674210060000</Date>
+          </value>
+        </entry>
+        <entry key="runNow">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipManualWorkItems">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="skipProvisioningForms">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="stopNumber">
+          <value>
+            <Integer>0</Integer>
+          </value>
+        </entry>
+      </Map>
+    </Attributes>
+  </RunConfig>
+</BatchRequest>
