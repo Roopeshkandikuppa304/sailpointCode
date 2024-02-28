@@ -1,0 +1,373 @@
+       6-13-23                                 RAYMOND JAMES BANK                          PROCESS-THRU    6-13-23       PAGE    1     
+                                                                                                                          SC3300        
+       SECURITY SYSTEM                          PRINT ENROLLMENT GROUP                       6-13-23       10:18:33       05-3300       
+    
+    GROUP                                                                                                                               
+    PROFILE     BANK  USER        DESCRIPTION           AUTHORITY  DATA LIBRARY                                                         
+    
+    .ACCTGEN     300              ACCOUNTING GENERAL    User                                                                            
+                      RJB300JIM   FISEEV                User       BNKPRDA300                                                           
+                      RJB300SDAN  STEPHANIE D'ANGELO    User       BNKPRDA300                                                           
+                      RJB300SDIX  STEPHANIE DIXON       User       BNKPRDA300                                                           
+    
+    .ACCTMTNCE   300              ACCOUNTING MAINTENCE  User       BNKPRDA300                                                           
+                      KBUIVYDAS   KRISTINA BUIVYDAS     User       BNKPRDA300                                                           
+                      RJB300AKIC  ALEKSANDRA KICZKA     User       BNKPRDA300                                                           
+                      RJB300HRIV  HARRYANNE RIVERA-VEG  User       BNKPRDA300                                                           
+                      RJB300KBUI  KRISTINA BUIVYDAS     User       BNKPRDA300                                                           
+                      RJB300LBRI  LUCILLE BRIZZI        User       BNKPRDA300                                                           
+                      RJB300MBEC  MARLENE BECK          User       BNKPRDA300                                                           
+                      RJB300RNIL  RYAN NILSEN           User       BNKPRDA300                                                           
+                      RJB300VHIG  VERONICA HIGGINS      User       BNKPRDA300                                                           
+                      RJB300VMIE  VINCENT MIELE         User       BNKPRDA300                                                           
+    
+    .ACCTSUPV    300              ACCOUNTING SUPERVISR  User       BNKPRDA300                                                           
+                      RJB300ETHO  ELIZABETH THOMAS      User       BNKPRDA300                                                           
+                      RJB300IMED  ILVANA MEDINA         User       BNKPRDA300                                                           
+    
+    .AMLINQ      300              AML INQUIRY           User       BNKPRDA300                                                           
+                      ACHAPMAN1   ANASTASIA CHAPMAN     User       BNKPRDA300                                                           
+                      AVIJIL      ALEJANDRA VIJIL       User       BNKPRDA300                                                           
+                      DWHITE15    DANIELLE WHITE 1      User       BNKPRDA300                                                           
+                      EMCINERNEY  ERIN MCINERNEY        User       BNKPRDA300                                                           
+                      LHOWELL     LAURA HOWELL          User       BNKPRDA300                                                           
+                      NSANDLER    NATHAN SANDLER        User       BNKPRDA300                                                           
+                      PROCHA      PRISCILLA ROCHA       User       BNKPRDA300                                                           
+                      RJB300ABEL  AHMED BELEIH          User       BNKPRDA300                                                           
+                      RJB300ACAM  ANGELA CAMFFERMAN     User       BNKPRDA300                                                           
+                      RJB300ACHA  ANASTASIA CHAPMAN     User       BNKPRDA300                                                           
+                      RJB300ACRA  AMANDA CRAIL          User       BNKPRDA300                                                           
+                      RJB300AHAW  ALICIA HAWTHORNE      User       BNKPRDA300                                                           
+                      RJB300ALEE  ASPEN LEE             User       BNKPRDA300                                                           
+                      RJB300ALUU  ASTRID LUU            User       BNKPRDA300                                                           
+                      RJB300AWIS  ALEXIA WISOR          User       BNKPRDA300                                                           
+                      RJB300BBUR  BRANDY BURNETT        User       BNKPRDA300                                                           
+                      RJB300BLEM  BRYAN LEMKE           User       BNKPRDA300                                                           
+                      RJB300BWAT  BRIAN WATKINS         User       BNKPRDA300                                                           
+                      RJB300CHAL  CHRISTINA HALE        User       BNKPRDA300                                                           
+                      RJB300CJON  CARLEE JONES          User       BNKPRDA300                                                           
+                      RJB300DMUL  DEANNA MULALY         User       BNKPRDA300                                                           
+                      RJB300DYOU  DANIELLE YOUNG        User       BNKPRDA300                                                           
+                      RJB300EBUC  ERIN BUCKALEW         User       BNKPRDA300                                                           
+                      RJB300ECAS  ELLIE CASTORO         User       BNKPRDA300                                                           
+                      RJB300EDUR  ELIZABETH DURAN-VARG  User       BNKPRDA300                                                           
+                      RJB300EJAC  ERIC JACOBS 2QL       User       BNKPRDA300                                                           
+                      RJB300GDUR  GLEISSY DURAN         User       BNKPRDA300                                                           
+                      RJB300GISA  GREG ISAACS           User       BNKPRDA300                                                           
+                      RJB300GTRA  GAVIN TRACY           User       BNKPRDA300                                                           
+                      RJB300HHUT  HALLIE HUTCHINSON     User       BNKPRDA300                                                           
+                      RJB300HLUE  HEATHER LUECK         User       BNKPRDA300                                                           
+                      RJB300HSZU  HEATHER SZUKIS        User       BNKPRDA300                                                           
+                      RJB300IESC  IBETHE ESCOBEDO RIOS  User       BNKPRDA300                                                           
+    
+        6-13-23                                 RAYMOND JAMES BANK                          PROCESS-THRU    6-13-23       PAGE    2     
+                                                                                                                          SC3300        
+       SECURITY SYSTEM                          PRINT ENROLLMENT GROUP                       6-13-23       10:18:33       05-3300       
+    
+    GROUP                                                                                                                               
+    PROFILE     BANK  USER        DESCRIPTION           AUTHORITY  DATA LIBRARY                                                         
+    
+                      RJB300JAIT  JESSICA AITCHISON     User       BNKPRDA300                                                           
+                      RJB300JDOS  JOE DOSWELL           User       BNKPRDA300                                                           
+                      RJB300JPIE  JESSICA PIERCE        User       BNKPRDA300                                                           
+                      RJB300JRON  JASON RONSKE          User       BNKPRDA300                                                           
+                      RJB300KCER  KELLY CERVANTES       User       BNKPRDA300                                                           
+                      RJB300KHAR  KADE HART             User       BNKPRDA300                                                           
+                      RJB300KLED  KESTUTIS LEDAS        User       BNKPRDA300                                                           
+                      RJB300KPRY  KANESHA PRYOR         User       BNKPRDA300                                                           
+                      RJB300KSAL  KERITH SALMON         User       BNKPRDA300                                                           
+                      RJB300LCOM  LAURA COMPTON         User       BNKPRDA300                                                           
+                      RJB300LHOW  LAURA HOWELL          User       BNKPRDA300                                                           
+                      RJB300LPAR  LORI PARADISE         User       BNKPRDA300                                                           
+                      RJB300MARH  MARK HALLIDAY         User       BNKPRDA300                                                           
+                      RJB300MBOO  MAX BOOTH             User       BNKPRDA300                                                           
+                      RJB300MHAR  MARVETTE HARDY        User       BNKPRDA300                                                           
+                      RJB300MKUH  MORGAN KUHN           User       BNKPRDA300                                                           
+                      RJB300MRIA  MARISSA RIANI         User       BNKPRDA300                                                           
+                      RJB300MVIL  MORTISHA VILLAVICENC  User       BNKPRDA300                                                           
+                      RJB300NMCK  NAJAAH MCKOY          User       BNKPRDA300                                                           
+                      RJB300NNAP  NORY NAPAN-NARVAEZ    User       BNKPRDA300                                                           
+                      RJB300NSAN  NATHAN SANDLER        User       BNKPRDA300                                                           
+                      RJB300OBRY  SAMUEL OBRYANT        User       BNKPRDA300                                                           
+                      RJB300PROC  PRISCILLA ROCHA       User       BNKPRDA300                                                           
+                      RJB300RFIG  ROSELYM GARCIA FIGUE  User       BNKPRDA300                                                           
+                      RJB300RFRI  RYAN FRICKE           User       BNKPRDA300                                                           
+                      RJB300RSIN  ROSE SINGH            User       BNKPRDA300                                                           
+                      RJB300SGEN  SUSAN GENTILE         User       BNKPRDA300                                                           
+                      RJB300SPOR  SHARON PORTER 2SM00   User       BNKPRDA300                                                           
+                      RJB300TCAL  TRISH CALL            User       BNKPRDA300                                                           
+                      RJB300TCOO  TAMY COOPER           User       BNKPRDA300                                                           
+                      RJB300TDAM  TARA D'AMATO          User       BNKPRDA300                                                           
+                      RJB300TMCG  TERRY MCGINNIS        User       BNKPRDA300                                                           
+                      RJB300TPEN  TANYA PENINGER        User       BNKPRDA300                                                           
+                      RJB300TPRE  TJ PRESTIGIACOMO      User       BNKPRDA300                                                           
+                      RJB300TROD  TARA RODERICK         User       BNKPRDA300                                                           
+                      RJB300TSOL  TREVOR SOLOMON        User       BNKPRDA300                                                           
+                      RJB300ZVOG  ZACK VOGEL            User       BNKPRDA300                                                           
+                      TDAMATO     TARA D'AMATO          User       BNKPRDA300                                                           
+    
+    .BRSUPV      300              BRANCH SUPERVISOR     User       BNKPRDA300                                                           
+                      RJB300EGIA  ELAINE GIANNICO       User       BNKPRDA300                                                           
+                      RJB300JCOY  JAMIE COY             User       BNKPRDA300                                                           
+    
+    .COMPOPSMG   300              computer ops manager  User       BNKPRDA300                                                           
+                      RJB300PVUK  Peter Vukadin         User       BNKPRDA300                                                           
+    
+    .CSRTLR      300              CSR TELLER            User       BNKPRDA300                                                           
+                      DSCHOULER   DANIEL SCHOULER - TA  User       BNKPRDA300                                                           
+                      PNAVARRO    PATRICIO NAVARRO      User       BNKPRDA300                                                           
+                      RJB300AITR  ANJA ITRIC - TAILORE  User       BNKPRDA300                                                           
+                      RJB300AWIL  ANTONETTE WILLIAMS    User       BNKPRDA300                                                           
+                      RJB300BFOU  BENJI FOURQUET        User       BNKPRDA300                                                           
+                      RJB300BSPE  BROOKE SPENCE         User       BNKPRDA300                                                           
+                      RJB300CMCC  CHARLENE MCCRACKEN    User       BNKPRDA300                                                           
+    
+        6-13-23                                 RAYMOND JAMES BANK                          PROCESS-THRU    6-13-23       PAGE    3     
+                                                                                                                          SC3300        
+       SECURITY SYSTEM                          PRINT ENROLLMENT GROUP                       6-13-23       10:18:33       05-3300       
+    
+    GROUP                                                                                                                               
+    PROFILE     BANK  USER        DESCRIPTION           AUTHORITY  DATA LIBRARY                                                         
+    
+                      RJB300DSCH  DANIEL SCHOULER - TA  User       BNKPRDA300                                                           
+                      RJB300GKEM  GABRIELLE KEMP - REV  User       BNKPRDA300                                                           
+                      RJB300HCRO  HELEN CROSBY          User       BNKPRDA300                                                           
+                      RJB300KJAQ  KEONA JAQUES          User       BNKPRDA300                                                           
+                      RJB300PNAV  PATRICIO NAVARRO - I  User       BNKPRDA300                                                           
+                      RJB300SMUK  SAI JAGADISH MUKTHIN  User       BNKPRDA300                                                           
+                      RJB300YARC  YANDRI ARCES - TAILO  User       BNKPRDA300                                                           
+                      YARCES      YANDRI ARCES          User       BNKPRDA300                                                           
+    
+    .DEPOPS      300              DEPOSIT OPERATIONS    User       BNKPRDA300                                                           
+                      RJB300AFOW  AUSTRIA FOWLER        User       BNKPRDA300                                                           
+                      RJB300AGON  ALBA GONZALEZ         User       BNKPRDA300                                                           
+                      RJB300CVIN  CLEMMIE VINSON        User       BNKPRDA300                                                           
+                      RJB300JCUN  JORDAN CUNNINGHAM     User       BNKPRDA300                                                           
+                      RJB300LHER  LYNNE HERR            User       BNKPRDA300                                                           
+                      RJB300LSIB  LAURENCE SIBILLY      User       BNKPRDA300                                                           
+                      RJB300MNUN  MARIELA NUNEZ         User       BNKPRDA300                                                           
+    
+    .IACOMPL     300              IA AND COMPLIANCE     User       BNKPRDA300                                                           
+                      LCITRIGLIA  LUKE CITRIGLIA        User       BNKPRDA300                                                           
+                      MHUYNH      MY HUYNH              User       BNKPRDA300                                                           
+                      NWILSON6    NICOLE WILSON 2NB     User       BNKPRDA300                                                           
+                      RJB300AAFZ  AZIZA AFZAL - RSM     User       BNKPRDA300                                                           
+                      RJB300CZIE  CHRIS ZIEGLER         User       BNKPRDA300                                                           
+                      RJB300EJON  ERIN JONES 2NE        User       BNKPRDA300                                                           
+                      RJB300GROB  GABBY ROBINSON        User       BNKPRDA300                                                           
+                      RJB300HCHA  HANK CHAMPAGNE        User       BNKPRDA300                                                           
+                      RJB300HHAR  HEATHER HARDING       User       BNKPRDA300                                                           
+                      RJB300IKOZ  IVAN KOZAREV          User       BNKPRDA300                                                           
+                      RJB300JHOV  JEANETTE HOVEN        User       BNKPRDA300                                                           
+                      RJB300JMAR  JAMES MARTIN          User       BNKPRDA300                                                           
+                      RJB300JMAT  JOY MATTHEWS          User       BNKPRDA300                                                           
+                      RJB300JSCH  JOHN SCHROEDER        User       BNKPRDA300                                                           
+                      RJB300OMAS  OLIVIA MASSON - RSM   User       BNKPRDA300                                                           
+                      RJB300PBUR  PETE BURSIK           User       BNKPRDA300                                                           
+                      RJB300RDEL  RAQUEL DELIMA         User       BNKPRDA300                                                           
+                      RJB300RJAC  RACHEL JACOBS         User       BNKPRDA300                                                           
+                      RJB300RKUE  RUSSELL KUECKEN       User       BNKPRDA300                                                           
+                      RJB300SPAN  SHEILA PAN            User       BNKPRDA300                                                           
+    
+    .INQONLY     300              INQUIRY ONLY          User       BNKPRDA300                                                           
+                      AGLEATON    ANGELA GLEATON        User       BNKPRDA300                                                           
+                      KSTEWART4   KIANA STEWART         User       BNKPRDA300                                                           
+                      RCALLAHAN   ROBERT CALLAHAN       User       BNKPRDA300                                                           
+                      RJB300ABOT  ALEXANDRA BOTERO      User       BNKPRDA300                                                           
+                      RJB300ABRE  AARON BREWSTER        User       BNKPRDA300                                                           
+                      RJB300AFUR  AMANDA FURGUS         User       BNKPRDA300                                                           
+                      RJB300AGLE  ANGELA GLEATON        User       BNKPRDA300                                                           
+                      RJB300BNOO  BRETT NOONAN          User       BNKPRDA300                                                           
+                      RJB300BPAL  BIANCA PARKER -ALLEN  User       BNKPRDA300                                                           
+                      RJB300CLAM  CHRISTOPHER LAMY      User       BNKPRDA300                                                           
+                      RJB300CLEW  CHRISTIE LEWIS        User       BNKPRDA300                                                           
+                      RJB300CWAR  CHARLES WARDEN        User       BNKPRDA300                                                           
+                      RJB300DMOO  DAVE MOORE            User       BNKPRDA300                                                           
+    
+        6-13-23                                 RAYMOND JAMES BANK                          PROCESS-THRU    6-13-23       PAGE    4     
+                                                                                                                          SC3300        
+       SECURITY SYSTEM                          PRINT ENROLLMENT GROUP                       6-13-23       10:18:33       05-3300       
+    
+    GROUP                                                                                                                               
+    PROFILE     BANK  USER        DESCRIPTION           AUTHORITY  DATA LIBRARY                                                         
+    
+                      RJB300DWIL  DAVID WILKINSON       User       BNKPRDA300                                                           
+                      RJB300GJOR  GINNY JORDAN          User       BNKPRDA300                                                           
+                      RJB300HGAR  HARRIS GARDNER        User       BNKPRDA300                                                           
+                      RJB300IROB  INNA ROBBINS          User       BNKPRDA300                                                           
+                      RJB300ISIE  INA SIECK             User       BNKPRDA300                                                           
+                      RJB300JHES  JACQUELINE HESS       User       BNKPRDA300                                                           
+                      RJB300JKEL  JEREMY KELLY          User       BNKPRDA300                                                           
+                      RJB300KBIL  KEYLA BILLETER        User       BNKPRDA300                                                           
+                      RJB300KBOW  KIANA BOWEN           User       BNKPRDA300                                                           
+                      RJB300KLEF  KAYLA LEFTHANDBULL -  User       BNKPRDA300                                                           
+                      RJB300KLIN  KAREN LINDER HEARD    User       BNKPRDA300                                                           
+                      RJB300KSTA  KELLEY STAFFORD       User       BNKPRDA300                                                           
+                      RJB300LMCK  LISA MCKITTY - PROUN  User       BNKPRDA300                                                           
+                      RJB300MBEA  MARIA BEATRICE WANG   User       BNKPRDA300                                                           
+                      RJB300MFER  MELISSA FERNER        User       BNKPRDA300                                                           
+                      RJB300MHAL  MARK HALE             User       BNKPRDA300                                                           
+                      RJB300MMAD  MARCELA MADRINAN      User       BNKPRDA300                                                           
+                      RJB300MSTE  MICHELLE STEIN        User       BNKPRDA300                                                           
+                      RJB300MVAL  MIGUEL VALDES         User       BNKPRDA300                                                           
+                      RJB300PSMI  PENNIE SMITH          User       BNKPRDA300                                                           
+                      RJB300RHEN  RANDY HENKLE          User       BNKPRDA300                                                           
+                      RJB300RSAN  RAJ SANKARASUBRAMANI  User       BNKPRDA300                                                           
+                      RJB300SAXE  SCOTT AXELROD         User       BNKPRDA300                                                           
+                      RJB300SJUA  SYLVIA JUAREZ         User       BNKPRDA300                                                           
+                      RJB300SWIL  SHERYL WILLIAMS       User       BNKPRDA300                                                           
+                      SABEL1      SINEAD ABEL           User       BNKPRDA300                                                           
+    
+    .LNOPSACCT   300              LOAN OPS ACCOUNTANTS  User       BNKPRDA300                                                           
+                      RJB300JONE  EJ JONES              User       BNKPRDA300                                                           
+                      RJB300MHA1  MARY HARRIS           User       BNKPRDA300                                                           
+                      RJB300MJUN  MIKE JUNO             User       BNKPRDA300                                                           
+                      RJB300YHAU  YATE HAUGHBROOK       User       BNKPRDA300                                                           
+    
+    .LNOPSBOT    300              LOAN OPS BOTS         User       BNKPRDA300                                                           
+                      RJB300L108  AWL108CSM08           User       BNKPRDA300                                                           
+    
+    .LNOPSRET    300              LOAN OPS RETAIL       User       BNKPRDA300                                                           
+                      MBROWN35    MARTIN BROWN          User       BNKPRDA300                                                           
+                      RHARTL      RICK HARTL            User       BNKPRDA300                                                           
+                      RJB300ABRO  ANGELIA BROWN         User       BNKPRDA300                                                           
+                      RJB300AMIL  AJ MILLER             User       BNKPRDA300                                                           
+                      RJB300CALL  CALI ALLISON          User       BNKPRDA300                                                           
+                      RJB300CCHA  CHRISTY CHAMBLESS     User       BNKPRDA300                                                           
+                      RJB300CMUN  CLARITA MUNCAL - REV  User       BNKPRDA300                                                           
+                      RJB300DBRA  DEBORAH BRADLEY       User       BNKPRDA300                                                           
+                      RJB300DREY  DAMIAN REYES          User       BNKPRDA300                                                           
+                      RJB300DWAL  DAWN WALLACE          User       BNKPRDA300                                                           
+                      RJB300EMCG  ERIC MCGINNIS         User       BNKPRDA300                                                           
+                      RJB300FFRI  FRANCIE FRIEDLAND     User       BNKPRDA300                                                           
+                      RJB300FMUJ  FAHAD MUJAHID - REVO  User       BNKPRDA300                                                           
+                      RJB300GMAS  GREG MASON            User       BNKPRDA300                                                           
+                      RJB300HWIL  HOPE WILLIAMS - ACCO  User       BNKPRDA300                                                           
+                      RJB300JPAR  JEFF PARROTT          User       BNKPRDA300                                                           
+                      RJB300JROS  JEFF ROSENTRATER      User       BNKPRDA300                                                           
+    
+        6-13-23                                 RAYMOND JAMES BANK                          PROCESS-THRU    6-13-23       PAGE    5     
+                                                                                                                          SC3300        
+       SECURITY SYSTEM                          PRINT ENROLLMENT GROUP                       6-13-23       10:18:33       05-3300       
+    
+    GROUP                                                                                                                               
+    PROFILE     BANK  USER        DESCRIPTION           AUTHORITY  DATA LIBRARY                                                         
+    
+                      RJB300KDUN  KRISTA DUNHAM         User       BNKPRDA300                                                           
+                      RJB300KPER  KIRK PERKINS          User       BNKPRDA300                                                           
+                      RJB300LSCH  LANIE SCHMITT         User       BNKPRDA300                                                           
+                      RJB300L098  BLAZE WEBEST          User       BNKPRDA300                                                           
+                      RJB300L099  BO WEBEST             User       BNKPRDA300                                                           
+                      RJB300L100  BOBBY WEBEST          User       BNKPRDA300                                                           
+                      RJB300L103  BRADEN WEBEST         User       BNKPRDA300                                                           
+                      RJB300L104  BRADLEY WEBEST        User       BNKPRDA300                                                           
+                      RJB300MAYE  MICHAEL AYERS         User       BNKPRDA300                                                           
+                      RJB300MBRO  MARTIN BROWN          User       BNKPRDA300                                                           
+                      RJB300RPAT  RODERICK PATTERSON    User       BNKPRDA300                                                           
+                      RJB300SCUB  STEPHANIE CUBERO      User       BNKPRDA300                                                           
+                      RJB300SLOP  SERGIO LOPEZ          User       BNKPRDA300                                                           
+                      RJB300SNIB  SARAH NIBERT          User       BNKPRDA300                                                           
+                      RJB300TFEL  TATIANA FELIZ         User       BNKPRDA300                                                           
+                      RJB300TLEA  TERESA LEATHERMAN     User       BNKPRDA300                                                           
+                      RJB300TSTR  TRACI STRICKLAND      User       BNKPRDA300                                                           
+                      RJB300VBAS  VIVIANA BASILE        User       BNKPRDA300                                                           
+    
+    .LNOPSUPV    300              LOAN OPS SUPERVISOR   User       BNKPRDA300                                                           
+                      RJB300AADA  ALBERT ADAMS B2075    User       BNKPRDA300                                                           
+                      RJB300ADON  ANNA DONATO           User       BNKPRDA300                                                           
+                      RJB300AGUE  ANAHY GUEVARA         User       BNKPRDA300                                                           
+                      RJB300CCUR  CLINT CURRY           User       BNKPRDA300                                                           
+                      RJB300CDAN  CARLA DANIEL-DOMINGU  User       BNKPRDA300                                                           
+                      RJB300CPEN  CHRISTOPHER PENGILLY  User       BNKPRDA300                                                           
+                      RJB300DLIT  DREW LITTLE           User       BNKPRDA300                                                           
+                      RJB300FREY  FRANK REYES           User       BNKPRDA300                                                           
+                      RJB300GSNO  GREG SNOOK            User       BNKPRDA300                                                           
+                      RJB300LLEW  LEMORIA LEWIS         User       BNKPRDA300                                                           
+                      RJB300MFIL  MARC FILOTAS          User       BNKPRDA300                                                           
+                      RJB300MLEO  MARK LEOPOLD          User       BNKPRDA300                                                           
+                      RJB300NMON  NANCY MONAHAN         User       BNKPRDA300                                                           
+                      RJB300NSMI  NELSON SMITH          User       BNKPRDA300                                                           
+                      RJB300RBET  RYAN BETHIA           User       BNKPRDA300                                                           
+                      RJB300RGUE  ANAHY GUEVARA         User       BNKPRDA300                                                           
+                      RJB300VALD  VICTORIA ALDERMAN     User       BNKPRDA300                                                           
+    
+    .RJBSECURT   300              rjbank security ofcr  Manager    BNKPRDA300                                                           
+                      RJB300BCZD  BRANDY CZECH Admin I  Manager    BNKPRDA300                                                           
+                      RJB300DMID  Tet profile           Manager    BNKPRDA300                                                           
+                      RJB300LWOD  Lisa Woerner Admin    Manager    BNKPRDA300                                                           
+                      RJB300MBED  Mike Benoit Admin     Manager    BNKPRDA300                                                           
+    
+    .RJIT        300              IT Support            User       BNKPRDA300                                                           
+                      PVUKADIN    PETER VUKADIN         User       BNKPRDA300                                                           
+    
+    .SYSADMIN    300              RJB System Admin      User       BNKPRDA300                                                           
+                      RJB300BCZE  BRANDY CZECH          User       BNKPRDA300                                                           
+                      RJB300KGRA  KATHLEEN GRAINGER     User       BNKPRDA300                                                           
+                      RJB300LWOE  LISA WOERNER          User       BNKPRDA300                                                           
+                      RJB300MBEN  MIKE BENOIT           User       BNKPRDA300                                                           
+    
+    .SYSCHECK    300              System Health Check   User       BNKPRDA300                                                           
+    
+        6-13-23                                 RAYMOND JAMES BANK                          PROCESS-THRU    6-13-23       PAGE    6     
+                                                                                                                          SC3300        
+       SECURITY SYSTEM                          PRINT ENROLLMENT GROUP                       6-13-23       10:18:33       05-3300       
+    
+    GROUP                                                                                                                               
+    PROFILE     BANK  USER        DESCRIPTION           AUTHORITY  DATA LIBRARY                                                         
+    
+                      RJB300SYSA  System health check   User       BNKPRDA300                                                           
+    
+    .XFISERV     300              Fiserv Emplouees      User       BNKPRDA300                                                           
+                      KAUSHAAX    ANIL KAUSHAL          User       BNKPRDA300                                                           
+                      XAACBS      Dee Ademola-Siyanbol  User       BNKPRDA300                                                           
+                      XAKCBS      Anupam Kumar-FI       User       BNKPRDA300                                                           
+                      XARCBS      Anil Rawat-FI         User       BNKPRDA300                                                           
+                      XAWCBS      Alice Walsh-FI        User       BNKPRDA300                                                           
+                      XA4CBS      Angela Morris - FI    User       BNKPRDA300                                                           
+                      XBACBS      Bhawna Arora-FI       User       BNKPRDA300                                                           
+                      XBRCBS      Brian Bredael FI      User       BNKPRDA300                                                           
+                      XBSCBS      Ben Stone FI          User       BNKPRDA300                                                           
+                      XCBCBS      Cindy Breitkreutz FI  User       BNKPRDA300                                                           
+                      XCCCBS      Carmen Colon - FI     User       BNKPRDA300                                                           
+                      XCDCBS      Charlene Dugo - FI    User       BNKPRDA300                                                           
+                      XCLCBS      Cheryl Lemieux        User       BNKPRDA300                                                           
+                      XDWCBS      Dennis Watkins - Fi   User       BNKPRDA300                                                           
+                      XD4CBS      Donna Cully - FI      User       BNKPRDA300                                                           
+                      XGACBS      Glenn Aves-FI         User       BNKPRDA300                                                           
+                      XJGCBS      Julie Grundy-Fiserv   User       BNKPRDA300                                                           
+                      XJ5CBS      June Holt - FI        User       BNKPRDA300                                                           
+                      XKACBS      Ajay Kumar-FI         User       BNKPRDA300                                                           
+                      XKNCBS      Kim Nicholson-Fi      User       BNKPRDA300                                                           
+                      XKSCBS      Karen Sierzega - Fis  User       BNKPRDA300                                                           
+                      XK2CBS      Kayeann Roache - Fi   User       BNKPRDA300                                                           
+                      XK5CBS      Kim Merdian-FI        User       BNKPRDA300                                                           
+                      XLDCBS      Lisa Richardson       User       BNKPRDA300                                                           
+                      XLFCBS      Linda Ferra-Dresmich  User       BNKPRDA300                                                           
+                      XLTCBS      Lorna Thoman Fisv     User       BNKPRDA300                                                           
+                      XMBCBS      Michael Beacom-FI     User       BNKPRDA300                                                           
+                      XMSCBS      Maya Smith - FI       User       BNKPRDA300                                                           
+                      XNGCBS      Nicette Garcias Fisv  User       BNKPRDA300                                                           
+                      XNMCBS      Nadia Mykyetsei-Fi    User       BNKPRDA300                                                           
+                      XNPCBS      Nancy Lenihan - Fis   User       BNKPRDA300                                                           
+                      XNWCBS      Nikkie West - FI      User       BNKPRDA300                                                           
+                      XN4CBS      Neha Mishra-FI        User       BNKPRDA300                                                           
+                      XPBCBS      Pam Bond-Fiserv       User       BNKPRDA300                                                           
+                      XPHCBS      Patty Hauth - Fisv    User       BNKPRDA300                                                           
+                      XPJCBS      Penny Jones           User       BNKPRDA300                                                           
+                      XPSCBS      Pam Sorenson          User       BNKPRDA300                                                           
+                      XPXCBS      Priyanka Sharma-F1    User       BNKPRDA300                                                           
+                      XP3CBS      Pedro Perez - Fisv    User       BNKPRDA300                                                           
+                      XRDCBS      Rae Ann Davis-FI      User       BNKPRDA300                                                           
+                      XSBCBS      Sumedha Bahl - Fis    User       BNKPRDA300                                                           
+                      XSKCBS      Sam Kondras           User       BNKPRDA300                                                           
+                      XSTCBS      Steve Tams            User       BNKPRDA300                                                           
+                      XSVCBS      Steven Vasquez - Fi   User       BNKPRDA300                                                           
+                      XS4CBS      Samiksha Grover-Fis   User       BNKPRDA300                                                           
+                      XTBCBS      Teresa Brewer-FI      User       BNKPRDA300                                                           
+                      XTTCBS      Tammy Tamalunas - Fi  User       BNKPRDA300                                                           
+                      XUMCBS      Usha Menon - FI       User       BNKPRDA300                                                           
+                      XYRCBS      Fiserv Year End ID    User       BNKPRDA300                                                           
+    
+                      * * * * *   E N D   O F   L I S T I N G   * * * * *                                                               
+   S400  CB9410      FILE NAME- FT2040P1  *STD      FT2040        PAGES-         5                                                      
+    
