@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="Contractor Management Workflow">
+          
+    
+    <Variable initializer="true" name="trace"/>
+          
+    
+    <Variable name="identityName"/>
+          
+    
+    <Variable name="identityModel"/>
+          
+    
+    <Variable name="plan"/>
+          
+    
+    <Variable name="launcherIdentity"/>
+          
+    
+    <Variable name="formModel"/>
+          
+    
+    <Variable name="contractorIDstring"/>
+          
+    
+    <Variable input="true" name="flow">
+                    
+        
+        <Description>
+      The name of the LCM flow that launched this workflow.
+
+      This is one of these two values:
+
+      IdentityCreateRequest
+      IdentityEditRequest
+    </Description>
+                  
+    
+    </Variable>
+          
+    
+    <Description>Creating Entitlement using Forms</Description>
+          
+    
+    <Step icon="Start" name="Start" posX="20" posY="20">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import sailpoint.object.Identity;
+        launcherIdentity = context.getObjectByName(Identity.class,launcher);
+        workflow.put("launcherIdentity",launcherIdentity);
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="createFormModel"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="createFormModel" resultVariable="formModel">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import sailpoint.object.Identity;
+        import java.util.HashMap;
+        import sailpoint.transformer.IdentityTransformer;  
+        HashMap model = new HashMap();
+        IdentityTransformer transformer = new IdentityTransformer(context);
+        model.put(IdentityTransformer.ATTR_TRANSFORMER_CLASS, transformer.getClass().getName());
+        model.put(IdentityTransformer.ATTR_TRANSFORMER_OPTIONS, "");
+        return model;
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="contractorForm"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Default" name="contractorForm" posX="15" posY="115">
+                    
+        
+        <Approval name="Build Contractor Form" owner="ref:launcher" return="formModel" send="formModel">
+                              
+            
+            <Arg name="workItemType" value="Form"/>
+                              
+            
+            <Arg name="workItemFormBasePath" value="formModel"/>
+                              
+            
+            <Arg name="workItemForm" value="Select Operation Form"/>
+                              
+            
+            <Arg name="workItemDescription" value="Request form"/>
+                            
+        
+        </Approval>
+                    
+        
+        <Transition to="Initialize" when="lastApprovalState.equalsIgnoreCase(&quot;Finished&quot;);"/>
+                    
+        
+        <Transition to="Stop"/>
+                  
+    
+    </Step>
+          
+    
+    <Step action="call:getIdentityModel" icon="Initialize" name="Initialize" posX="20" posY="20" resultVariable="identityModel">
+                    
+        
+        <Arg name="identityName">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          if(formModel.get("operation").equalsIgnoreCase("Request New Contractor"))
+          return null;
+          else
+          {
+          workflow.put("identityName",formModel.get("selectIdentity"));
+          return formModel.get("selectIdentity");
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Arg>
+                    
+        
+        <Transition to="Request Contractor form" when="script:(&quot;Request New Contractor&quot;).equals(formModel.get(&quot;operation&quot;))"/>
+                    
+        
+        <Transition to="Add Attribute to Model"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Add Attribute to Model" resultVariable="identityModel">
+                    
+        
+        <Arg name="identityName" value="ref:identityName"/>
+                    
+        
+        <Description>
+      Add custom attributes to the model for form display
+    </Description>
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+
+        import sailpoint.object.Application;
+        import sailpoint.object.Identity;
+        import sailpoint.object.Link;
+        import sailpoint.object.CustomGlobal;
+        import sailpoint.api.IdentityService;
+        import sailpoint.object.Custom;					
+
+        log.error("Add Attributes to Model");
+        log.error("identityName"+identityName);
+        Identity user = context.getObjectByName(Identity.class,identityName);
+        if(null!=user)
+        {
+
+        List list = new ArrayList();
+        loc = user.getAttribute("location");
+        Custom custom = context.getObjectByName(Custom.class,"HDS Work Address");
+        if(custom != null)
+        {
+        Map map = custom.getAttributes().get(loc);
+        for(Map.Entry entry1 : map.entrySet())
+        {
+        log.error("entry1Value:"+entry1.getValue());
+        if(entry1.getValue()!=null && entry1.getValue()!=void)
+        {
+        log.error(entry1.getValue()!=null);
+        log.error(entry1.getValue()!=void);
+        list.add(entry1.getValue());
+        }
+        }
+        log.error("hdsWA"+sailpoint.tools.Util.listToCsv(list));
+        identityModel.put("hdsWA",sailpoint.tools.Util.listToCsv(list));
+        }
+        }
+        return identityModel;
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="Edit Contractor form" when="script:(&quot;Edit Contractor&quot;).equals(formModel.get(&quot;operation&quot;))"/>
+                    
+        
+        <Transition to="Update Contractor form" when="script:(&quot;Extend Contractor&quot;).equals(formModel.get(&quot;operation&quot;))"/>
+                    
+        
+        <Transition to="Terminate Contractor form" when="script:(&quot;Terminate Contractor&quot;).equals(formModel.get(&quot;operation&quot;))"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Edit Contractor form">
+                    
+        
+        <Approval name="Edit Contractor Form" owner="ref:launcher" return="identityModel" send="identityModel,formModel">
+                              
+            
+            <Arg name="workItemType" value="Form"/>
+                              
+            
+            <Arg name="workItemFormBasePath" value="identityModel"/>
+                              
+            
+            <Arg name="workItemForm" value="Modified Operations Form"/>
+                              
+            
+            <Arg name="workItemDescription" value="Request form"/>
+                            
+        
+        </Approval>
+                    
+        
+        <Transition to="Success Message" when="approved"/>
+                    
+        
+        <Transition to="contractorForm" when="!approved"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Default" name="Update Contractor form" posX="15" posY="115">
+                    
+        
+        <Approval name="Extend Contractor Form" owner="ref:launcher" return="identityModel" send="identityModel,formModel">
+                              
+            
+            <Arg name="workItemType" value="Form"/>
+                              
+            
+            <Arg name="workItemForm" value="Modified Operations Form"/>
+                              
+            
+            <Arg name="workItemDescription" value="Request form"/>
+                              
+            
+            <Arg name="workItemFormBasePath" value="identityModel"/>
+                              
+            
+            <Arg name="contractorIDstring" value="script:identityModel.get(&quot;name&quot;)"/>
+                            
+        
+        </Approval>
+                    
+        
+        <Transition to="Success Message" when="approved"/>
+                    
+        
+        <Transition to="contractorForm" when="!approved"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Default" name="Terminate Contractor form" posX="15" posY="115">
+                    
+        
+        <Approval name="Terminate Contractor" owner="ref:launcher" return="identityModel" send="identityModel,formModel">
+                              
+            
+            <Arg name="workItemType" value="Form"/>
+                              
+            
+            <Arg name="workItemForm" value="Modified Operations Form"/>
+                              
+            
+            <Arg name="workItemDescription" value="Terminator form"/>
+                              
+            
+            <Arg name="workItemFormBasePath" value="identityModel"/>
+                              
+            
+            <Arg name="contractorIDstring" value="script:identityModel.get(&quot;name&quot;)"/>
+                            
+        
+        </Approval>
+                    
+        
+        <Transition to="Success Message" when="approved"/>
+                    
+        
+        <Transition to="contractorForm" when="!approved"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Default" name="Request Contractor form">
+                    
+        
+        <Approval name="Build Contractor Form" owner="ref:launcher" return="formModel" send="formModel,launcher,launcherIdentity">
+                              
+            
+            <Arg name="workItemForm" value="Request New Contractor Account Form"/>
+                              
+            
+            <Arg name="workItemType" value="Form"/>
+                              
+            
+            <Arg name="workItemFormBasePath" value="formModel"/>
+                              
+            
+            <Arg name="launcher" value="ref:launcher"/>
+                            
+        
+        </Approval>
+                    
+        
+        <Transition to="Review Request form" when="approved"/>
+                    
+        
+        <Transition to="contractorForm" when="!approved"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Default" name="Review Request form">
+                    
+        
+        <Approval name="Review Request form" owner="ref:launcher" return="formModel" send="formModel,launcherIdentity">
+                              
+            
+            <Arg name="workItemForm" value="Review Request form"/>
+                              
+            
+            <Arg name="workItemType" value="Form"/>
+                              
+            
+            <Arg name="workItemFormBasePath" value="formModel"/>
+                              
+            
+            <Arg name="launcher" value="ref:launcher"/>
+                            
+        
+        </Approval>
+                    
+        
+        <Transition to="Generate contractor ID" when="approved"/>
+                    
+        
+        <Transition to="Request Contractor form" when="!approved"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Default" name="Generate contractor ID" resultVariable="contractorIDstring">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        int contractorID = getContractorID();
+        String contractorIDstring = String.valueOf(contractorID);
+        formModel.put("name",contractorIDstring);
+        formModel.put("employeeid",contractorIDstring);
+        formModel.put("networkid",contractorIDstring);
+        return contractorIDstring;
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="Success Message"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Success Message" posX="280" posY="178">
+                    
+        
+        <Approval name="HTML form" owner="ref:launcher">
+                              
+            
+            <Arg name="workItemForm" value="HTML submission page"/>
+                              
+            
+            <Arg name="workItemType" value="Form"/>
+                              
+            
+            <Arg name="launcher" value="ref:launcher"/>
+                              
+            
+            <Arg name="contractorIDstring" value="ref:contractorIDstring"/>
+                              
+            
+            <Arg name="message">
+                                        
+                
+                <Script>
+                                                  
+                    
+                    <Source><![CDATA[
+            if(!formModel.get("operation").equals("Request New Contractor"))
+            return "Your request submitted succesfully.";
+            else
+            return "Your new contractor request is submitted to approval. EmployeeID: "+workflow.get("contractorIDstring");
+          ]]></Source>
+                                                
+                
+                </Script>
+                                      
+            
+            </Arg>
+                            
+        
+        </Approval>
+                    
+        
+        <Transition to="Set identity name"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Set identity name" posX="507" posY="6" resultVariable="identityName">
+                    
+        
+        <Description>
+      Set the identityName workflow variable based on the form input.
+    </Description>
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import java.text.SimpleDateFormat;
+        import java.util.Date;
+        import java.lang.Math;
+
+        log.error("----set identityName---");
+        String name = null;
+        //int max = 8999999;
+        //int min = 8000000;
+        if (formModel.get("operation").equalsIgnoreCase("Request New Contractor") && formModel.get("firstname") != null && formModel.get("lastname") != null)
+        {
+        String fname = (String)formModel.get("firstname").trim();
+        String lname = (String)formModel.get("lastname").trim();
+        String flname = fname.substring(0,1)+lname.substring(0,1);
+
+        //int finInt = (int)(Math.random()*(max-min+1)+min);
+        //int contractorID = getContractorID();
+        //String contractorIDstring = String.valueOf(contractorID);
+
+        //formModel.put("name",contractorIDstring);
+        name = (String)formModel.get("name");
+        if (name != null) {
+        name = name.trim();
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+        String startDate = formModel.get("hiredate");
+        Date dateS = sdf.parse(startDate);
+        String startD = sdf1.format(dateS);
+        log.error("startD---"+startD);
+        long endDate = formModel.get("terminationdate");
+        log.error("date11111"+endDate);
+        Date date = new Date(endDate);
+        String eDate = sdf1.format(date);
+        log.error("eDate============"+eDate);
+        formModel.put("hiredate",startD);
+        formModel.put("terminationdate",eDate);
+        log.error("formModel============"+formModel);
+        }
+        else
+        {
+        name = (String)identityModel.get("name");
+        log.error("-----identityModel---"+name);
+        System.out.println("name--=="+name);
+        if (name != null)
+        {
+        name = name.trim();
+        }
+        if (!formModel.get("operation").equalsIgnoreCase("Edit Contractor") && !formModel.get("operation").equalsIgnoreCase("Terminate Contractor"))
+        {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+        String startDate = identityModel.get("hiredate");
+        log.error("=====startDate==="+startDate);
+        Date dateS = sdf.parse(startDate);
+        String startD = sdf1.format(dateS);
+        log.error("startD---"+startD);
+        long endDate = identityModel.get("terminationdate");
+        log.error("date11111"+endDate);
+        Date date = new Date(endDate);
+        String eDate = sdf1.format(date);
+        log.error("eDate============"+eDate);
+        identityModel.put("hiredate",startD);
+        identityModel.put("terminationdate",eDate);
+        }
+        else if(formModel.get("operation").equalsIgnoreCase("Terminate Contractor"))
+        {
+        log.error("identitymodel123--"+identityModel);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+        log.error("=====in terminate formModel==="+formModel);
+        //String startDate = formModel.get("hireate");
+        //log.error("=====in terminate startDate==="+startDate);
+        //Date dateS = sdf.parse(startDate);
+        //String startD = sdf1.format(dateS);
+        //log.error("startD---"+startD);
+        String endDate = identityModel.get("terminationdate");
+        log.error("date11111"+endDate);
+        Date dates = sdf.parse(endDate);
+        //Date date = new Date(dates);
+        String eDate = sdf1.format(dates);
+        log.error("eDate============"+eDate);
+        //identityModel.put("hiredate",startD);
+        identityModel.put("terminationdate",eDate);
+        }
+        }
+        return name;
+
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="Build Provisioning Plan" when="script:(&quot;Request New Contractor&quot;).equals(formModel.get(&quot;operation&quot;))"/>
+                    
+        
+        <Transition to="Create plan for modify operations"/>
+                  
+    
+    </Step>
+          
+    
+    <Step action="call:buildPlanFromIdentityModel" name="Build Provisioning Plan" posX="646" posY="6" resultVariable="plan">
+                    
+        
+        <Arg name="identityModel">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          if (formModel.get("operation").equalsIgnoreCase("Request New Contractor")){
+          return formModel;
+          }else{
+          log.error("identityModel--"+identityModel);
+          return identityModel;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Arg>
+                    
+        
+        <Description>
+      Convert the registration request into a provisioning plan.
+    </Description>
+                    
+        
+        <Transition to="modify plan" when="script:(&quot;Request New Contractor&quot;).equals(formModel.get(&quot;operation&quot;))"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Create plan for modify operations" resultVariable="plan">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+
+        import sailpoint.object.ProvisioningPlan;
+        import sailpoint.object.ProvisioningPlan.AccountRequest;
+        import sailpoint.object.ProvisioningPlan.AttributeRequest;
+        log.error("insode create plan manually");
+
+        log.error("manager: "+identityModel.get("manager"));
+        //log.error("plan:"+plan.toXml());
+
+        if(null == plan)
+        {
+        log.error("plan is null");
+        ProvisioningPlan plan = new ProvisioningPlan();
+
+        List accReqs = new ArrayList();                        
+        AccountRequest acctReq = new AccountRequest();
+        acctReq.setOperation(AccountRequest.Operation.Modify);
+        acctReq.setNativeIdentity(identityName);
+        acctReq.setApplication("IIQ");        			
+        acctReq.add(new AttributeRequest("address", ProvisioningPlan.Operation.Set, identityModel.get("address")));
+        acctReq.add(new AttributeRequest("address2", ProvisioningPlan.Operation.Set,identityModel.get("address2")));
+        acctReq.add(new AttributeRequest("city", ProvisioningPlan.Operation.Set,identityModel.get("city")));
+        acctReq.add(new AttributeRequest("country", ProvisioningPlan.Operation.Set, identityModel.get("country")));
+        acctReq.add(new AttributeRequest("location", ProvisioningPlan.Operation.Set, identityModel.get("location")));
+        acctReq.add(new AttributeRequest("zipcode", ProvisioningPlan.Operation.Set, identityModel.get("zipcode")));
+        acctReq.add(new AttributeRequest("state", ProvisioningPlan.Operation.Set, identityModel.get("state")));
+        acctReq.add(new AttributeRequest("region", ProvisioningPlan.Operation.Set, identityModel.get("region")));
+        acctReq.add(new AttributeRequest("manager", ProvisioningPlan.Operation.Set, identityModel.get("manager")));
+        acctReq.add(new AttributeRequest("terminationdate", ProvisioningPlan.Operation.Set, identityModel.get("terminationdate")));
+
+
+        accReqs.add(acctReq);
+        plan.setAccountRequests(accReqs);
+        log.error("plan:"+plan.toXml());
+        workflow.put("plan",plan);
+        return plan;
+        }
+
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="modify plan"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="modify plan" resultVariable="plan">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import sailpoint.object.ProvisioningPlan;
+        import sailpoint.object.ProvisioningPlan.AccountRequest;
+        import sailpoint.object.ProvisioningPlan.AttributeRequest;
+        log.error("plan:"+plan.toXml());
+        log.error("manager:"+identityModel.get("manager"));
+        Identity user = context.getObjectByName(Identity.class,identityName);
+
+        if(plan != null && formModel.get("operation").equalsIgnoreCase("Edit Contractor"))
+        {
+        AccountRequest acctReq = plan.getAccountRequest("IIQ");
+        if(acctReq != null){
+        log.error("manager:"+acctReq.getAttributeRequest("manager"));
+        acctReq.remove(acctReq.getAttributeRequest("hiredate"));
+        acctReq.remove(acctReq.getAttributeRequest("terminationdate"));
+        }
+        if(user.getManager().getName().equalsIgnoreCase(identityModel.get("manager"))){
+        acctReq.remove(acctReq.getAttributeRequest("manager"));
+        }
+        }
+        else if(plan != null && formModel.get("operation").equalsIgnoreCase("Terminate Contractor"))
+        {
+        AccountRequest acctReq = plan.getAccountRequest("IIQ");
+        if(acctReq != null){
+        acctReq.remove(acctReq.getAttributeRequest("hiredate"));
+        if(user.getManager().getName().equalsIgnoreCase(identityModel.get("manager"))){
+        acctReq.remove(acctReq.getAttributeRequest("manager"));
+        }
+        }
+        }
+        else if(plan != null && formModel.get("operation").equalsIgnoreCase("Extend Contractor"))
+        {
+        AccountRequest acctReq = plan.getAccountRequest("IIQ");
+        if(user.getManager().getName().equalsIgnoreCase(identityModel.get("manager"))){
+        acctReq.remove(acctReq.getAttributeRequest("manager"));
+        }
+        }
+        return plan;
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="Submit Registration Request"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Task" name="Submit Registration Request" posX="646" posY="110">
+                    
+        
+        <Arg name="identityName" value="ref:identityName"/>
+                    
+        
+        <Arg name="identityDisplayName" value="ref:identityDisplayName"/>
+                    
+        
+        <Arg name="plan" value="ref:plan"/>
+                    
+        
+        <Arg name="flow">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          if(formModel.get("operation").equalsIgnoreCase("Request New Contractor"))
+          return "IdentityCreateRequest";
+          else
+          return "IdentityEditRequest";
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Arg>
+                    
+        
+        <Arg name="optimisticProvisioning" value="ref:optimisticProvisioning"/>
+                    
+        
+        <Arg name="foregroundProvisioning" value="ref:foregroundProvisioning"/>
+                    
+        
+        <Arg name="doRefresh" value="ref:doRefresh"/>
+                    
+        
+        <Arg name="securityOfficerName" value="ref:securityOfficerName"/>
+                    
+        
+        <Arg name="notificationScheme" value="ref:notificationScheme"/>
+                    
+        
+        <Arg name="approvalMode" value="ref:approvalMode"/>
+                    
+        
+        <Arg name="approvalScheme" value="ref:approvalScheme"/>
+                    
+        
+        <Arg name="approvingIdentities" value="ref:approvingIdentities"/>
+                    
+        
+        <Arg name="fallbackApprover" value="ref:fallbackApprover"/>
+                    
+        
+        <Arg name="approverElectronicSignature" value="ref:approverElectronicSignature"/>
+                    
+        
+        <Arg name="approvalEmailTemplate" value="ref:approvalEmailTemplate"/>
+                    
+        
+        <Arg name="userEmailTemplate" value="ref:userEmailTemplate"/>
+                    
+        
+        <Arg name="managerEmailTemplate" value="ref:managerEmailTemplate"/>
+                    
+        
+        <Arg name="securityOfficerEmailTemplate" value="ref:securityOfficerEmailTemplate"/>
+                    
+        
+        <Arg name="policyScheme" value="ref:policyScheme"/>
+                    
+        
+        <Arg name="policiesToCheck" value="ref:policiesToCheck"/>
+                    
+        
+        <Arg name="workItemPriority" value="ref:workItemPriority"/>
+                    
+        
+        <Arg name="ticketManagementApplication" value="ref:ticketManagementApplication"/>
+                    
+        
+        <Arg name="source" value="ref:source"/>
+                    
+        
+        <Arg name="trace" value="ref:trace"/>
+                    
+        
+        <Arg name="workItemComments">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          if(formModel.get("businessReason") != null)
+          return formModel.get("businessReason");
+          else
+          return identityModel.get("businessReason");
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Arg>
+                    
+        
+        <Description>
+      Call the LCM Create and Update workflow with the plan that was created.
+    </Description>
+                    
+        
+        <WorkflowRef>
+                              
+            
+            <Reference class="sailpoint.object.Workflow" name="LCM Create and Update"/>
+                            
+        
+        </WorkflowRef>
+                    
+        
+        <Transition to="Stop"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Stop" posX="201" posY="253"/>
+        
+
+</Workflow>
