@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE IdentityTrigger PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<IdentityTrigger disabled="true" handler="sailpoint.api.WorkflowTriggerHandler" name="COF Life Cycle Event" significantModified="1724420563632" type="Rule">
+          
+    
+    <Description>All Access - sunset notification trigger workflow</Description>
+          
+    
+    <Owner>
+                    
+        
+        <Reference class="sailpoint.object.Identity" name="spadmin"/>
+                  
+    
+    </Owner>
+          
+    
+    <HandlerParameters>
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="businessProcess"/>
+                                        
+                
+                <entry key="identityProcessingThreshold"/>
+                                        
+                
+                <entry key="identityProcessingThresholdType"/>
+                                        
+                
+                <entry key="workflow" value="COF sunset trigger workflow"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                  
+    
+    </HandlerParameters>
+          
+    
+    <TriggerRule>
+                    
+        
+        <Reference class="sailpoint.object.Rule" name="COF IdentityTrigger Rule"/>
+                  
+    
+    </TriggerRule>
+        
+
+</IdentityTrigger>
