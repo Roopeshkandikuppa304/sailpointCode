@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="HTML submission page" significantModified="1715268968260">
+          
+    
+    <Section name="My HTML Section" type="text">
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="contentIsEscaped" value="true"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                    
+        
+        <Field filterString="htmlRender" type="text">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          return "Your request is submitted to approval.";
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                  
+    
+    </Section>
+          
+    
+    <Button action="next" label="Ok."/>
+        
+
+</Form>

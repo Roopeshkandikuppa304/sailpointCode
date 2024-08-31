@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="Review Request form" significantModified="1715260311092">
+          
+    
+    <Attributes>
+                    
+        
+        <Map>
+                              
+            
+            <entry key="pageTitle" value="Request New Contractor Account"/>
+                            
+        
+        </Map>
+                  
+    
+    </Attributes>
+          
+    
+    <Section columns="3" label="Requester's Information" type="datatable">
+                    
+        
+        <Field displayName="Name Display" name="nameDisplay" required="true" type="string">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import sailpoint.object.Identity;
+          Identity id = context.getObjectByName(Identity.class,launcher);
+          return id.getDisplayName();
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="Type of User" name="typeuser" required="true" type="string">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import sailpoint.object.Identity;
+          Identity id = context.getObjectByName(Identity.class,launcher);
+          return id.getFirstname();
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="Status of User" name="statusUser" required="true" type="string">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import sailpoint.object.Identity;
+          Identity id = context.getObjectByName(Identity.class,launcher);
+          return id.getLastname();
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="LOB" name="lob1" type="string">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import sailpoint.object.Identity;
+          Identity id = context.getObjectByName(Identity.class,launcher);
+          return id.getLastname();
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="User Tiltle" displayType="combobox" name="title1" type="string"/>
+                    
+        
+        <Field displayName="User EmployeeID" displayType="combobox" name="EmployeeID1" type="string"/>
+                  
+    
+    </Section>
+          
+    
+    <Section columns="2">
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="readOnly" value="true"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                    
+        
+        <Field displayName="Contractor Company" displayType="combobox" name="contractorCompany" required="true" type="string"/>
+                    
+        
+        <Field displayName="Contractor Company Email" displayType="combobox" name="contractorCompanyeMail" required="true" type="string">
+                              
+            
+            <ValidationScript>
+                                        
+                
+                <Source><![CDATA[
+          import java.util.regex.Matcher;
+          import java.util.regex.Pattern;
+
+          String email = (String)value;
+          String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+"[a-zA-Z0-9_+&*-]+)*@"+"(?:[a-zA-Z0-9-]+\\.)+[a-z" +"A-Z]{2,7}$";
+          Pattern pat = Pattern.compile(emailRegex);
+          if (email == null)
+          return "Please enter email";
+          boolean isValid=pat.matcher(email).matches();
+          if (isValid==true){
+          }else{
+          return "Invalid Email ";
+          }
+          return null;
+        ]]></Source>
+                                      
+            
+            </ValidationScript>
+                            
+        
+        </Field>
+                  
+    
+    </Section>
+          
+    
+    <Section columns="3">
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="readOnly" value="true"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                    
+        
+        <Field displayName="First Name" name="first" required="true" type="string"/>
+                    
+        
+        <Field displayName="Middle Name" name="middle" type="string"/>
+                    
+        
+        <Field displayName="Last Name" name="last" required="true" type="string"/>
+                    
+        
+        <Field displayName="LOB" displayType="combobox" name="lob2" type="string" value="FM"/>
+                    
+        
+        <Field displayName="HDS Work Address" displayType="combobox" helpKey="Select Location" name="hdsWA" type="string">
+                              
+            
+            <AllowedValuesDefinition>
+                                        
+                
+                <Script>
+                                                  
+                    
+                    <Source><![CDATA[
+            import sailpoint.object.Custom;
+            Custom custom = context.getObjectByName(Custom.class,"HDS Work Address locations");
+            if(custom != null){
+            List list = custom.getAttributes().get("HDS work address locations");
+            return list;
+            }
+          ]]></Source>
+                                                
+                
+                </Script>
+                                      
+            
+            </AllowedValuesDefinition>
+                            
+        
+        </Field>
+                  
+    
+    </Section>
+          
+    
+    <Section columns="2">
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="readOnly" value="true"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                    
+        
+        <Field displayName="Start Date" dynamic="true" filterString="" name="startDate" required="true" type="string">
+                              
+            
+            <Attributes>
+                                        
+                
+                <Map>
+                                                  
+                    
+                    <entry key="xtype" value="daterange"/>
+                                                
+                
+                </Map>
+                                      
+            
+            </Attributes>
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import java.util.Date;
+          import java.text.SimpleDateFormat;
+          import sailpoint.object.Identity;
+
+          long data = System.currentTimeMillis();
+          Date currentDate = new Date(data);
+          SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+          String date = sdf.format(currentDate);
+          log.error("start date======="+date);
+          return date;
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="End Date" dynamic="true" filterString="" name="endDate" required="true" type="string" value="ref:endDate">
+                              
+            
+            <Attributes>
+                                        
+                
+                <Map>
+                                                  
+                    
+                    <entry key="xtype" value="daterange"/>
+                                                
+                
+                </Map>
+                                      
+            
+            </Attributes>
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+        return formModel.get("endDate");
+        ]]></Source>
+                                      
+            
+            </Script>
+                              
+            
+            <ValidationScript>
+                                        
+                
+                <Source><![CDATA[
+          import java.util.Date;
+          import java.text.SimpleDateFormat;
+          import sailpoint.object.Identity;
+
+          if(value!=null && form.getField("endDate")!=null){
+          Date date2 = null;
+          long days2 =90;
+          long data2 = System.currentTimeMillis();
+          date2 =  new Date(data2);
+          date2.setTime(date2.getTime() + days2 * 1000 * 60 * 60 * 24);
+          log.error("date2 : "+date2);
+          log.error("enddate : "+$(endDate));
+          Date endDateValue=new Date($(endDate));            
+          log.error("enddate : "+endDateValue);
+          if (endDateValue.after(date2)) {
+          log.error("End Date inValid");
+          return "End date should not be greater than 3 months";
+          }
+          }
+        ]]></Source>
+                                      
+            
+            </ValidationScript>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="Manager Name:" displayType="combobox" name="manager" required="true" type="identity"/>
+                    
+        
+        <Field columnSpan="2" displayName="Business Reason:" displayType="textarea" name="businessReason" required="true" type="string"/>
+                  
+    
+    </Section>
+          
+    
+    <Button action="next" label="Request Account"/>
+          
+    
+    <Button action="back" label="Back"/>
+        
+
+</Form>

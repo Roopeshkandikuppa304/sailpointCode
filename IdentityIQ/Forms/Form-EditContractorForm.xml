@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="Edit Contractor Form" significantModified="1715093952194">
+          
+    
+    <Attributes>
+                    
+        
+        <Map>
+                              
+            
+            <entry key="pageTitle" value="Modifying Contractor Account"/>
+                            
+        
+        </Map>
+                  
+    
+    </Attributes>
+          
+    
+    <Section columns="2" label="Modify Contractor Information">
+                    
+        
+        <Field displayName="Select Identity" dynamic="true" name="displayName" postBack="true" readOnly="true" required="true" type="identity"/>
+                    
+        
+        <Field displayName="Contractor Company" displayType="combobox" name="contractorCompany" postBack="true" readOnly="true" required="true" type="string"/>
+                    
+        
+        <Field displayName="Contractor Company Email" displayType="combobox" name="contractorCompanyeMail" postBack="true" readOnly="true" required="true" type="string"/>
+                  
+    
+    </Section>
+          
+    
+    <Section columns="3">
+                    
+        
+        <Field displayName="First Name" name="first" postBack="true" readOnly="true" required="true" type="string"/>
+                    
+        
+        <Field displayName="Middle Name" name="middle" readOnly="true" type="string"/>
+                    
+        
+        <Field displayName="Last Name" name="last" postBack="true" readOnly="true" required="true" type="string"/>
+                    
+        
+        <Field displayName="LOB" displayType="combobox" name="lob" readOnly="true" required="true" type="string">
+                              
+            
+            <AllowedValues>
+                                        
+                
+                <String>FM</String>
+                                      
+            
+            </AllowedValues>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="HDS Work Address" displayType="combobox" helpKey="Select Location" name="hdsWA" required="true" type="string">
+                              
+            
+            <AllowedValuesDefinition>
+                                        
+                
+                <Script>
+                                                  
+                    
+                    <Source><![CDATA[
+            import sailpoint.object.Custom;
+            Custom custom = context.getObjectByName(Custom.class,"HDS Work Address locations");
+            if(custom != null){
+            List list = custom.getAttributes().get("HDS work address locations");
+            return list;
+            }
+          ]]></Source>
+                                                
+                
+                </Script>
+                                      
+            
+            </AllowedValuesDefinition>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="Manager Name:" displayType="combobox" name="manager" required="true" type="string"/>
+                    
+        
+        <Field columnSpan="2" displayName="Business Reason:" displayType="combobox" name="businessReason" required="true" type="string"/>
+                  
+    
+    </Section>
+          
+    
+    <Button action="next" label="Submit"/>
+          
+    
+    <Button action="back" label="Back"/>
+        
+
+</Form>

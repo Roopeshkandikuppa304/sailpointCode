@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="Singtel AD Grantor Form" type="Workflow">
+          
+    
+    <Attributes>
+                    
+        
+        <Map>
+                              
+            
+            <entry key="pageTitle" value="Grantor Work Item"/>
+                            
+        
+        </Map>
+                  
+    
+    </Attributes>
+          
+    
+    <Section columns="2" label="Requester Identity" type="datatable">
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="hideNulls" value="true"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                    
+        
+        <Field displayName="Domain">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import sailpoint.object.Identity;
+
+          Identity launchIdentity = context.getObject(Identity.class, launcher);
+
+          return launchIdentity == null ? launcher : launchIdentity.getAttribute("defaultDomain");
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="User Name">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import sailpoint.object.Identity;
+
+          Identity launchIdentity = context.getObject(Identity.class, launcher);
+
+          return launchIdentity == null ? launcher : launchIdentity.getName();
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="Display Name">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import sailpoint.object.Identity;
+
+          Identity launchIdentity = context.getObject(Identity.class, launcher);
+
+          return launchIdentity == null ? launcher : launchIdentity.getDisplayableName();
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="Email">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import sailpoint.object.Identity;
+
+          Identity launchIdentity = context.getObject(Identity.class, launcher);
+
+          return launchIdentity == null ? launcher : launchIdentity.getEmail();
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                  
+    
+    </Section>
+          
+    
+    <Section label="Request Information" type="datatable">
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="hideNulls" value="true"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                    
+        
+        <Field displayName="Requested Roles">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+
+          import java.util.Map;
+          import java.util.List;
+          import java.util.Iterator;
+          import java.lang.StringBuilder;
+          import sailpoint.tools.Util;
+
+          StringBuilder sb = new StringBuilder("");
+         
+
+
+          sb.append("<p>");
+
+        
+          sb.append("Name : ");
+          sb.append(requestedRoles.get("rolename"));
+          sb.append("</br>");
+          sb.append("Operation : ");
+          sb.append(requestedRoles.get("roleop"));
+          sb.append("</br>");
+          sb.append("</br>");
+
+           sb.append("</br>");
+          sb.append("</br>");
+
+          sb.append("</p>");
+
+          return sb.toString();
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                  
+    
+    </Section>
+          
+    
+    <Section columns="3" label="Target Identity" type="datatable">
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="hideNulls" value="true"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                    
+        
+        <Field columnSpan="1" displayName="Domain">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("defaultDomain");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Display Name" value="script:(identity != null) ? identity.getDisplayableName() : null"/>
+                    
+        
+        <Field columnSpan="1" displayName="First Name" value="script:(identity != null) ? identity.getFirstname() : null"/>
+                    
+        
+        <Field columnSpan="1" displayName="Last Name" value="script:(identity != null) ? identity.getLastname() : null"/>
+                    
+        
+        <Field columnSpan="1" displayName="Email" value="script:(identity != null) ? identity.getEmail() : null"/>
+                    
+        
+        <Field columnSpan="1" displayName="Employee ID">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("empId");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Company">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("company");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Division">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("l5Division");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Department">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("l6Department");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Title">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("posTitle");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Office">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("locationCode");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="State">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("locationState");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Business Phone">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("phoneNo");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Mobile">
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[if(identity != null){
+
+          return identity.getAttribute("mobileNo");
+          }
+          else {
+          return null;
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                  
+    
+    </Section>
+          
+    
+    <Section columns="1" label="Form Answers" name="formAnswers" type="datatable">
+                    
+        
+        <Attributes>
+                              
+            
+            <Map>
+                                        
+                
+                <entry key="hideNulls" value="true"/>
+                                        
+                
+                <entry key="readOnly" value="true"/>
+                                      
+            
+            </Map>
+                            
+        
+        </Attributes>
+                    
+        
+        <Field displayOnly="true" name="temp" type="string">
+                              
+            
+            <Attributes>
+                                        
+                
+                <Map>
+                                                  
+                    
+                    <entry key="hidden" value="true"/>
+                                                  
+                    
+                    <entry key="readOnly" value="true"/>
+                                                
+                
+                </Map>
+                                      
+            
+            </Attributes>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="1" displayName="Confirm the target user is using an Singtel compliant Vendor SOE laptop to connect into Singtel Vendor VPN" name="compDec" readOnly="true" type="string" value="Yes"/>
+                    
+        
+        <Field columnSpan="1" displayName="Confirm the target user has signed the Singtel Covid 19 Confidentiality Declaration and Undertaking" name="covidDec" readOnly="true" type="string" value="Yes"/>
+                    
+        
+        <Field columnSpan="1" displayName="Please provide the user's Vendor organizational email address" name="email" readOnly="true" type="string" value="abcd"/>
+                  
+    
+    </Section>
+          
+    
+    <Section name="credemntials">
+                    
+        
+        <Field displayName="Comments" displayType="textarea" name="grantorComments"/>
+                  
+    
+    </Section>
+          
+    
+    <Button action="next" label="Approve" parameter="nextAction" value="true"/>
+          
+    
+    <Button action="cancel" label="Cancel"/>
+        
+
+</Form>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="Terminate Contractor Form" significantModified="1715268623380" type="Workflow">
+          
+    
+    <Attributes>
+                    
+        
+        <Map>
+                              
+            
+            <entry key="pageTitle" value="Terminate Contractor Form"/>
+                            
+        
+        </Map>
+                  
+    
+    </Attributes>
+          
+    
+    <Section columns="2" type="datatable">
+                    
+        
+        <Field displayName="Display Name" displayType="combobox" name="displayName" readOnly="true" required="true" type="identity"/>
+                    
+        
+        <Field displayName="Firstname" displayType="combobox" name="first" readOnly="true" required="true" type="string"/>
+                    
+        
+        <Field displayName="Lastname" displayType="combobox" name="last" readOnly="true" required="true" type="string"/>
+                    
+        
+        <Field displayName="Manager Name:" displayType="combobox" name="manager" readOnly="true" required="true" type="string"/>
+                  
+    
+    </Section>
+          
+    
+    <Section columns="2">
+                    
+        
+        <Field displayName="Start Date" dynamic="true" name="startDate" readOnly="true" required="true" type="string">
+                              
+            
+            <Attributes>
+                                        
+                
+                <Map>
+                                                  
+                    
+                    <entry key="xtype" value="daterange"/>
+                                                
+                
+                </Map>
+                                      
+            
+            </Attributes>
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import java.util.Date;
+          import java.text.SimpleDateFormat;
+          import sailpoint.object.Identity;
+
+          log.error("current============");
+          if(form.getField("displayName") != void && form.getField("displayName")!=null){
+          Identity identity = context.getObjectByName(Identity.class,displayName);
+          log.error("identity============"+identity.getName());
+          if(identity!=null && identity.getAttribute("startDate") != null){
+          String date1 = identity.getAttribute("startDate");
+          log.error("current============"+date1);
+          return date1;
+          }
+
+          }
+
+        ]]></Source>
+                                      
+            
+            </Script>
+                            
+        
+        </Field>
+                    
+        
+        <Field displayName="End Date" dynamic="true" name="endDate" required="true" type="string" value="ref:endDate">
+                              
+            
+            <Attributes>
+                                        
+                
+                <Map>
+                                                  
+                    
+                    <entry key="xtype" value="daterange"/>
+                                                
+                
+                </Map>
+                                      
+            
+            </Attributes>
+                              
+            
+            <Script>
+                                        
+                
+                <Source><![CDATA[
+          import java.util.Date;
+          import java.text.SimpleDateFormat;
+          import sailpoint.object.Identity;
+
+          log.error("date end============");
+          if(form.getField("displayName") != void && form.getField("displayName")!=null){
+          Identity identity = context.getObjectByName(Identity.class,displayName);
+          log.error("enddate============"+identity.getName());
+          if(identity!=null && identity.getAttribute("endDate") != null){
+          long date1 = identity.getAttribute("endDate");
+          Date date = new Date(date1);
+          SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY");
+          String current = sdf.format(date);
+          log.error("enddate============"+current);
+          return current;
+          }
+
+          }
+        ]]></Source>
+                                      
+            
+            </Script>
+                              
+            
+            <ValidationScript>
+                                        
+                
+                <Source><![CDATA[
+          import java.util.Date;
+          import java.text.SimpleDateFormat;
+
+          if(value!=null && form.getField("endDate")!=null){
+          Date date2 = null;
+          long days2 =90;
+          long data2 = System.currentTimeMillis();
+          date2 =  new Date(data2);
+          date2.setTime(date2.getTime() + days2 * 1000 * 60 * 60 * 24);
+          log.error("date2 : "+date2);
+          log.error("enddate : "+$(endDate));
+          Date endDateValue=new Date($(endDate));            
+          log.error("enddate : "+endDateValue);
+          if (endDateValue.after(date2)) {
+          log.error("End Date inValid");
+          return "End date should not be greater than 3 months";
+          }
+          }
+        ]]></Source>
+                                      
+            
+            </ValidationScript>
+                            
+        
+        </Field>
+                    
+        
+        <Field columnSpan="3" displayName="Business Reason:" displayType="combobox" name="businessReason" required="true" type="string"/>
+                  
+    
+    </Section>
+          
+    
+    <Button action="next" label="Terminate"/>
+          
+    
+    <Button action="back" label="Back"/>
+        
+
+</Form>
