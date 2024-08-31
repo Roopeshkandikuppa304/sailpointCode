@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GroupDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<GroupDefinition indexed="true" name="Population-Birthright_SGT-AGENCY-SINGTEL-MAIL-ONS" private="true">
+          
+    
+    <Description>Birthright_SGT-AGENCY-SINGTEL-MAIL-ONS</Description>
+          
+    
+    <GroupFilter>
+                    
+        
+        <CompositeFilter operation="AND">
+                              
+            
+            <Filter ignoreCase="true" operation="EQ" property="defaultDomain" value="SINGTEL_BL"/>
+                              
+            
+            <Filter operation="EQ" property="isEligible" value="true"/>
+                              
+            
+            <Filter operation="EQ" property="correlated">
+                                        
+                
+                <Value>
+                                                  
+                    
+                    <Boolean>true</Boolean>
+                                                
+                
+                </Value>
+                                      
+            
+            </Filter>
+                              
+            
+            <CompositeFilter operation="NOT">
+                                        
+                
+                <CompositeFilter operation="OR">
+                                                  
+                    
+                    <Filter ignoreCase="true" operation="EQ" property="company" value="AMDOCS SINGAPORE PTE LTD"/>
+                                                  
+                    
+                    <Filter ignoreCase="true" operation="EQ" property="company" value="ACCENTURE PTE LTD"/>
+                                                  
+                    
+                    <Filter ignoreCase="true" operation="EQ" property="company" value="TECH MAHINDRA SINGAPORE PTE LTD"/>
+                                                  
+                    
+                    <Filter ignoreCase="true" operation="EQ" property="company" value="NCS Pte Ltd (90014823)"/>
+                                                  
+                    
+                    <Filter ignoreCase="true" operation="EQ" property="company" value="NCS Pte Ltd"/>
+                                                  
+                    
+                    <Filter ignoreCase="true" operation="EQ" property="company" value="INFOSYS LIMITED"/>
+                                                
+                
+                </CompositeFilter>
+                                      
+            
+            </CompositeFilter>
+                            
+        
+        </CompositeFilter>
+                  
+    
+    </GroupFilter>
+          
+    
+    <Owner>
+                    
+        
+        <Reference class="sailpoint.object.Identity" name="spadmin"/>
+                  
+    
+    </Owner>
+        
+
+</GroupDefinition>

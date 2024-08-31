@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GroupDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<GroupDefinition indexed="true" name="Population-Birthright_SGT-AGENCY-SINGTEL-MAIL-NCSODC" private="true">
+          
+    
+    <Description>Birthright_SGT-AGENCY-SINGTEL-MAIL-NCSODC</Description>
+          
+    
+    <GroupFilter>
+                    
+        
+        <CompositeFilter operation="AND">
+                              
+            
+            <Filter ignoreCase="true" operation="EQ" property="defaultDomain" value="SINGTEL_BL"/>
+                              
+            
+            <Filter operation="EQ" property="isEligible" value="true"/>
+                              
+            
+            <Filter operation="EQ" property="correlated">
+                                        
+                
+                <Value>
+                                                  
+                    
+                    <Boolean>true</Boolean>
+                                                
+                
+                </Value>
+                                      
+            
+            </Filter>
+                              
+            
+            <Filter ignoreCase="true" matchMode="START" operation="LIKE" property="company" value="NCS"/>
+                            
+        
+        </CompositeFilter>
+                  
+    
+    </GroupFilter>
+          
+    
+    <Owner>
+                    
+        
+        <Reference class="sailpoint.object.Identity" name="spadmin"/>
+                  
+    
+    </Owner>
+        
+
+</GroupDefinition>
