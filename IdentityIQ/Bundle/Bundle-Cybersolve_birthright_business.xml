@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Bundle PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Bundle displayName="Cybersolve_Birthright_Business" name="Cybersolve_Birthright_Business" significantModified="1721741639743" type="business">
+          
+    
+    <Attributes>
+                    
+        
+        <Map>
+                              
+            
+            <entry key="accountSelectorRules"/>
+                              
+            
+            <entry key="allowDuplicateAccounts" value="false"/>
+                              
+            
+            <entry key="allowMultipleAssignments" value="false"/>
+                              
+            
+            <entry key="mergeTemplates" value="false"/>
+                              
+            
+            <entry key="sysDescriptions">
+                                        
+                
+                <value>
+                                                  
+                    
+                    <Map>
+                                                            
+                        
+                        <entry key="en_US"/>
+                                                          
+                    
+                    </Map>
+                                                
+                
+                </value>
+                                      
+            
+            </entry>
+                            
+        
+        </Map>
+                  
+    
+    </Attributes>
+          
+    
+    <Owner>
+                    
+        
+        <Reference class="sailpoint.object.Identity" name="spadmin"/>
+                  
+    
+    </Owner>
+          
+    
+    <Requirements>
+                    
+        
+        <Reference class="sailpoint.object.Bundle" name="Cybersolve_Birthright_IT"/>
+                  
+    
+    </Requirements>
+          
+    
+    <Selector>
+                    
+        
+        <IdentitySelector>
+                              
+            
+            <MatchExpression>
+                                        
+                
+                <MatchTerm name="department" type="IdentityAttribute" value="Finance"/>
+                                        
+                
+                <MatchTerm name="department" type="IdentityAttribute" value="Engineering"/>
+                                      
+            
+            </MatchExpression>
+                            
+        
+        </IdentitySelector>
+                  
+    
+    </Selector>
+          
+    
+    <RoleIndex assignedCount="5" lastAssigned="1702538652562"/>
+        
+
+</Bundle>
