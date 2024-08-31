@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="Retry loop workflow">
+          
+    
+    <Variable initializer="true" name="trace"/>
+          
+    
+    <Variable input="true" name="identityName"/>
+          
+    
+    <Variable input="true" name="entitlement"/>
+          
+    
+    <Variable editable="true" initializer="script:new Integer(0);" input="true" name="count" type="integer"/>
+          
+    
+    <Variable name="inputMap" type="java.util.Map"/>
+          
+    
+    <Variable name="plan">
+                    
+        
+        <Description>The provisioning plan which is built during the workflow.</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable name="errorStr">
+                    
+        
+        <Description> this is returned by most method calls.</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable initializer="Completed Successfully" name="successStr"/>
+          
+    
+    <Step icon="Start" name="Start" posX="20" posY="20">
+                    
+        
+        <Transition to="Prepare Inputs Map"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Prepare Inputs Map" posX="20" posY="20" resultVariable="inputMap">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+		
+		  
+		  
+		  import sailpoint.tools.Util;
+          import java.util.Map; 
+          import java.util.HashMap;
+			public String safeTrim(String value){
+				if(value!=null)
+					return value.trim();
+				else
+					return value;
+			}
+            Map inputMap = new HashMap();
+        		inputMap.put("identityName",safeTrim(identityName));
+                inputMap.put("entitlement",safeTrim(entitlement));
+                System.out.println("@@@@@@kanay"+count);
+
+            return inputMap;
+         ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="provisioning"/>
+                  
+    
+    </Step>
+          
+    
+    <Step action="script:provisioning(context,inputMap)" icon="Task" name="provisioning" posX="20" posY="20" resultVariable="isValid">
+                    
+        
+        <Transition to="Stop" when="isValid==null"/>
+                    
+        
+        <Transition to="Retry till condition satisfies" when="isValid!=null"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Retry till condition satisfies" posX="20" posY="20">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[ if(isValid != null){
+                  count++;
+				}
+        workflow.put("count",count);
+        System.out.println("###"+count);
+			
+  ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="provisioning" when="count &lt; 3"/>
+                    
+        
+        <Transition to="Stop"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Stop" name="Stop" posX="20" posY="20"/>
+        
+
+</Workflow>

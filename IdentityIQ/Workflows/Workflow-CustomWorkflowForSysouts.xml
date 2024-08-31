@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" libraries="Identity" name="Custom Workflow for Sysouts" type="IdentityLifecycle">
+          
+    
+    <Variable initializer="joiner" name="flow"/>
+          
+    
+    <Variable initializer="joiner" input="true" name="trace"/>
+          
+    
+    <Variable input="true" name="event" transient="true"/>
+          
+    
+    <Variable input="true" name="identityName"/>
+          
+    
+    <Description>Process a new employee.</Description>
+          
+    
+    <Step icon="Start" name="Start" posX="28" posY="10">
+                    
+        
+        <Transition to="Process user"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Message" name="Process user" posX="148" posY="10" resultVariable="adPlan">
+                    
+        
+        <Description>Process the user that joined.</Description>
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import sailpoint.object.*;
+        import sailpoint.api.*;
+        Identity id = context.getObjectByName(Identity.class,identityName);
+        System.out.println("***********************"+id.getDisplayName());
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="Stop"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Stop" name="Stop" posX="268" posY="10"/>
+        
+
+</Workflow>

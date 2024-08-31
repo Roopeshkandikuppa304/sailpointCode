@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="provisioner plan-Oldap" significantModified="1721380497213" type="IdentityLifecycle">
+          
+    
+    <Variable input="true" name="identityName">
+                    
+        
+        <Description>The name of the identity.</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable input="true" name="event">
+                    
+        
+        <Description>The IdentityChangeEvent.  It can be used to build
+      the provisioning plan, but does not need to be
+      persisted with the case, so marked as transient.</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable initializer="joiner" input="true" name="trace"/>
+          
+    
+    <Variable initializer="joiner" name="flow">
+                    
+        
+        <Description>The Flow</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable initializer="user" input="true" name="notificationScheme">
+                    
+        
+        <Description>
+      A string that specifies who should be notified when the request has been complete.
+      The value can be null or a csv of one or more of the following options.
+
+      none or null
+      disable notifications
+
+      user
+      Identity that is being update will be notified.
+
+      manager
+      The manager of the Identity that is being updated will be notified.
+
+      requester
+      The person that has requested the update will be notified.
+    </Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable input="true" name="trigger">
+                    
+        
+        <Description>The Identity trigger</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Description>creating new identity in opoenldap</Description>
+          
+    
+    <Step icon="Start" name="Start" posX="20" posY="20">
+                    
+        
+        <Transition to="Process user"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Default" name="Process user" posX="296" posY="26" resultVariable="adPlan">
+                    
+        
+        <Description>Process the user that joined.</Description>
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import sailpoint.object.*;
+        import sailpoint.api.*;
+
+        Identity identityObj = context.getObjectByName(Identity.class,identityName);
+
+        System.out.println(identityName);
+        ProvisioningPlan plan = new ProvisioningPlan();
+
+        plan.setIdentity(identityObj);
+
+        AccountRequest acctReq = new AccountRequest();
+        acctReq.setApplication("Oldap");
+        acctReq.setOp(ProvisioningPlan.ObjectOperation.Create);
+        String nativeIdentity = "CN="+identityObj.getAttribute("firstname")+"."+identityObj.getAttribute("lastname")+","+"ou=People,dc=my-domain,dc=com";
+        acctReq.add(new AttributeRequest("cn", ProvisioningPlan.Operation.Add,identityObj.getAttribute("firstname")+"."+identityObj.getAttribute("lastname")));        
+        acctReq.add(new AttributeRequest("sn", ProvisioningPlan.Operation.Add,identityObj.getAttribute("lastname")));
+        acctReq.add(new AttributeRequest("dn", ProvisioningPlan.Operation.Add, nativeIdentity));
+        //acctReq.add(new AttributeRequest("groups", ProvisioningPlan.Operation.Add,groups));
+
+        plan.add(acctReq); 
+
+        Provisioner provisioner = new Provisioner(context);
+        provisioner.setNoCreateTemplates(true);
+        provisioner.execute(provisioner.compile(plan));
+        context.saveObject(identityObj);
+        context.commitTransaction();
+        System.out.println("plan in wf"+plan.toXml());
+
+        return plan;
+
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="provisionUser"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Task" name="provisionUser" posX="183" posY="12">
+                    
+        
+        <Arg name="approvalSet" value="ref:approvalSet"/>
+                    
+        
+        <Arg name="flow" value="ref:flow"/>
+                    
+        
+        <Arg name="identityName" value="ref:identityName"/>
+                    
+        
+        <Arg name="launcher" value="ref:launcher"/>
+                    
+        
+        <Arg name="plan" value="ref:adPlan"/>
+                    
+        
+        <Arg name="approvalScheme" value="none"/>
+                    
+        
+        <Arg name="foregroundProvisioning" value="false"/>
+                    
+        
+        <Return name="project" to="project"/>
+                    
+        
+        <Transition to="Stop"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Stop" name="Stop" posX="268" posY="10"/>
+        
+
+</Workflow>

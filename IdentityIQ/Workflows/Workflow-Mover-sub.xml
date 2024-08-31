@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" libraries="Identity" name="Mover-sub" type="IdentityLifecycle">
+          
+    
+    <Variable initializer="joiner" name="flow">
+                    
+        
+        <Description>The flow</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable initializer="joiner" input="true" name="trace"/>
+          
+    
+    <Variable input="true" name="event" transient="true">
+                    
+        
+        <Description>
+      The IdentityChangeEvent.  It can be used to build
+      the provisioning plan, but does not need to be
+      persisted with the case, so marked as transient.
+    </Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable name="identityName" output="true">
+                    
+        
+        <Description>The name of the identity.</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Description>Process a new employee.</Description>
+          
+    
+    <Step icon="Start" name="Start" posX="28" posY="10">
+                    
+        
+        <Transition to="Process user"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Message" name="Process user" posX="148" posY="10" resultVariable="adPlan">
+                    
+        
+        <Description>Process the user that joined.</Description>
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import sailpoint.object.*;
+        import sailpoint.api.*;
+        Custom cus = context.getObjectByName(Custom.class,"Checking app Object");
+        List strs = cus.getAttributes().get("Application");
+        if(identityName != null){
+        Identity id = context.getObjectByName(Identity.class,identityName);
+        Filter f = Filter.eq("displayName",identityName);
+        QueryOptions qo = new QueryOptions();
+        qo.add(f);
+        List ma = context.getObjects(IdentityEntitlement.class,qo);
+        ProvisioningPlan p = new ProvisioningPlan();
+        AccountRequest ar = new AccountRequest();
+        for (IdentityEntitlement m:ma){
+        if(strs.contains(m.getAppName().equals("JDBC"))){
+        
+        	p.setIdentity(id);
+        	ar.setApplication(m.getAppName());
+        	ar.setOp(ProvisioningPlan.ObjectOperation.Modify);
+        	ar.add(new AttributeRequest(m.getName(),ProvisioningPlan.Operation.Remove,m.getValue()));
+        	p.add(ar);
+        
+        }
+        if(strs.contains(m.getAppName())){
+        
+        p.setIdentity(id);
+        
+        ar.setApplication(m.getAppName());
+        ar.setOp(ProvisioningPlan.ObjectOperation.Modify);
+        ar.add(new AttributeRequest(m.getName(),ProvisioningPlan.Operation.Remove,m.getValue()));
+p.add(ar);
+        
+        }
+        Provisioner prov = new Provisioner(context);
+        prov.execute(p);
+        context.saveObject(id);
+        context.commitTransaction();
+        
+        }
+        }
+
+
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="Stop"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Stop" name="Stop" posX="268" posY="10"/>
+        
+
+</Workflow>

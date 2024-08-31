@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="Add Entitlement to Identity Workflow">
+          
+    
+    <Variable initializer="true" name="trace"/>
+          
+    
+    <Variable input="true" name="identityName"/>
+          
+    
+    <Variable input="true" name="entitlement"/>
+          
+    
+    <Variable name="inputMap" type="java.util.Map"/>
+          
+    
+    <Variable name="plan">
+                    
+        
+        <Description>The provisioning plan which is built during the workflow.</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable name="errorStr">
+                    
+        
+        <Description> this is returned by most method calls.</Description>
+                  
+    
+    </Variable>
+          
+    
+    <Variable initializer="Completed Successfully" name="successStr"/>
+          
+    
+    <RuleLibraries>
+                    
+        
+        <Reference class="sailpoint.object.Rule" name="Add Entitlement Rule Library"/>
+                  
+    
+    </RuleLibraries>
+          
+    
+    <Step icon="Start" name="Start" posX="20" posY="20">
+                    
+        
+        <Transition to="Prepare Inputs Map"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Prepare Inputs Map" posX="20" posY="20" resultVariable="inputMap">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+		
+		  
+		  
+		  import sailpoint.tools.Util;
+          import java.util.Map; 
+          import java.util.HashMap;
+			public String safeTrim(String value){
+				if(value!=null)
+					return value.trim();
+				else
+					return value;
+			}
+            Map inputMap = new HashMap();
+        		inputMap.put("identityName",safeTrim(identityName));
+                inputMap.put("entitlement",safeTrim(entitlement));
+            return inputMap;
+         ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="Validating User Inputs"/>
+                  
+    
+    </Step>
+          
+    
+    <Step action="script:isValidateInputs(wfcontext,context,inputMap)" icon="Task" name="Validating User Inputs" posX="20" posY="20" resultVariable="isValid">
+                    
+        
+        <Transition to="Add Entitlement to identity" when="errorStr==null"/>
+                    
+        
+        <Transition to="Stop" when="errorStr!=null"/>
+                  
+    
+    </Step>
+          
+    
+    <Step action="script:addIdentityToGroup(wfcontext,context,inputMap)" icon="Task" name="Add Entitlement to identity" posX="20" posY="20">
+                    
+        
+        <Transition to="Stop"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Stop" name="Stop" posX="20" posY="20"/>
+        
+
+</Workflow>

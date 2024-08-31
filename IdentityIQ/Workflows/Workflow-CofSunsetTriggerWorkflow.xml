@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="COF sunset trigger workflow" significantModified="1721755956196" type="identityLifecycle">
+          
+    
+    <Variable initializer="true" name="trace"/>
+          
+    
+    <Variable input="true" name="identityName"/>
+          
+    
+    <Variable input="true" name="entitlement"/>
+          
+    
+    <Variable name="plan"/>
+          
+    
+    <Variable initializer="spadmin" name="launcher"/>
+          
+    
+    <Step icon="Start" name="Start" posX="20" posY="20">
+                    
+        
+        <Transition to="Email Notify"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="Email Notify">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import sailpoint.object.*;
+        import sailpoint.api.*;
+        import java.util.Date;
+        import java.util.concurrent.TimeUnit;
+        import sailpoint.tools.Util;
+        import java.text.SimpleDateFormat; 
+        import java.util.Date;  
+
+        log.error("identityname---"+identityName);
+
+        List iprocessList = new ArrayList();
+        List arr1 = new ArrayList();
+        Date incrementedDate;
+        Identity identity = context.getObjectByName(Identity.class,identityName);
+        log.error("==="+identity.getName());
+        int iprocessDate=Integer.parseInt("14");
+        String assRol = identity.getAssignedRoleSummary();
+        log.error("----"+assRol);
+        EmailTemplate eTemplate = context.getObject(EmailTemplate.class, "Access Revoke Expiry Notification Reminder");
+
+        if(!assRol.contains(",")){
+        arr1.add(assRol);
+        log.error("--"+arr1);
+        } else {
+        String splitStr = assRol.split(",");
+        for(String s : splitStr){
+        arr1.add(s);
+        }
+        }
+
+
+
+        if(arr1 != null){
+        for(String str : arr1){
+
+        List idnEnt;
+        Date currentDate = Util.getBeginningOfDay(new Date());
+
+        incrementedDate=Util.incrementDateByDays(currentDate, iprocessDate);
+        log.error("------increment Date---"+incrementedDate);
+
+        incrementedDate = Util.getBeginningOfDay(incrementedDate);
+        log.error("------increment DateMod---"+incrementedDate);
+        Date increday = Util.incrementDateByDays(incrementedDate, 1);
+        log.error("------increday---"+increday);
+        incrementedDate = Util.incrementDateByMinutes(incrementedDate, 60);
+        log.error("------incrementedDateMod2---"+incrementedDate);
+
+        //Filter ffeDate =Filter.and(Filter.ge("endDate", incrementedDate), Filter.le("endDate",increday )); //database format
+        Filter ffeDate =Filter.and(Filter.gt("endDate", Util.getBeginningOfDay(incrementedDate)), Filter.le("endDate",Util.getBeginningOfDay(increday) ));
+
+        QueryOptions qiEnOptions= new QueryOptions();
+        Filter fidEntidnName= Filter.eq("identity.name",identityName);
+        Filter froleName = Filter.and(Filter.eq("value",str),Filter.eq("name","assignedRoles")); 
+
+
+        qiEnOptions.add(ffeDate);
+        qiEnOptions.add(fidEntidnName);
+        qiEnOptions.add(froleName);
+
+        log.error("filter"+qiEnOptions.getFilters());
+        log.error("-----iprocessList@@@---"+iprocessList);
+
+        if(context.getObjects(IdentityEntitlement.class, qiEnOptions) != null){
+        idnEnt = context.getObjects(IdentityEntitlement.class, qiEnOptions);
+
+        if(idnEnt.size() >0){
+        iprocessList.add(idnEnt.get(0).getValue());
+        log.error("-----iprocessList---"+iprocessList);
+        }
+        }
+        }
+
+        if(iprocessList != null && !Util.isEmpty(iprocessList)){
+        Map mpProcessData = new HashMap();
+        mpProcessData.put("endDate",incrementedDate.toString());
+        mpProcessData.put("manager",identity.getManager().getName());
+        mpProcessData.put("role",iprocessList);
+        workflow.put("iprocessList",iprocessList);
+        workflow.put("manager",identity.getManager().getName());
+
+        EmailOptions eOptions = new EmailOptions(identity.getEmail(), mpProcessData);
+        eOptions.setCc(identity.getManager().getEmail());
+
+        if(identity.getEmail()!= null || identity.getManager().getEmail() != null)
+        {
+        log.error("sending email");
+
+        context.sendEmailNotification(eTemplate, eOptions);
+        }
+        else
+        {
+        log.warn("email not exist for the user::" + identityName);
+        }
+
+        }
+
+        }
+
+        if(Util.isEmpty(iprocessList)){
+        log.error("iprocessList======="+iprocessList);
+        workflow.put("errMsg","noprocesslist");
+        }
+       
+
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="Stop" when="script:workflow.get(&quot;errMsg&quot;)!=null"/>
+                    
+        
+        <Transition to="approval workitem"/>
+                  
+    
+    </Step>
+          
+    
+    <Step name="approval workitem" resultVariable="plan">
+                    
+        
+        <Script>
+                              
+            
+            <Source><![CDATA[
+        import sailpoint.object.Identity;
+        import java.util.List;
+        import sailpoint.object.ProvisioningPlan;
+        import sailpoint.object.ProvisioningPlan.AccountRequest;
+        import sailpoint.object.ProvisioningPlan.AttributeRequest;
+        import sailpoint.api.Provisioner;
+
+
+        log.error("******************");
+
+        List roles = workflow.get("iprocessList");
+        Identity requestee = context.getObjectByName(Identity.class, identityName);
+
+        ProvisioningPlan plan = new ProvisioningPlan();
+        plan.setIdentity(requestee);
+
+        for(String role : roles){
+        ProvisioningPlan.AccountRequest accReq = new ProvisioningPlan.AccountRequest();
+        accReq.setApplication("IIQ");
+        accReq.setOperation(ProvisioningPlan.AccountRequest.Operation.Modify);
+        ProvisioningPlan.AttributeRequest attrReq = new ProvisioningPlan.AttributeRequest("assignedRoles", ProvisioningPlan.Operation.Remove, role);
+        accReq.add(attrReq);
+        plan.add(accReq);
+
+        }
+        return plan;
+
+      ]]></Source>
+                            
+        
+        </Script>
+                    
+        
+        <Transition to="provisionUser"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Task" name="provisionUser" posX="183" posY="12">
+                    
+        
+        <Arg name="approvalSet" value="ref:approvalSet"/>
+                    
+        
+        <Arg name="flow" value="ref:flow"/>
+                    
+        
+        <Arg name="identityName" value="ref:identityName"/>
+                    
+        
+        <Arg name="launcher" value="ref:launcher"/>
+                    
+        
+        <Arg name="plan" value="ref:plan"/>
+                    
+        
+        <Arg name="approvalScheme" value="manager"/>
+                    
+        
+        <Arg name="foregroundProvisioning" value="false"/>
+                    
+        
+        <Return name="project" to="project"/>
+                    
+        
+        <WorkflowRef>
+                              
+            
+            <Reference class="sailpoint.object.Workflow" name="LCM Provisioning"/>
+                            
+        
+        </WorkflowRef>
+                    
+        
+        <Transition to="Stop"/>
+                  
+    
+    </Step>
+          
+    
+    <Step icon="Stop" name="Stop" posX="20" posY="20"/>
+        
+
+</Workflow>
