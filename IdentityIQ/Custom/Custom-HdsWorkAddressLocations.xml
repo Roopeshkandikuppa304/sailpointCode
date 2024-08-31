@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Custom PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Custom name="HDS Work Address locations" significantModified="1715061389918">
+          
+    
+    <Attributes>
+                    
+        
+        <Map>
+                              
+            
+            <entry key="HDS work address locations">
+                                        
+                
+                <value>
+                                                  
+                    
+                    <List>
+                                                            
+                        
+                        <String>Los Angeles,D.no-2-9-18,USA</String>
+                                                            
+                        
+                        <String>H.no:32/567,california,USA</String>
+                                                            
+                        
+                        <String>Hyderabad,cyber towers</String>
+                                                            
+                        
+                        <String>Hitech city,road no-3,jubliee hills,hyderabad</String>
+                                                            
+                        
+                        <String>Electronic City,Banglore</String>
+                                                            
+                        
+                        <String>CP,Delhi,new Hafeez towers</String>
+                                                            
+                        
+                        <String>New Delhi,hi-towers,4th block</String>
+                                                            
+                        
+                        <String>Road no-5,RK Beach,Vizag</String>
+                                                            
+                        
+                        <String>Tech Campus,block-3,3A,Hawai</String>
+                                                          
+                    
+                    </List>
+                                                
+                
+                </value>
+                                      
+            
+            </entry>
+                            
+        
+        </Map>
+                  
+    
+    </Attributes>
+        
+
+</Custom>

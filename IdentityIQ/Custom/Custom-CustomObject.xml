@@ -1,95 +1,279 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Custom PUBLIC "sailpoint.dtd" "sailpoint.dtd">
 <Custom name="Custom Object">
-  <Attributes>
-    <Map>
-      <entry key="EmailTemplate" value="Certification"/>
-      <entry key="EntielementDesc">
-        <value>
-          <List>
-            <String>ESHIAM\DEV_EastCoast</String>
-            <String>ESHIAM\DEV_Europe</String>
-            <String>ESHIAM\DEV_Projects</String>
-            <String>ESHIAM\Development</String>
-            <String>ESHIAM\DispenseRX</String>
-          </List>
-        </value>
-      </entry>
-      <entry key="Ex-Business">
-        <value>
-          <List>
-            <String>Clay Jensen</String>
-            <String>Nancy Lee</String>
-            <String>Elizabeth Taylor</String>
-          </List>
-        </value>
-      </entry>
-      <entry key="Mover_certify_oldManager">
-        <value>
-          <Map>
-            <entry key="Daniel Lewis" value="Linda Davis"/>
-            <entry key="David Anderson" value="Aaron Nichols"/>
-            <entry key="Debra Wood" value="Aaron Nichols"/>
-            <entry key="George Wright" value="Michael Miller"/>
-            <entry key="Gregory Brooks" value="James Smith"/>
-            <entry key="Helen King" value="Michael Miller"/>
-          </Map>
-        </value>
-      </entry>
-      <entry key="Test_Bussiness">
-        <value>
-          <List>
-            <String>James Smith</String>
-            <String>Aaron Nichols</String>
-            <String>Katherine Langford</String>
-          </List>
-        </value>
-      </entry>
-      <entry key="objectTypes">
-        <value>
-          <List>
-            <String>Identity</String>
-            <String>IdentityRequest</String>
-            <String>GroupDefinition</String>
-            <String>GroupIndex</String>
-            <String>EmailTemplate</String>
-            <String>IdentitySnapshot</String>
-            <String>IdentityTrigger</String>
-            <String>RequestDefinition</String>
-            <String>RoleIndex</String>
-            <String>Form</String>
-            <String>IdentityEntitlement</String>
-            <String>Rule</String>
-            <String>Application</String>
-            <String>PolicyViolation</String>
-            <String>ProvisioningRequest</String>
-            <String>ProvisioningTransaction</String>
-            <String>Workgroup</String>
-            <String>Server</String>
-            <String>ServiceDefinition</String>
-            <String>SyslogEvent</String>
-            <String>TaskSchedule</String>
-            <String>ManagedAttribute</String>
-            <String>Bundle</String>
-            <String>Custom</String>
-            <String>Alert</String>
-            <String>QuickLink</String>
-            <String>TaskDefinition</String>
-            <String>TaskResult</String>
-            <String>Workflow</String>
-            <String>WorkItem</String>
-            <String>WorkItemArchive</String>
-            <String>WorkflowCase</String>
-            <String>Policy</String>
-            <String>IntegrationConfig</String>
-            <String>UIConfig</String>
-            <String>Certification</String>
-            <String>CertificationDefinition</String>
-            <String>CertificationArchive</String>
-            <String>CertificationGroup</String>
-          </List>
-        </value>
-      </entry>
-    </Map>
-  </Attributes>
+          
+    
+    <Attributes>
+                    
+        
+        <Map>
+                              
+            
+            <entry key="EmailTemplate" value="Certification"/>
+                              
+            
+            <entry key="EntielementDesc">
+                                        
+                
+                <value>
+                                                  
+                    
+                    <List>
+                                                            
+                        
+                        <String>ESHIAM\DEV_EastCoast</String>
+                                                            
+                        
+                        <String>ESHIAM\DEV_Europe</String>
+                                                            
+                        
+                        <String>ESHIAM\DEV_Projects</String>
+                                                            
+                        
+                        <String>ESHIAM\Development</String>
+                                                            
+                        
+                        <String>ESHIAM\DispenseRX</String>
+                                                          
+                    
+                    </List>
+                                                
+                
+                </value>
+                                      
+            
+            </entry>
+                              
+            
+            <entry key="Ex-Business">
+                                        
+                
+                <value>
+                                                  
+                    
+                    <List>
+                                                            
+                        
+                        <String>Clay Jensen</String>
+                                                            
+                        
+                        <String>Nancy Lee</String>
+                                                            
+                        
+                        <String>Elizabeth Taylor</String>
+                                                          
+                    
+                    </List>
+                                                
+                
+                </value>
+                                      
+            
+            </entry>
+                              
+            
+            <entry key="Mover_certify_oldManager">
+                                        
+                
+                <value>
+                                                  
+                    
+                    <Map>
+                                                            
+                        
+                        <entry key="Daniel Lewis" value="Linda Davis"/>
+                                                            
+                        
+                        <entry key="David Anderson" value="Aaron Nichols"/>
+                                                            
+                        
+                        <entry key="Debra Wood" value="Aaron Nichols"/>
+                                                            
+                        
+                        <entry key="George Wright" value="Michael Miller"/>
+                                                            
+                        
+                        <entry key="Gregory Brooks" value="James Smith"/>
+                                                            
+                        
+                        <entry key="Helen King" value="Michael Miller"/>
+                                                          
+                    
+                    </Map>
+                                                
+                
+                </value>
+                                      
+            
+            </entry>
+                              
+            
+            <entry key="Test_Bussiness">
+                                        
+                
+                <value>
+                                                  
+                    
+                    <List>
+                                                            
+                        
+                        <String>James Smith</String>
+                                                            
+                        
+                        <String>Aaron Nichols</String>
+                                                            
+                        
+                        <String>Katherine Langford</String>
+                                                          
+                    
+                    </List>
+                                                
+                
+                </value>
+                                      
+            
+            </entry>
+                              
+            
+            <entry key="objectTypes">
+                                        
+                
+                <value>
+                                                  
+                    
+                    <List>
+                                                            
+                        
+                        <String>Identity</String>
+                                                            
+                        
+                        <String>IdentityRequest</String>
+                                                            
+                        
+                        <String>GroupDefinition</String>
+                                                            
+                        
+                        <String>GroupIndex</String>
+                                                            
+                        
+                        <String>EmailTemplate</String>
+                                                            
+                        
+                        <String>IdentitySnapshot</String>
+                                                            
+                        
+                        <String>IdentityTrigger</String>
+                                                            
+                        
+                        <String>RequestDefinition</String>
+                                                            
+                        
+                        <String>RoleIndex</String>
+                                                            
+                        
+                        <String>Form</String>
+                                                            
+                        
+                        <String>IdentityEntitlement</String>
+                                                            
+                        
+                        <String>Rule</String>
+                                                            
+                        
+                        <String>Application</String>
+                                                            
+                        
+                        <String>PolicyViolation</String>
+                                                            
+                        
+                        <String>ProvisioningRequest</String>
+                                                            
+                        
+                        <String>ProvisioningTransaction</String>
+                                                            
+                        
+                        <String>Workgroup</String>
+                                                            
+                        
+                        <String>Server</String>
+                                                            
+                        
+                        <String>ServiceDefinition</String>
+                                                            
+                        
+                        <String>SyslogEvent</String>
+                                                            
+                        
+                        <String>TaskSchedule</String>
+                                                            
+                        
+                        <String>ManagedAttribute</String>
+                                                            
+                        
+                        <String>Bundle</String>
+                                                            
+                        
+                        <String>Custom</String>
+                                                            
+                        
+                        <String>Alert</String>
+                                                            
+                        
+                        <String>QuickLink</String>
+                                                            
+                        
+                        <String>TaskDefinition</String>
+                                                            
+                        
+                        <String>TaskResult</String>
+                                                            
+                        
+                        <String>Workflow</String>
+                                                            
+                        
+                        <String>WorkItem</String>
+                                                            
+                        
+                        <String>WorkItemArchive</String>
+                                                            
+                        
+                        <String>WorkflowCase</String>
+                                                            
+                        
+                        <String>Policy</String>
+                                                            
+                        
+                        <String>IntegrationConfig</String>
+                                                            
+                        
+                        <String>UIConfig</String>
+                                                            
+                        
+                        <String>Certification</String>
+                                                            
+                        
+                        <String>CertificationDefinition</String>
+                                                            
+                        
+                        <String>CertificationArchive</String>
+                                                            
+                        
+                        <String>CertificationGroup</String>
+                                                          
+                    
+                    </List>
+                                                
+                
+                </value>
+                                      
+            
+            </entry>
+                            
+        
+        </Map>
+                  
+    
+    </Attributes>
+        
+
 </Custom>
