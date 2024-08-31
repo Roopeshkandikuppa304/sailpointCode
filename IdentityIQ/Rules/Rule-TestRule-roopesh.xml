@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="Test Rule-Roopesh" significantModified="1722487417328">
+          
+    
+    <Source><![CDATA[
+  import sailpoint.object.*;
+  import sailpoint.api.*;
+  import sailpoint.object.Identity;
+  import sailpoint.object.Application;
+  import sailpoint.tools.Util;
+  import java.text.SimpleDateFormat; 
+  import java.util.Date;  
+
+
+  import sailpoint.object.*;
+  import sailpoint.api.*;
+  import java.util.Date;
+  import java.util.concurrent.TimeUnit;
+
+
+  int iprocessDate=Integer.parseInt("13");
+
+  Date currentDate = Util.getBeginningOfDay(new Date());
+
+  incrementedDate=Util.incrementDateByDays(currentDate, iprocessDate);
+  log.error("------increment Date---"+incrementedDate);
+
+  incrementedDate = Util.getBeginningOfDay(incrementedDate);
+  log.error("------increment DateMod---"+incrementedDate);
+  Date increday = Util.incrementDateByDays(incrementedDate, 1);
+  log.error("------increday---"+increday);
+  incrementedDate = Util.incrementDateByMinutes(incrementedDate, 60);
+  log.error("------incrementedDateMod2---"+incrementedDate);
+  Filter ffeDate =Filter.and(Filter.gt("endDate", Util.getBeginningOfDay(incrementedDate)), Filter.le("endDate",Util.getBeginningOfDay(increday) ));
+  Filter ffaggStatus =Filter.eq("aggregationState","Connected") ;
+  List arr1 =new ArrayList();
+  String asr = "Cybersolve_Birthright_Business, Cybersolve_Contract_Business";
+  if(!asr.contains(",")){
+    arr1.add(asr);
+    log.error("--"+arr1);
+  } else {
+    String[] splitStr = asr.split(",");
+    for(String s : splitStr){
+      arr1.add(s);
+    }
+  }
+
+  log.error("asrolesss==="+arr1);
+  for(String str : arr1){
+
+    List list = new ArrayList();
+    //list.add("identity.name");
+    //list.add();
+    QueryOptions qo = new QueryOptions();
+    qo.add(ffeDate);
+    qo.add(ffaggStatus);
+    //Filter fidName= Filter.eq("identity.name","Andrew Gray");
+    Filter froleName = Filter.and(Filter.eq("identity.name","Andrew Gray"),Filter.eq("value",str),Filter.eq("name","assignedRoles"));
+    qo.add(froleName);
+    //qo.add(fidName);
+    log.error("filterRoles--"+qo.getFilters());
+    Iterator iterator = context.search(IdentityEntitlement.class,qo,list);
+    while(iterator.hasNext()){
+      Object obj=iterator.next();
+      log.error("---object--"+obj);
+      return obj;
+    }
+
+
+    /*if(context.getObjects(IdentityEntitlement.class, qo) != null){
+      log.error("filterRoles--"+qo.getFilters());
+      idnEnt = context.getObjects(IdentityEntitlement.class, qo);
+      //return idnEnt.get(0).getValue();
+
+      log.error("++++"+idnEnt);
+      if(idnEnt.size() >0 ){
+        return idnEnt.get(0).getValue();
+        iprocessList.add(idnEnt.get(0).getValue());
+        log.error("-----iprocessList---"+iprocessList);
+      }
+    }*/
+
+  }
+  return "hi";
+
+
+  String newDate = "02/08/2024";
+  Date date = new SimpleDateFormat("dd/MM/yyyy").parse(newDate);
+  Date currentDate = Util.getBeginningOfDay(new Date());
+  int iprocessDate=Integer.parseInt("14");
+  Date incrementedDate=Util.incrementDateByDays(currentDate, iprocessDate);
+  incrementedDate = Util.getBeginningOfDay(incrementedDate);
+  Date increday = Util.incrementDateByDays(incrementedDate, 1);
+  incrementedDate = Util.incrementDateByMinutes(incrementedDate, 60);
+  if(Util.isDateAfter(date,incrementedDate) && Util.isDateBetween(date,incrementedDate,increday)){
+    return true;
+  }
+  return "HIIII";
+
+
+  List l = new ArrayList();
+  Filter f = Filter.eq("links.application.name","HR");
+  QueryOptions qo = new QueryOptions();
+  qo.add(f);
+  List obss = context.getObjects(Identity.class,qo);
+  for(Identity id: obss){
+    l.add(id.getName());
+  }
+  return l.size();
+
+  Filter f = Filter.eq("email","Aaron.Nichols@sailpointdemo.com");
+  Identity obs = context.getUniqueObject(Identity.class,f);
+  return obs;
+
+
+
+  Filter f = Filter.notnull("manager");
+  QueryOptions qo = new QueryOptions();
+  qo.add(f);
+  List idss = context.getObjects(Identity.class,qo);
+  return idss.size();
+
+  Identity id = context.getObjectById(Identity.class,"c0a86e018c621665818c628ca05a014a");
+  return id;
+
+  Filter f = Filter.eq("department","Engineering");
+  QueryOptions qo = new QueryOptions();
+  qo.add(f);
+  List ob = context.getObjects(Identity.class,qo);
+  return ob.size();
+
+
+  List list = new ArrayList();
+  List objs = context.getObjects(Identity.class);
+  for(Identity id: objs){
+    if(id.getManager() != null){
+      list.add(id.getManager().getName());
+    }
+  }
+  return list;
+
+
+  List list = new ArrayList();
+  List objs = context.getObjects(Identity.class);
+  for(Identity id : objs){
+    list.add(id.getName());
+  }
+  return list;
+
+
+
+  ]]></Source>
+        
+
+</Rule>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="COF Updated SunSet Notification Rule" significantModified="1722431369468">
+          
+    
+    <Description> </Description>
+          
+    
+    <Source><![CDATA[
+
+
+  import org.apache.commons.logging.LogFactory;
+  import org.apache.commons.logging.Log;
+  import sailpoint.tools.GeneralException;
+  import sailpoint.object.*;
+  import sailpoint.api.Provisioner;
+  import sailpoint.object.IdentityRequest;
+  import sailpoint.api.IdentityService;
+  import sailpoint.object.ProvisioningPlan.ObjectRequest;
+  import sailpoint.object.ProvisioningPlan.AttributeRequest;
+  import sailpoint.object.IdentityRequest.CompletionStatus;
+  import sailpoint.object.IdentityRequest.ExecutionStatus;
+  import sailpoint.object.ApprovalItem.ProvisioningState;
+  import sailpoint.object.WorkItem.State;
+  import sailpoint.object.WorkItem;
+  import sailpoint.object.WorkflowSummary;
+  import sailpoint.object.WorkflowSummary.ApprovalSummary;
+  import sailpoint.tools.Message;
+  import sailpoint.tools.Message.Type;
+  import sailpoint.persistence.Sequencer;
+  import sailpoint.object.ProvisioningPlan.Operation;
+  import java.text.DateFormat;
+  import java.text.SimpleDateFormat;
+  import java.util.*;
+
+
+
+
+  import java.util.Arrays;
+  import java.util.ArrayList;
+  import java.util.Map;
+  import java.sql.Connection;
+  import java.sql.DatabaseMetaData;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+  import java.lang.Object;
+
+  import oracle.jdbc.driver.OracleConnection;
+
+  import org.apache.commons.logging.Log;
+  import org.apache.commons.logging.LogFactory;
+
+  import sailpoint.object.WorkItem;
+  import sailpoint.tools.Message;
+
+
+  import sailpoint.object.Identity;
+  import java.util.Calendar;
+  import java.util.Iterator;
+  import sailpoint.object.QueryOptions;
+  import sailpoint.object.Filter;
+  import sailpoint.object.IdentityEntitlement;
+  import java.util.Calendar;
+  import java.time.LocalDate;
+  import sailpoint.tools.Util;
+  import sailpoint.tools;
+  import sailpoint.object.EmailOptions;
+  import java.util.List;
+  import sailpoint.object.EmailTemplate;
+  import java.util.ArrayList;
+  import sailpoint.tools.GeneralException;
+  import sailpoint.object.TaskResult;
+  import org.apache.commons.logging.Log;
+  import org.apache.commons.logging.LogFactory;
+  import sailpoint.object.ManagedAttribute;
+
+
+
+  public void processNotification(Object arrIdata)
+  {
+
+
+    log.error("enter into processNotification ");
+    for (int i = 0; i < arrIdata.length; i++) {
+
+      int iProcessSucess=0;
+      int iProcessFail=0;
+      String[] arrPdata= arrIdata[i].split(":");
+      List arr1 = new ArrayList();
+      List iprocessList = new ArrayList();
+
+      log.error("arrIdata splited:: " +arrPdata[i]);
+      int iprocessDate=Integer.parseInt(arrPdata[0]); //14
+      log.error("iprocessDate " +iprocessDate);
+      String strEmailTemplateName=arrPdata[1];
+      log.error("strEmailTemplateName " +strEmailTemplateName);
+
+
+      Date currentDate = Util.getBeginningOfDay(new Date());
+
+      Date incrementedDate=Util.incrementDateByDays(currentDate, iprocessDate);
+      log.error("------increment Date---"+incrementedDate);
+
+      incrementedDate = Util.getBeginningOfDay(incrementedDate);
+      log.error("------increment DateMod---"+incrementedDate);
+      Date increday = Util.incrementDateByDays(incrementedDate, 1);
+      log.error("------increday---"+increday);
+      incrementedDate = Util.incrementDateByMinutes(incrementedDate, 60);
+      log.error("------incrementedDateMod2---"+incrementedDate);
+
+      //Filter ffeDate =Filter.and(Filter.ge("endDate", incrementedDate), Filter.le("endDate",increday )); //database format
+      Filter ffeDate =Filter.and(Filter.gt("endDate", Util.getBeginningOfDay(incrementedDate)), Filter.le("endDate",Util.getBeginningOfDay(increday) )); //28th 11:00 PM --- 29th 11:00 PM
+
+      Filter ffaggStatus =Filter.eq("aggregationState","Connected") ;
+
+      List strEID= new ArrayList();
+      strEID.add("identity.name");
+      strEID.add("identity.displayName");
+      strEID.add("identity.email");
+      strEID.add("identity.manager.name");
+      strEID.add("identity.manager.email");
+      strEID.add("identity.assignedRoleSummary");
+
+      QueryOptions iEnOptions= new QueryOptions();
+      iEnOptions.add(ffeDate);
+
+      iEnOptions.setDistinct(true);
+      iEnOptions.add(ffaggStatus);
+
+      log.error("filter"+iEnOptions.getFilters());
+
+      iEnOptions.setCloneResults(true);
+      Iterator iterator = null;
+      Iterator iteratoridEnt = null;
+      List lstTemp=new ArrayList();
+
+      try
+      {
+
+        EmailTemplate eTemplate =context.getObject(EmailTemplate.class, strEmailTemplateName);
+        iterator = context.search(IdentityEntitlement.class, iEnOptions,strEID);
+
+        log.error("strEID " +strEID);
+        log.error("iterator ");
+
+        while (iterator.hasNext()){
+          log.error("inside while loop ");
+
+          String strIdentityProcess;
+
+          Object obj=iterator.next();
+          strIdentityProcess= obj[0];
+          log.error("strIdentityProcess "+strIdentityProcess);
+          lstTemp.add(strIdentityProcess);
+
+          try
+          {
+
+            QueryOptions qiEnOptions= new QueryOptions();
+            Filter fidEntidnName= Filter.eq("identity.name",strIdentityProcess);
+
+            List strfetchidEnt= new ArrayList();
+            strfetchidEnt.add("application.name");
+            strfetchidEnt.add("value");
+            strfetchidEnt.add("nativeIdentity");
+
+
+            qiEnOptions.add(ffeDate);
+            qiEnOptions.add(fidEntidnName);
+            qiEnOptions.add(ffaggStatus);
+            iEnOptions.setCloneResults(true);
+
+            Map mpProcssingData= new HashMap();
+
+            iteratoridEnt = context.search(IdentityEntitlement.class, qiEnOptions,strfetchidEnt);
+            List lstProcessData= new ArrayList();
+            while (iteratoridEnt.hasNext()){
+
+              String strEntValue;
+              String strAppName;
+              Object objProcessDate=iteratoridEnt.next();
+              strAppName=objProcessDate[0];
+              strEntValue=objProcessDate[1];
+
+
+              Map mpEntData= new HashMap();
+              mpEntData.put("appName",objProcessDate[0]);
+
+              mpEntData.put("nativeIdentity",objProcessDate[2]);
+
+              //load ent displayName
+              List strMgDate= new ArrayList();
+              strMgDate.add("displayName");
+
+              String strEntDispayValue;
+              if(strEntValue!=null && strEntValue!="" && strAppName!=null && strAppName!="") {
+                Filter ffmgValue =Filter.eq("value",strEntValue) ;
+                Filter ffmgappName =Filter.eq("application.name",strAppName) ;
+                QueryOptions iMgOptions= new QueryOptions();
+                iMgOptions.addFilter(ffmgValue);
+                iMgOptions.addFilter(ffmgappName);
+
+                iMgOptions.setCloneResults(true);
+                Iterator iteratorMgAtt = null;
+                List lstTemp=new ArrayList();
+                try
+                {
+                  strEntDispayValue="";
+                  iteratorMgAtt = context.search(ManagedAttribute.class, iMgOptions,strMgDate);
+                  while (iteratorMgAtt.hasNext()){
+                    Object objMg=iteratorMgAtt.next();
+                    strEntDispayValue= objMg[0];
+                  }
+                  mpEntData.put("value",strEntDispayValue);
+                  log.error("mpEntData:"+ mpEntData);
+                }
+                catch(GeneralException e)
+                {
+
+                  log.error("Error whille loading the entitlement display Name:"+ e);
+                }
+                finally
+                {
+                  Util.flushIterator(iteratorMgAtt);
+                }
+
+              }
+              lstProcessData.add(mpEntData);
+              log.error("lstProcessData:"+ lstProcessData);
+
+            }
+
+            Map lstprocssmap = lstProcessData.get(0);
+            log.error("******"+lstprocssmap.get("value"));
+            iprocessList.add(obj[5]);
+            log.error("obj[5]==="+obj[5]);
+
+
+            mpProcssingData.put("displayName",obj[1]);
+            mpProcssingData.put("endDate",incrementedDate.toString());
+            mpProcssingData.put("manager",obj[3]);
+            mpProcssingData.put("entitlement",lstprocssmap.get("value"));
+            mpProcssingData.put("role",iprocessList);
+            //mpProcssingData.put("eProcessData",lstProcessData);
+            mpProcssingData.put("helpLink","https://onesupport.cloud.capitalone.com/sp?id=kb_article&sys_id=668d8530dbbb234c162c7c9239961931");
+            log.error("mpProcssingData:"+ mpProcssingData);
+
+            EmailOptions eOptions = new EmailOptions(obj[2], mpProcssingData);
+
+            eOptions.setCc(obj[4]);
+            // eOptions.setTo(obj[2]);
+            //eOptions.setVariable("pData", mpProcssingData);
+
+            if((obj[2]!=null && obj[2]!="") || (obj[4]!=null && obj[4]!=""))
+            {
+              log.error("sending email");
+
+              context.sendEmailNotification(eTemplate, eOptions);
+              iProcessSucess=iProcessSucess+1;
+              log.error("iProcessSucess" +iProcessSucess);
+            }
+            else
+            {
+              iProcessFail=iProcessFail+1;
+              log.warn("email not exist for the user::" + strIdentityProcess);
+            }
+
+
+
+          }
+          catch(GeneralException ex)
+          {
+
+            log.error("Error while processing Sun Set Notification::" + strIdentityProcess + ex);
+
+            iProcessFail=iProcessFail+1;
+
+          }
+
+          finally{
+
+
+            if(iteratoridEnt != null)
+            {
+              Util.flushIterator(iteratoridEnt);
+            }
+          }
+
+        }
+
+        log.error("User lstTemp"+lstTemp);
+      }
+      catch(Exception e)
+      {
+        log.error("Error while processing Sun Set Notification:" + e);
+        //iProcessFail+1;
+
+      }
+      finally
+      {
+
+        if(iterator != null)
+        {
+          Util.flushIterator(iterator);
+        }
+      }
+
+      taskResult.addMessage("Prior notification day:" + iprocessDate + ",Success:" + iProcessSucess +",Fail:" + iProcessFail );
+
+    }
+    log.error("lstTemp "+lstTemp);
+  }
+
+  Log log = LogFactory.getLog("com.cof.rule.sunset");
+  log.error("Enter into sunset " );
+
+
+
+
+  String strIdata = config.get("iData");
+  // String strIdata = "14:COF SunSet Notifications";
+  String cvsSplitBy = "\\|";
+  if(strIdata==null||strIdata=="")
+  {
+    throw new GeneralException("Please pass input type as notificatin day and emailtemplate");
+  }
+  String[] arrIdata= strIdata.split(cvsSplitBy);
+  log.error("arrIdata 0:: " +arrIdata[0] );
+  processNotification(arrIdata);
+  //processNotification(arrIdata,true);
+
+  ]]></Source>
+        
+
+</Rule>

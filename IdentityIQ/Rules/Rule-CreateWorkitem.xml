@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="create workitem" significantModified="1721371607443">
+          
+    
+    <Source><![CDATA[
+  import sailpoint.object.*;  
+  import sailpoint.persistence.Sequencer;  
+
+  String identityName = "Aaron Nichols";
+  String launcher = "spadmin";
+  Calendar expiration = Calendar.getInstance();  
+
+  Identity targetIdentity = context.getObjectByName(Identity.class,identityName);  
+  Identity requester = context.getObjectByName(Identity.class, launcher);  
+
+  WorkItem item = new WorkItem();  
+  item.setType(WorkItem.Type.Approval);  
+  item.setOwner(context.getObjectByName(Identity.class, "spadmin"));  
+  item.setRequester(requester);  
+  Sequencer sequencer = new Sequencer();  
+  item.setName(sequencer.generateId(context, item));  
+  item.setRenderer("lcmManualActionsRenderer.xhtml");  
+  item.setLevel(WorkItem.Level.Normal);  
+  item.setTarget(targetIdentity);  
+  item.setTargetClass(Identity.class.getName());  
+  item.setDescription("Approval Changes requested for User: "+targetIdentity.getDisplayableName());  
+  item.setHandler("sailpoint.api.Workflower");  
+  item.setIdentityRequestId("0000000102");  
+
+  Attributes attributes = new Attributes();  
+  item.setAttributes(attributes);  
+
+  ApprovalSet approvalSet = new ApprovalSet();  
+  ApprovalItem approvalItem = new ApprovalItem();  
+  approvalItem.setApplication("AD");  
+  approvalItem.setNativeIdentity("Aaron Nichols");  
+  approvalItem.setOperation("Create");  
+  approvalItem.setValue("attribuut = \"value\"");  
+  approvalSet.add(approvalItem);  
+
+  attributes.put("approvalSet", approvalSet);  
+  attributes.put("identityDisplayName", "Aaron Nichols");  
+  attributes.put("identityName", "Aaron Nichols");  
+
+  item.setExpiration(expiration.getTime());  
+
+  context.startTransaction();  
+  context.saveObject(item);  
+  context.commitTransaction();
+  return item;
+
+  ]]></Source>
+        
+
+</Rule>

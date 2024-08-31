@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="Rule Library">
+          
+    
+    <Source><![CDATA[
+    
+      import sailpoint.object.Filter;
+      import sailpoint.object.Identity;
+      import sailpoint.object.ProvisioningPlan;
+      import sailpoint.object.ProvisioningPlan.AccountRequest;
+      import sailpoint.object.ProvisioningPlan.AttributeRequest;
+      import sailpoint.object.QueryOptions;
+      import sailpoint.tools.GeneralException;
+      import sailpoint.tools.Util;
+      import sailpoint.api.ObjectUtil;
+	 		import sailpoint.api.SailPointContext;
+      import sailpoint.tools.JdbcUtil;
+      import java.sql.Connection;
+      import java.sql.SQLException;
+
+      
+	  
+	  
+	  	/**
+       * Connects to SailPoint database and invokes USER_ID_SEQUENCE to generate IDs for contractors
+       */
+      public int getContractorID()
+	  	{
+        Connection connection = null;
+        int sequenceNumber = -1; // Default value in case of failure
+
+        try
+        {
+        	Connection connection = context.getJdbcConnection();
+        	int sequenceNumber = JdbcUtil.queryInt(connection,"SELECT NEXT VALUE FOR USER_ID_SEQ", null);
+          if(sequenceNumber != -1)
+          {
+        		return sequenceNumber;
+          }
+          throw new Exception();
+        }
+        catch(Exception e)
+        {
+          e.printStackTrace();
+        }
+        finally
+        {
+            // Ensure the connection is closed to avoid any leaks
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+      }
+  
+  ]]></Source>
+        
+
+</Rule>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="Custom Method Rule1" significantModified="1722943548663" type="Validation">
+          
+    
+    <Description>This rule is used for test cases</Description>
+          
+    
+    <Source><![CDATA[
+
+  import sailpoint.object.Identity;
+  import java.util.List;
+  import sailpoint.object.ProvisioningPlan;
+  import sailpoint.object.ProvisioningPlan.AccountRequest;
+  import sailpoint.object.ProvisioningPlan.AttributeRequest;
+  import sailpoint.api.Provisioner;
+  import sailpoint.object.QueryOptions;
+  import sailpoint.object.Filter;
+  import java.util.*;
+  import java.text.*;
+  import java.nio.charset.StandardCharsets;
+  import java.nio.file.Paths;
+  import java.nio.file.Files;
+  import sailpoint.tools.Util;
+  import java.util.stream.*;
+
+  public String checkFileFormat(String filepath)
+  {
+    // Checks if the file is a csv format or not
+    String format = "";
+    File file = new File(filepath);
+    String fileName = file.toString();
+    int index = fileName.lastIndexOf('.');
+    if(index > 0) {
+      String extension = fileName.substring(index + 1);
+      System.out.println("File extension is " + extension);
+      if(extension.equals("csv"))
+        format = extension;
+      else
+        format = "the format probably in CSV format";
+
+
+    }
+    return format;
+  }
+
+  String fielName = "D:\\FieldGlass.csv";
+  String str = checkFileFormat(fielName);
+  return str;
+  ]]></Source>
+        
+
+</Rule>

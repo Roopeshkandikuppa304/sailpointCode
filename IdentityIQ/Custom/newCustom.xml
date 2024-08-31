@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Custom PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Custom name="newCustom">
+  <Attributes>
+    <Map>
+      <entry key="correlatedAccounts">
+        <value>
+          <List>
+            <String>Mary Johnson</String>
+            <String>James Smith</String>
+            <String>Robert Brown</String>
+            <String>Joseph Thompson</String>
+            <String>Margaret Garcia</String>
+            <String>Thomas Martinez</String>
+            <String>Dorothy Robinson</String>
+            <String>Christopher Clark</String>
+            <String>Linda Davis</String>
+            <String>Alan Snow</String>
+            <String>Alan Bradley</String>
+            <String>Larry Mor</String>
+            <String>And Gray</String>
+            <String>Andrew Black</String>
+            <String>Ned Stark</String>
+            <String>Robb Stark</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="createdAccounts"/>
+    </Map>
+  </Attributes>
+</Custom>

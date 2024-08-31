@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="LM Create EAD Expiring Access Certification" significantModified="1702974881567">
+          
+    
+    <Source><![CDATA[
+  import java.lang.String;
+  import java.util.Date;
+  import java.text.Format;
+  import java.text.DateFormat;
+  import java.text.SimpleDateFormat;
+  import java.lang.Integer;
+  import java.util.Calendar;
+  import java.util.List;
+  import java.util.ArrayList; 
+  import sailpoint.object.Certification;
+  import sailpoint.object.CertificationDefinition;
+  import sailpoint.object.Custom;
+  import sailpoint.object.Filter;
+  import sailpoint.object.Identity;
+  import sailpoint.object.Link;
+  import sailpoint.tools.Message;
+  import sailpoint.object.QueryOptions;
+  import sailpoint.object.TaskResult;
+  import sailpoint.tools.xml.XMLObjectFactory;
+  import org.apache.log4j.Logger;
+  import org.apache.log4j.Level;
+
+
+
+  Logger log = Logger.getLogger("sailpoint.rule.LM-createEADExpiringAccessCert");
+  // TODO: Remove this forced log level set before checking in this Rule.  
+
+  log.setLevel(Level.DEBUG);
+  log.debug("***Started createEAD ExpiringAccessCert Rule***");
+
+  Attributes attrMap = null;
+  CertificationDefinition certDef = context.getObjectById(CertificationDefinition.class, "c0a86e018c621665818c62ed34250395");
+  if ( certDef != null )        
+  {        
+    //Cloning Certificate from existing template        
+
+    XMLObjectFactory instance = XMLObjectFactory.getInstance();        
+    CertificationDefinition newCertDef = (CertificationDefinition) instance.cloneWithoutId(certDef,(XMLReferenceResolver) context);        
+    newCertDef.setName("Custom Task-Generate EAD Certifications");
+    newCertDef.setType(Certification.Type Identity);
+    try
+    {
+      attrMap = newCertDef.getAttributes();
+      attrMap.put("includedApplications", "c0a86e018c621665818c63d3a02e0451");
+      context.saveObject(newCertDef);        
+      context.commitTransaction();        
+      context.attach(newCertDef);        
+      //certDef = context.getObjectByName(CertificationDefinition.class, "EAD Access Expiring Certification [${fullDate}]");
+
+      // Set Task Schedule Properties here
+
+      TaskDefinition taskDef = context.getObjectByName(TaskDefinition.class, "Certification Manager"); // The executor :  the taskschedule will not appear in the CertSchdules with out the correct executor        
+      TaskSchedule taskSchedule = new TaskSchedule();        
+      taskSchedule.setName("Custom CERT Executor1");        
+      taskSchedule.setLauncher("spadmin");        
+      taskSchedule.setArgument("certificationDefinitionId", certDef.getId());        
+      taskSchedule.setArgument("executor", taskDef.getId());        
+      taskSchedule.addCronExpression("36 55 0 16 1 ? *"); // Add expression here or set it via input
+
+      context.saveObject(taskSchedule);        
+      context.commitTransaction();        
+      context.attach(taskSchedule);
+
+    }
+
+    catch(java.lang.Exception e) {
+      log.error("Error creating certification campaign." + e.getMessage());
+      throw new Exception("Error creating certification campaign.",e);
+    }
+  }
+  // Error is returned if there is not a valid taskResult reference.
+  // The Rest of the code assumes from here on that the Rule is indeed running in 
+  // Task context and that there is a valid taskResult reference in the namespace of the executing Rule.
+
+  if ( (void == taskResult) || (null == taskResult) || ( ! (taskResult instanceof TaskResult)) ) {
+    String errMsg = "taskResult is void, null or not a handle to a sailpoint.object.TaskResult";
+    log.error(errMsg);
+    return errMsg;   
+  }
+
+  taskResult.addMessage(new Message(trMsg, null));  
+  taskResult.setProgress("Done with execution " + trMsg);  
+  taskResult.setCompletionStatus(TaskResult.CompletionStatus.Success);  
+  context.saveObject(taskResult);  
+  context.commitTransaction();
+  return "Success";
+
+  ]]></Source>
+        
+
+</Rule>
