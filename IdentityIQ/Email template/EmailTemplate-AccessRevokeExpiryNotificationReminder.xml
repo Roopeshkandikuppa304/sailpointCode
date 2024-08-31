@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE EmailTemplate PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<EmailTemplate name="Access Revoke Expiry Notification Reminder" significantModified="1721043140194">
+          
+    
+    <Body>
+  Hello Manager($!manager),
+  
+  &lt;b&gt;General Temporary Access&lt;/b&gt;
+  You are receiving this email because your direct was approved for temporary access that is set to revoke on ($!endDate).
+  
+  List of access Entitlements and Roles to be revoked;
+  &lt;h3&gt;• $!entitlement&lt;/h3&gt;
+    &lt;h3&gt;• $!role&lt;/h3&gt;
+  
+  
+  If they need this access to be extended, please follow the steps listed in the job aid.
+  
+  &lt;b&gt;Note: Privacy Suppression Assessment(PSA)&lt;/b&gt;
+  PSA extensions in ServiceNow do not automatically extend access to the users under a PSA in All Access, Those Users will need to submit a request with the PSA# in the business justification to retain their access within All Access.
+  
+  &lt;b&gt;Resources:&lt;/b&gt;
+  
+  Slack Channels
+  For  All Access Support, go to: #all-access
+  For PSA extension questions or support, go to: #psa-support
+  Additional All Access Resources: All Access Pulse Page
+  </Body>
+          
+    
+    <Signature>
+                    
+        
+        <Inputs>
+                              
+            
+            <Argument name="manager" type="string">
+                                        
+                
+                <Description>The Identity of the original request to sunset the role or entitlement</Description>
+                                      
+            
+            </Argument>
+                              
+            
+            <Argument name="requestee" type="string">
+                                        
+                
+                <Description>The Identity that the role or entitlement belongs to</Description>
+                                      
+            
+            </Argument>
+                              
+            
+            <Argument name="role" type="string">
+                                        
+                
+                <Description>The name of the role</Description>
+                                      
+            
+            </Argument>
+                              
+            
+            <Argument name="entitlement" type="string">
+                                        
+                
+                <Description>The name of the entitlement</Description>
+                                      
+            
+            </Argument>
+                              
+            
+            <Argument name="endDate" type="string">
+                                        
+                
+                <Description>The date that the role or entitlement will be removed on</Description>
+                                      
+            
+            </Argument>
+                            
+        
+        </Inputs>
+                  
+    
+    </Signature>
+          
+    
+    <Subject>Temporary Access Revoke Notification</Subject>
+        
+
+</EmailTemplate>
