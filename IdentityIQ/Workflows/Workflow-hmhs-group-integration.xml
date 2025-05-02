@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow created="1742823952464" explicitTransitions="true" id="9d9a3a0e95b91b188195c867104f1535" modified="1745415008922" name="HMHS Group Creation Integration">
+  <Variable input="true" name="attributes"/>
+  <Variable name="provisioningStatus"/>
+  <Variable name="errorMessages"/>
+  <Variable initializer="true" name="success"/>
+  <Variable name="json">
+    <Script>
+      <Source>
+        import org.json.JSONObject;  
+        return new JSONObject(attributes);
+      </Source>
+    </Script>
+  </Variable>
+  <Variable name="wfLog">
+    <Script>
+      <Source>
+        import org.apache.log4j.Logger;
+        Logger wfLog = Logger.getLogger("com.highmark.sailpoint.workflow.HMHS_Group_Creation_Integration");
+        return wfLog;
+      </Source>
+    </Script>
+  </Variable>
+  <RuleLibraries>
+    <Reference class="sailpoint.object.Rule" id="9d9a3a0c95b918d78195b9de8ed706b3" name="HMHS Group Creation Integration Rule"/>
+  </RuleLibraries>
+  <Step icon="Start" name="Start" posX="28" posY="10">
+    <Transition to="Initializer Script"/>
+  </Step>
+  <Step name="Initializer Script" posX="28" posY="10">
+    <Script>
+      <Source>
+
+        wfLog.info("Starting Step: Initializer Script");
+
+        //Renaming the Task Created for Group Creation to something meaningful
+        if(null != wfcontext &amp;&amp; null != wfcontext.getWorkflowCase() &amp;&amp; null != wfcontext.getWorkflowCase().getTaskResult()){
+        wfcontext.getWorkflowCase().getTaskResult().setName("HMHS - " + json.get("applicationName") + " Create Group: " + json.get("cn"));			
+        }
+
+        wfLog.info("Exiting Step: Initializer Script");
+
+      </Source>
+    </Script>
+    <Transition to="Data Parsing" when="success"/>
+    <Transition to="Audit"/>
+  </Step>
+  <Step name="Data Parsing" posX="28" posY="10" resultVariable="parsed_data">
+    <Arg name="json" value="ref:json"/>
+    <Script>
+      <Source>
+
+        wfLog.info("Starting Step: Data Parsing");
+
+        try{
+        return parseData(json);
+        }catch(Exception e){
+        workflow.put("errorMessages", "Error encountered during data parsing: " +e.getMessage());
+        workflow.put("success", false);
+        }
+      </Source>
+    </Script>
+    <Transition to="Data Transformation" when="success"/>
+    <Transition to="Audit"/>
+  </Step>
+  <Step name="Data Transformation" posX="28" posY="10" resultVariable="transformed_data">
+    <Arg name="data" value="ref:parsed_data"/>
+    <Script>
+      <Source> 
+
+        wfLog.info("Step: Data Transformation");
+
+        try{
+        if(data.get("applicationName").equalsIgnoreCase("AD")) return transformADData();
+        if(data.get("applicationName").equalsIgnoreCase("LDAP")) return transformLDAPData();
+        if(data.get("applicationName").equalsIgnoreCase("Unix")) return transformUNIXData();
+        }catch(Exception e){
+        workflow.put("errorMessages", "Error encountered during Data Transformation: " +e.getMessage());
+        workflow.put("success", false);
+        workflow.put("data",parsed_data);
+        }
+
+      </Source>
+    </Script>
+    <Transition to="Build Plan" when="success"/>
+    <Transition to="Audit"/>
+  </Step>
+  <Step name="Build Plan" posX="28" posY="10">
+    <Arg name="data" value="ref:transformed_data"/>
+    <Script>
+      <Source>
+
+        
+        import sailpoint.tools.Message;
+        import sailpoint.tools.Message.Type;
+        wfLog.info("Step: Build Provisioning Plan and Create Group");
+        try{
+        String provisioningStatus = buildProvisioningPlan();
+        workflow.put("provisioningStatus", provisioningStatus);
+        workflow.put("data", transformed_data);
+        if(null != wfcontext &amp;&amp; null != wfcontext.getWorkflowCase() &amp;&amp; null != wfcontext.getWorkflowCase().getTaskResult()){
+        if(null != data.get("owner")) data.put("owner", data.get("owner").getDisplayName());
+        wfcontext.getWorkflowCase().addMessage("The Group was successfully created with the following Attributes:" + data);
+        }
+        }catch(Exception e){
+        workflow.put("errorMessages", "Error during Provisioning:" +e.getMessage());
+        workflow.put("data", transformed_data);
+        }
+
+      </Source>
+    </Script>
+    <Transition to="Audit"/>
+  </Step>
+  <Step action="script:customAudit()" icon="Audit" name="Audit" posX="28" posY="10">
+    <Arg name="data" value="ref:data"/>
+    <Arg name="errorMessages" value="ref:errorMessages"/>
+    <Arg name="provisioningStatus" value="ref:provisioningStatus"/>
+    <Arg name="success" value="ref:success"/>
+    <Transition to="Stop"/>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="540" posY="10"/>
+</Workflow>
