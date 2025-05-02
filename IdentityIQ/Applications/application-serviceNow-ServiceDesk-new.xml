@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Application connector="sailpoint.connector.OpenConnectorAdapter" created="1741273019885" featuresString="DIRECT_PERMISSIONS, NO_AGGREGATION, PROVISIONING, UNLOCK, ENABLE, PASSWORD" id="0afb9c16956b110781956bf5b5ec049e" modified="1746180693546" name="IdentityIQ for ServiceNow Service Desk" significantModified="1746180693546" type="ServiceNow Service Desk">
+  <Attributes>
+    <Map>
+      <entry key="application" value="IdentityIQ for ServiceNow Service Desk"/>
+      <entry key="authenticationType" value="OAuth2"/>
+      <entry key="checkStatusRateLimitRetryAfterSeconds" value="30"/>
+      <entry key="checkStatusRateLimitRetryCount" value="5"/>
+      <entry key="client_id" value="adbb68e83528eed007912f07970a4787"/>
+      <entry key="client_secret" value="2:ACP:KbSq0injqy38zIFL0y273l+G7mIU7FDNHdNcXmkOM8g="/>
+      <entry key="connectorAppForServiceNow" value="ServiceNow - Governance"/>
+      <entry key="connectorClass" value="openconnector.connector.servicedesk.ServiceDeskConnector"/>
+      <entry key="encrypted" value="client_secret,refresh_token,oauth_token_info"/>
+      <entry key="expires_in" value="1799"/>
+      <entry key="grant_type" value="PASSWORD"/>
+      <entry key="groupTicketBy" value="Application"/>
+      <entry key="multipleTicket" value="true"/>
+      <entry key="noPermissions" value="false"/>
+      <entry key="oauth_token_info" value="2:ACP:T5Z0Jt7HJvbElwCgv5PY3IIY7uQlAwkm614n/ypHvpC6V+WwUybaBOMJAIfPCBNNbxxSpqCoN/pBIWazPkHyyNKcSeSdNFQ9sDVf+453Xc3kwW3dmVRaopYjoEzQHoHx3CwIkDuzbtwIUS2O1sz8o7ZdI6vQXLB4oBucxPjWtYSwTF+LYwRZYbXqggs73fpmGGcAcW5Pknjj6x7w/cu5gxk4ZI2OGzIXLERT1aErwTe+H7czE3VnMlu+4S+VmGdN1g9PYaVUy77JgzlIvrPOB+d83uWrOfSFP4Oc53RkW8wIzgxaxR8BWitbc7Xhy0HhIcUFldvHgWycVLXZygpfmuRaBGmedJ4NYT5dL/bLwYUrfCKZPi8Ej++XkyDJym5fae9CeLCEYBtGUnhkSuxYaQ=="/>
+      <entry key="operations" value="Create, Modify, Delete, Enable, Disable, Unlock, SetPassword"/>
+      <entry key="password" value="2:ACP:X4wuta7aZ0PA2gNR22qeJ9m/y3jiiKGiIYAn/k7/hKzvsHUGeKLrVqNirWLrUXWxgAB3rNo9vACStdwGEcGdNodutWgWO+5CKNBKEpi6MOG/fzu7MCWweLGayfmMvf5OPGM1g/Asl/CmAZuMDzpq8eIWHJoXH5qDZB5TWfp63F0="/>
+      <entry key="provisioningMaxRetries" value="5"/>
+      <entry key="provisioningRateLimitRetryAfterSeconds" value="30"/>
+      <entry key="provisioningRateLimitRetryCount" value="6"/>
+      <entry key="provisioningRequestExpiration" value="30"/>
+      <entry key="provisioningRetryThreshold" value="60"/>
+      <entry key="retryableErrors">
+        <value>
+          <List>
+            <String>Connection reset</String>
+            <String>Unknown Host</String>
+            <String>Service Unavailable</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="serviceRequest">
+        <value>
+          <Map>
+            <entry key="checkStatus">
+              <value>
+                <Map>
+                  <entry key="checkStatusQueryParam">
+                    <value>
+                      <Map>
+                        <entry key="sysparm_fields" value="state"/>
+                        <entry key="sysparm_query" value="number=$ticketId"/>
+                      </Map>
+                    </value>
+                  </entry>
+                  <entry key="closeNotes" value="$.result[0].close_notes"/>
+                  <entry key="resource" value="/api/now/table/sc_req_item"/>
+                  <entry key="responseElement" value="$.result[0].state"/>
+                  <entry key="statusMap">
+                    <value>
+                      <Map>
+                        <entry key="-5" value="Queued"/>
+                        <entry key="1" value="Queued"/>
+                        <entry key="2" value="Queued"/>
+                        <entry key="3" value="Committed"/>
+                        <entry key="4" value="Failed"/>
+                        <entry key="7" value="Failed"/>
+                      </Map>
+                    </value>
+                  </entry>
+                </Map>
+              </value>
+            </entry>
+            <entry key="provision">
+              <value>
+                <Map>
+                  <entry key="catalogItem">
+                    <value>
+                      <Map>
+                        <entry key="AD Highmark - Delimited" value="8053818edbffb300e90690b3db9619c4"/>
+                        <entry key="AD Hightest - Delimited" value="8053818edbffb300e90690b3db9619c4"/>
+                        <entry key="CRT - AG Feedfile" value="8053818edbffb300e90690b3db9619c4"/>
+                        <entry key="Highmark Workday HR" value="8053818edbffb300e90690b3db9619c4"/>
+                        <entry key="ServiceNow Governance" value="8053818edbffb300e90690b3db9619c4"/>
+                      </Map>
+                    </value>
+                  </entry>
+                  <entry key="request">
+                    <value>
+                      <Map>
+                        <entry key="affected_ci" value="$!plan.arguments.applicationName"/>
+                        <entry key="applicationName" value="$!plan.arguments.applicationName"/>
+                        <entry key="correlation_id" value="$!plan.arguments.identityRequestId"/>
+                        <entry key="description" value="$!plan.arguments.description"/>
+                        <entry key="opened_by" value="$!plan.arguments.opened_by"/>
+                        <entry key="req_description" value="Service Request created by SMART for manual fulfillment using ServiceNow ServiceDesk"/>
+                        <entry key="requested_for" value="$!plan.arguments.requested_for"/>
+                        <entry key="short_description" value="$!plan.arguments.short_description"/>
+                        <entry key="track_ritm" value="true"/>
+                      </Map>
+                    </value>
+                  </entry>
+                  <entry key="requestObject" value="items"/>
+                  <entry key="resource" value="/api/x_sap_sdim/sailpoint_cart_js_api/create_ticket"/>
+                  <entry key="responseElement" value="$.result.items"/>
+                </Map>
+              </value>
+            </entry>
+          </Map>
+        </value>
+      </entry>
+      <entry key="templateApplication" value="ServiceNow Service Desk"/>
+      <entry key="ticketType" value="serviceRequest"/>
+      <entry key="token_url" value="https://highmarktest.service-now.com/oauth_token.do"/>
+      <entry key="url" value="https://highmarktest.service-now.com"/>
+      <entry key="username" value="sailpoint-iiq-sd-test"/>
+    </Map>
+  </Attributes>
+  <ProvisioningConfig>
+    <ManagedResource>
+      <ApplicationRef>
+        <Reference class="sailpoint.object.Application" id="9d9a3a0c95b918d78195b9dcb5f704c1" name="ServiceNow - Governance"/>
+      </ApplicationRef>
+    </ManagedResource>
+    <ManagedResource>
+      <ApplicationRef>
+        <Reference class="sailpoint.object.Application" id="9d9a3a0c841a176f81841b01f6a71bb5" name="AD Highmark - Delimited"/>
+      </ApplicationRef>
+    </ManagedResource>
+    <ManagedResource>
+      <ApplicationRef>
+        <Reference class="sailpoint.object.Application" id="9d9a3a0c837b134181837b2814f40009" name="AD Hightest - Delimited"/>
+      </ApplicationRef>
+    </ManagedResource>
+    <ManagedResource>
+      <ApplicationRef>
+        <Reference class="sailpoint.object.Application" id="9d9a3a0e86b619448186b6f9ee81002d" name="CRT - AG Feedfile"/>
+      </ApplicationRef>
+    </ManagedResource>
+    <ManagedResource>
+      <ApplicationRef>
+        <Reference class="sailpoint.object.Application" id="8a7b159665431d330165431de9c202c8" name="Highmark Workday HR"/>
+      </ApplicationRef>
+    </ManagedResource>
+    <PlanInitializer>
+      <Reference class="sailpoint.object.Rule" id="9d9a3a0c95b918d78195b9dcb75104c5" name="HMHS - ServiceDesk PlanInitializer Rule"/>
+    </PlanInitializer>
+  </ProvisioningConfig>
+  <ApplicationScorecard created="1745414801750" id="9d9a3a0c96621ee2819662d4495604bb" modified="1745572569054" significantModified="1745572569054"/>
+</Application>
