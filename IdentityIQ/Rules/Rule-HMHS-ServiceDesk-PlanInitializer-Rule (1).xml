@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="HMHS - ServiceDesk PlanInitializer Rule">
+  <Source><![CDATA[
+  import org.apache.commons.logging.Log;
+  import org.apache.commons.logging.LogFactory;
+  import sailpoint.api.IdentityService;
+  import sailpoint.object.Application;
+  import sailpoint.object.Identity;
+  import sailpoint.object.Link;
+  import sailpoint.object.ProvisioningPlan;
+  import sailpoint.object.ProvisioningPlan.AccountRequest;
+  import sailpoint.object.ProvisioningPlan.AttributeRequest;
+  import sailpoint.tools.GeneralException;
+
+  /*
+  Fields
+  */
+  // Identity attribute on SailPoint/ UserID on ServiceNow
+  String userId = "sys_id";
+
+
+  /*
+  Get ServiceNow Account name for Identity using application name
+  */
+  private String getLinkByAppName(Identity identity, String connectorAppForServiceNow) {
+    if (identity == null) {
+      return null;
+    }
+
+    String linkName = null;
+    if (app1 != null) {
+      Application app = context.getObjectByName(Application.class, connectorAppForServiceNow);
+      IdentityService identService = new IdentityService(context);
+      List links = identService.getLinks(identity, app);
+      Link link = null;
+      if (links != null && links.size() > 0) {
+        link = links.get(0);
+      }
+
+      if (link != null) {
+        String userName = (String) link.getAttribute(userId);
+        if (userName != null) {
+          linkName = userName;
+        }
+      }
+    }
+
+    return linkName;
+  }
+
+  ////////////////////////////////////////////////////////////////
+  // Main
+  ////////////////////////////////////////////////////////////////
+  Log log = LogFactory.getLog("servicedesk.planintializer.rule");
+  log.trace("In servicedesk plan initializer rule");
+
+  if (plan == void || plan == null) {
+    log.debug("ServiceNow Service Desk - Plan initializer script - Plan is null.");
+    throw new GeneralException("ServiceNow Service Desk - Plan initializer script - Plan is null.");
+  }
+
+  Map arguments = (Map)plan.getArguments();
+  List requesterList = plan.getRequesters();
+  Identity requester = null;
+  if (requesterList != null) {
+    requester = requesterList.get(0);
+    if (requester != null && requester.getName() != null) {
+      requester = context.getObjectByName(Identity.class, requester.getName());
+    }
+  }
+  String appName = integration.getName();
+  if (appName != null) {
+    Application appObject = context.getObjectByName(Application.class, appName);
+    connectorAppForServiceNow = appObject.getAttributeValue("connectorAppForServiceNow");
+  }
+
+  // Get ServiceNow Account name
+  if (connectorAppForServiceNow != null) {
+    openedBy = getLinkByAppName(requester, connectorAppForServiceNow);
+    requestedFor = getLinkByAppName(identity, connectorAppForServiceNow);
+  } 
+
+  //adding Description and ApplicationName argument
+  if(plan != null){
+    List accountRequests = plan.getAccountRequests();
+
+    for(AccountRequest ar : accountRequests){
+      String short_desc = "SMART Access Request Number: "+plan.getArguments().get("identityRequestId")+" submitted for "+identity.getDisplayName()+" user";
+      String desc = null;
+      String tempDesc = "";
+      String email = "";
+      String lid = "";
+      String displayName = "";
+      List attrReqs = ar.getAttributeRequests();
+      List list = new ArrayList();
+      if(sailpoint.tools.Util.nullSafeSize(attrReqs) > 0){
+        for(AttributeRequest attrReq : attrReqs){
+          String temp = "Attribute Name: "+attrReq.getName()+" | Attribute Operation: "+attrReq.getOperation()+" | Attribute Value: "+attrReq.getValue();
+          list.add(temp);
+        }
+
+        for(String str : list){
+          tempDesc = tempDesc+"\n"+str;
+        }
+      }
+      if( sailpoint.tools.Util.isNotNullOrEmpty(tempDesc) ){
+        String priIde = "";
+        String accIde = "";
+        email = (identity.getEmail() != null) ? identity.getEmail() : "NA";
+        lid = (identity.getAttribute("lid") != null) ? identity.getAttribute("lid") : "NA";
+        displayName = (identity.getDisplayName() != null) ? identity.getDisplayName() : "NA";
+
+        priIde = "Primary Attributes"+"\n"+"User Name: "+displayName+"\n"+"LID: "+lid+"\n"+"Employee Number: "+identity.getName()+"\n"+"Email: "+email;
+
+        IdentityService is = new IdentityService(context);
+        List links = is.getLinks(identity,context.getObjectByName(Application.class,ar.getApplication()));
+        if(sailpoint.tools.Util.nullSafeSize(links) > 0){
+          accIde = "Account Attributes"+"\n"+"Account Name: "+links.get(0).getDisplayName()+"\n"+"Account ID: "+links.get(0).getNativeIdentity();
+        }
+
+        desc = (ar.getNativeIdentity() == null) ? priIde+"\n"+" "+"\n"+accIde+"\n"+" "+"\n'"+ar.getOperation()+"' operation request submitted on '"+ar.getApplication()+"' application"+"\n"+tempDesc : priIde+"\n"+" "+"\n"+accIde+"\n"+" "+"\n'"+ar.getOperation()+"' operation request submitted on '"+ar.getApplication()+"' application for '"+links.get(0).getDisplayName()+"' user"+"\n"+tempDesc;
+      } else {
+        desc = "'"+ar.getOperation()+"' operation request submitted on "+ar.getApplication()+" application for "+ar.getNativeIdentity()+"\n"+"attribute info is empty"; 
+      }
+
+      arguments.put("description", desc);
+      arguments.put("short_description", short_desc);
+      arguments.put("applicationName",ar.getApplication());
+
+    }
+  }
+
+
+  if (requestedFor != null) {
+    arguments.put("requested_for", requestedFor);
+  }
+
+  if (openedBy != null) {
+    arguments.put("opened_by", openedBy);
+  }
+
+  log.debug("ServiceNow Service Desk - Plan initializer script - Modified Plan : " + plan.toXml());
+
+
+  ]]></Source>
+</Rule>

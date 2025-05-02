@@ -1,0 +1,351 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule created="1742580125399" id="9d9a3a0c95b918d78195b9de8ed706b3" language="beanshell" modified="1745414914895" name="HMHS Group Creation Integration Rule">
+  <Description>Group workflow rule library</Description>
+  <Source>
+  import org.json.JSONObject;
+  import sailpoint.object.Custom;
+  import sailpoint.object.Application;
+  import sailpoint.object.ProvisioningPlan;
+  import sailpoint.object.ObjectRequest;
+  import sailpoint.object.ManagedAttribute;
+  import sailpoint.object.Link;
+  import sailpoint.object.ProvisioningPlan.ObjectRequest;
+  import sailpoint.server.Auditor;
+  import sailpoint.object.AuditEvent;
+  import sailpoint.object.Attributes;
+  import sailpoint.api.Provisioner;
+  import sailpoint.object.ProvisioningProject;
+  import sailpoint.object.ProvisioningResult;
+  import sailpoint.api.IdentityService;
+  import java.sql.Connection;
+  import java.sql.Statement;
+  import java.sql.ResultSet;
+  import java.sql.PreparedStatement;
+  import org.apache.log4j.Logger;
+  import sailpoint.api.ManagedAttributer;
+
+
+  Custom customObject = context.getObjectByName(Custom.class, "HMHS Group Creation Integration Custom Object");
+  Logger logService = Logger.getLogger("com.highmark.sailpoint.rule.HMHS_Group_Creation_Integration_Rule");
+
+
+  // Parsing data sent from payload
+  public HashMap parseData(JSONObject json){
+    logService.info("Starting method: parseData()");
+    HashMap data = new HashMap();
+    Iterator keys = json.keys();
+    while(keys.hasNext()) {
+      String key = keys.next();
+      if(null != json.get(key) &amp;&amp; !json.get(key).isEmpty()){
+        if(!(json.get(key).equalsIgnoreCase("None"))){
+          data.put(key, json.get(key));
+        }
+      }else{
+        throw new Exception("An attribute did not have a valid value during parsing: " +key);
+      }
+    }
+
+    if(data.get("applicationName").equalsIgnoreCase("Unix")){
+      data.put("environment","Production");
+    }
+
+    if(null != customObject.get("ENVIRONMENT_APPLICATIONS").get(data.get("environment")) &amp;&amp; (null!= data.get("applicationName"))){
+      String environmentApplicationName = customObject.get("ENVIRONMENT_APPLICATIONS").get(data.get("environment")).get(data.get("applicationName"));
+      if(null != environmentApplicationName &amp;&amp; (null != context.getObject(Application.class,environmentApplicationName))){
+        data.put("environmentApplicationName",environmentApplicationName);
+      }else{
+        throw new Exception("No Application exists within the provided environment: " +data.get("environment") + " for the submitted group, creation cannot proceed.");
+      }
+    }else{
+      throw new Exception("Application not found during resolution for group creation, creation cannot proceed, please resubmit with a valid environment: " +data.get("environment"));
+    }
+
+    logService.info("Exiting method: parseData()");
+    return data;
+
+  }
+  
+  // Set the owner of the created group
+   public void setGroupOwner(){
+    ManagedAttributer mg = new ManagedAttributer(context);
+    ManagedAttribute mAttr = mg.getByDisplayName(context, context.getObject(Application.class,data.get("environmentApplicationName")), data.get("cn"));
+    if(null != mAttr &amp;&amp; null != data &amp;&amp; null != data.get("owner")){
+    mAttr.setOwner(data.get("owner"));
+    }
+  }
+  
+  // Fetch and resolve the data custodian
+  public String getCustodian(String custodianAttribute){
+    logService.info("Starting method: getCustodian()");
+    String custodian = null;    
+    QueryOptions qo = new QueryOptions();
+    IdentityService ids = new IdentityService(context);
+    qo.addFilter(Filter.eq("lid",data.get(custodianAttribute)));
+    qo.addFilter(Filter.eq("workerStatus","Active"));
+    List identities = context.getObjects(Identity.class, qo); 
+
+    if(null != identities &amp;&amp; !(identities.isEmpty())){  
+      logService.info("Identities matching custodian criteria: " +identities);
+      if(identities.size() > 1){ 
+        throw new Exception("More than one Data Custodian was found during resolution, creation cannot proceed: " +data.get(custodianAttribute));
+      }else{
+        data.put("owner",identities.get(0));
+        List links = ids.getLinks(identities.get(0),context.getObject(Application.class, data.get("environmentApplicationName")));
+        if(null != links &amp;&amp; !links.isEmpty()){
+          if(links.size() == 1){
+            custodian = links.get(0).getNativeIdentity();
+          }else{
+            for(Link link : links){
+              if(link.getDisplayName().startsWith("LID")){
+                custodian = link.getNativeIdentity();
+                break;
+              }
+            }
+          }
+        }else{
+          throw new Exception("The LID " + data.get(custodianAttribute) + " does not have an account on the application: " + data.get("environmentApplicationName") + " creation cannot proceed.");
+        }
+      }
+    }else{
+      throw new Exception("The given LID could not be resolved to a valid Identity: " +data.get(custodianAttribute));
+    }
+
+    if(null == custodian){   
+      throw new Exception("Custodian NOT found in IIQ, creation cannot proceed: " +data.get(custodianAttribute));  
+    }
+    logService.info("Exiting method: getCustodian()");
+    return custodian;
+  }
+
+  // Active Directory Data Transformations
+  public HashMap transformADData(){
+    logService.info("Starting method: transformADData()");
+    String customField = "cn";
+    if(null != data.get("accesstype") &amp;&amp; data.get("accesstype").equalsIgnoreCase("privileged")){  
+      String finalCN = data.get("cn") + "-PRVL";
+      data.put(customField,finalCN.toUpperCase().trim());
+      data.put("privileged", "True");
+    }
+    customField = "managedBy";
+    if(null != data.get(customField)){
+      data.put(customField, getCustodian(customField));
+    }
+    customField = "description";
+    if(null != data.get(customField)){
+      Map sysDescMap = new HashMap();
+      sysDescMap.put("en_US", data.get(customField));
+      data.put("sysDescriptions", sysDescMap);
+    }
+    data.put("objectType", "group");
+    data.put("sAMAccountName", data.get("cn").toLowerCase().trim());
+    data.put("msSFU30Name",  data.get("cn").toLowerCase().trim());
+    data.put("displayName", data.get("cn"));
+   
+    
+    logService.trace("Transformed " + data.get("environmentApplicationName") + " Data: " +data);
+    logService.info("Exiting method: transformADData()");
+    return data;
+  }
+
+  // LDAP Data Transformations
+  public HashMap transformLDAPData(){
+    logService.info("Starting method: transformLDAPData()");
+
+    String customField = "cn";
+    if(null != data.get(customField)){
+      String finalCN = data.get(customField).endsWith("-INT") ? data.put(customField,data.get(customField)) : data.put(customField,data.get(customField) + "-INT");
+    }
+
+    customField = "obgroupadministrator";
+    data.put(customField, getCustodian(customField));
+    customField = "description";
+    if(null != data.get(customField)){
+      Map sysDescMap = new HashMap();
+      sysDescMap.put("en_US", data.get(customField));
+      data.put("sysDescriptions", sysDescMap);
+    }
+    // Dynamic 
+    if(null != data.get("isDynamic") &amp;&amp; data.get("isDynamic").equalsIgnoreCase("yes")){ 
+      data.put("obgroupdynamicfilter", customObject.get("LDAP_URL_DC") + data.get("cn") + ")" );
+      data.put("memberURL", customObject.get("LDAP_URL_O") + data.get("cn") + ")" );
+      data.put("obgrouptype","oblixadvancegroup");
+    }
+    // Subscribable
+    if(null != data.get("isSubscribable") &amp;&amp; data.get("isSubscribable").equalsIgnoreCase("yes")){
+      data.put("obgroupsubscriptiontype", "SubscriptionPolicyOpenFilter" );
+      if(null != data.get("obgroupsubscriptionfilter")){
+        String obgroupsubscriptionfilter = data.get("obgroupsubscriptionfilter").endsWith("-INT") ? data.get("obgroupsubscriptionfilter") : data.get("obgroupsubscriptionfilter") + "-INT";
+        data.put("obgroupsubscriptionfilter", customObject.get("LDAP_URL_DC") + obgroupsubscriptionfilter + ")" );
+      }
+      data.put("obgrouptype","oblixadvancegroup");
+    }
+
+    List objectClassList = new ArrayList();
+    objectClassList.add("top");
+    objectClassList.add("groupofuniquenames");
+    objectClassList.add("oblixadvancedgroup");
+    objectClassList.add("oblixgroup");
+    objectClassList.add("groupOfURLs");
+    data.put("objectClass", objectClassList);
+   
+
+    logService.trace("Transformed " + data.get("environmentApplicationName")  + " Data: " +data);
+    logService.info("Exiting method: transformLDAPData()");
+    return data;
+  }
+
+  // Unix Data Transformations
+  public HashMap transformUNIXData(){
+    logService.info("Starting method: transformUnixData()");
+    String customField = "cn";
+    data.put(customField,data.get(customField).toUpperCase().trim());
+    customField = "managedBy";
+    if(null != data.get(customField)){
+      data.put(customField, getCustodian(customField));
+    }
+    customField = "description";
+    if(null != data.get(customField)){
+      Map sysDescMap = new HashMap();
+      sysDescMap.put("en_US", data.get(customField));
+      data.put("sysDescriptions", sysDescMap);
+
+    }
+
+    // Zone Check
+    if(null != data.get("isGroupRelatedToZone") &amp;&amp; data.get("isGroupRelatedToZone").equalsIgnoreCase("yes") &amp;&amp; null != data.get("memberOf")){
+      ManagedAttributer mg = new ManagedAttributer(context);
+      ManagedAttribute mAttr = mg.getByDisplayName(context, context.getObject(Application.class,data.get("environmentApplicationName")), data.get("memberOf"));
+      if(null == mAttr) {
+        throw new Exception("The zone group was not resolved to an existing managed attribute within IIQ, creation cannot proceed: "+data.get("memberOf"));
+      }
+      else{
+        data.put("memberOf", mAttr.getValue());
+      }
+    }
+
+    try{
+      Connection connection = context.getJdbcConnection();
+      String sql="SELECT iiq.mssfu30_gid_number_sequence.NEXTVAL FROM dual";
+      PreparedStatement ps=connection.prepareStatement(sql);
+      ResultSet rs=ps.executeQuery();
+
+      if(rs.next()){
+        int gid=rs.getInt(1);
+        data.put("msSFU30GidNumber",gid);
+      }
+
+    }catch(Exception e){
+      logService.info("SQLEXception while generating Unix GID: "+e.getMessage());
+    }
+
+    data.put("sAMAccountName", data.get("cn").toLowerCase().trim());
+    data.put("msSFU30NisDomain","Highmark"); 
+    data.put("msSFU30Name",  data.get("cn").toLowerCase().trim());
+    data.put("objectType","group"); 
+    data.put("displayName", data.get("cn"));
+   
+
+    logService.trace("Transformed " + data.get("environmentApplicationName")  + " Data: " +data);
+    logService.info("Exiting method: transformUnixData()");
+    return data;
+  }
+
+  // Provisioning Groups
+  public String buildProvisioningPlan(){
+    logService.info("Starting method: buildProvisioningPlan()");
+    String provisioningStatus ="";
+    String groupSearchDN = null;
+    List exclusions = customObject.get("exclusions");
+    List attrReqList = new ArrayList();
+    Application application = context.getObjectByName(Application.class, data.get("environmentApplicationName"));
+    ProvisioningPlan plan = new ProvisioningPlan();
+    ObjectRequest objRequest = new ObjectRequest();
+
+    if(null !=application.getAttributeValue("group.searchDNs")){
+      ArrayList applicationAttributeValue = application.getAttributeValue("group.searchDNs");
+      groupSearchDN = applicationAttributeValue.get(0).get("searchDN");
+    }else if(null !=application.getAttributeValue("group.searchDN")){
+      groupSearchDN = application.getAttributeValue("group.searchDN"); 
+    }else{
+      throw new Exception("Error encountered in Application Configuration: " + data.get("applicationName") + " no group search DN configured.");
+    }
+    if(null != groupSearchDN){ 
+      if("Unix".equalsIgnoreCase(data.get("applicationName"))){
+        groupSearchDN = customObject.get("UNIX_Group_OU") + groupSearchDN;
+      }
+      String nativeIdentity = "CN=" + data.get(("cn")) + "," + groupSearchDN;
+      data.put("nativeIdentity",nativeIdentity); 
+      objRequest.setNativeIdentity(nativeIdentity);
+    }
+    objRequest.setApplication(data.get("environmentApplicationName")); 
+    objRequest.setOp(ProvisioningPlan.ObjectOperation.Create);
+    objRequest.setType("group");
+
+    for (Map.Entry entry : data.entrySet()) {
+      if(!exclusions.contains(entry.getKey())){
+        attrReqList.add(new AttributeRequest(entry.getKey(),ProvisioningPlan.Operation.Set,entry.getValue()));
+      }
+    }
+    objRequest.addAll(attrReqList);
+    plan.add(objRequest);
+    logService.debug( plan.toXml());
+  
+    Provisioner provisioner = new Provisioner(context);
+    provisioner.execute(plan);
+    ProvisioningProject project = provisioner.getProject();
+  
+    if(null != project){
+      List plans = project.getPlans();
+        if(null != plans) {
+          List objectRequests = plans.get(0).getObjectRequests(); 
+          if(null != objectRequests){ 
+            ProvisioningResult provisioningResult = objectRequests.get(0).getResult();
+            if(null != provisioningResult){
+              provisioningStatus = provisioningResult.getStatus();
+              logService.info( "Status of Provisioning: " + provisioningStatus);
+            }
+            if(null != provisioningStatus &amp;&amp; (provisioningStatus.equalsIgnoreCase("failed") || provisioningStatus.equalsIgnoreCase("error"))) { 
+              throw new Exception("Error during provisioning: "+provisioningResult.getErrors());
+            }
+          }
+        }
+    }
+    setGroupOwner();
+    logService.info("Exiting method: buildProvisioningPlan()");
+    return provisioningStatus;
+  }
+
+
+  // Custom Auditing
+  public void customAudit(){
+    logService.info("Starting method: customAudit()");
+    if(Auditor.isEnabled("HMHS Group Creation")){
+      AuditEvent event = new AuditEvent();
+      event.setSource(launcher);
+      event.setAction("HMHS Group Creation");
+      if(null != data){
+        event.setInstance("Creation of " + data.get("applicationName") + " Group");
+        event.setTarget(data.get("applicationName"));
+        event.setAttributes(new Attributes(data));
+        if(null != data.get("environmentApplicationName")){
+          event.setString3(data.get("environmentApplicationName"));
+        }
+      }
+      if(null!= provisioningStatus) event.setString1(provisioningStatus);
+      if(null != errorMessages &amp;&amp; !errorMessages.isEmpty()){
+        event.setString1("failed");
+        event.setString2("Error(s): "+errorMessages);
+        Auditor.log(event);
+        throw new Exception(errorMessages.toString());
+      }else{ 
+        Auditor.log(event);
+      }
+    }else{
+      logService.info("Auditing is Not Enabled for the Action!");
+    }
+    logService.info("Exiting method: customAudit()");
+
+  } 
+  </Source>
+</Rule>
