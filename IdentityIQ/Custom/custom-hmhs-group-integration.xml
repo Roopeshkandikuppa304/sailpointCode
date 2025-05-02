@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Custom PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Custom created="1742580010207" id="9d9a3a0c95b918d78195b9dcccdf04e0" modified="1745414806588" name="HMHS Group Creation Integration Custom Object">
+  <Attributes>
+    <Map>
+      <entry key="ENVIRONMENT_APPLICATIONS">
+        <value>
+          <Map>
+            <entry key="Production">
+              <value>
+                <Map>
+                  <entry key="AD" value="AD Primary"/>
+                  <entry key="LDAP" value="LDAP Primary"/>
+                  <entry key="Unix" value="AD Primary"/>
+                </Map>
+              </value>
+            </entry>
+            <entry key="Test">
+              <value>
+                <Map>
+                  <entry key="AD" value="AD Secondary"/>
+                  <entry key="LDAP" value="LDAP Secondary"/>
+                  <entry key="Unix" value="AD Secondary"/>
+                </Map>
+              </value>
+            </entry>
+          </Map>
+        </value>
+      </entry>
+      <entry key="LDAP_URL_DC" value="ldap:///dc=highmark,dc=com??sub?(hmdynmemberof="/>
+      <entry key="LDAP_URL_O" value="ldap:///o=highmark.com??sub?(hmdynmemberof="/>
+      <entry key="UNIX_Group_OU" value="ou=Other,"/>
+      <entry key="exclusions">
+        <value>
+          <List>
+            <String>environment</String>
+            <String>isGroupRelatedToZone</String>
+            <String>isSubscribable</String>
+            <String>isDynamic</String>
+            <String>applicationName</String>
+            <String>environmentApplicationName</String>
+            <String>nativeIdentity</String>
+            <String>owner</String>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</Custom>

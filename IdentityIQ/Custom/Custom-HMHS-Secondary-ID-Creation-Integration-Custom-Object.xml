@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Custom PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Custom name="HMHS Secondary ID Creation Integration Custom Object">
+  <Attributes>
+    <Map>
+      <entry key="AD_Cyberark_Onboarding_Group" value="SA-CyberArk-Onboarding"/>
+      <entry key="AD_Remove_Atrributes">
+        <value>
+          <List>
+            <String>proxyAddresses</String>
+            <String>mailNickname</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="AD_Update_Atrributes">
+        <value>
+          <Map>
+            <entry key="UD-011" value="modifyLIDLower"/>
+            <entry key="cn" value="modifyLastName"/>
+            <entry key="displayName" value="modifyLastName"/>
+            <entry key="employeeID" value="modifyEmployeeID"/>
+            <entry key="employeeNumber" value="modifyEmployeeID"/>
+            <entry key="msSFU30HOMEDIRECTORY" value="modifyLIDLower"/>
+            <entry key="msSFU30NAME" value="modifyLIDLower"/>
+            <entry key="sAMAccountName" value="modifyLID"/>
+            <entry key="sn" value="modifyLastName"/>
+            <entry key="uid" value="modifyLID"/>
+            <entry key="userPrincipalName" value="modifyLID"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="AD_Vault_Users_Group" value="SA-CYA-VAULT-USERS"/>
+      <entry key="AD_Wireless_Groups">
+        <value>
+          <List>
+            <String>Domain Users</String>
+            <String>INTERNETUSERS</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="Email_Template" value="HMHS SecondaryID Creation Password EmailTemplate"/>
+      <entry key="LDAP_Update_Atrributes">
+        <value>
+          <Map>
+            <entry key="cn" value="modifyLastName"/>
+            <entry key="displayName" value="modifyLastName"/>
+            <entry key="employeeNumber" value="modifyEmployeeID"/>
+            <entry key="sn" value="modifyLastName"/>
+            <entry key="uid" value="modifyLID"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="RACF_Update_Atrributes">
+        <value>
+          <Map>
+            <entry key="DATA" value="modifyEmployeeID"/>
+            <entry key="NAME" value="modifyLastName"/>
+            <entry key="USER" value="modifyLID"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="applicationMapping">
+        <value>
+          <Map>
+            <entry key="hhsProd" value="%%SECONDARY_ID_HHSPROD_APPNAME%%"/>
+            <entry key="ldapProd" value="LDAP Primary"/>
+            <entry key="ldapTest" value="LDAP Secondary"/>
+            <entry key="primaryAD" value="AD Primary"/>
+            <entry key="racfProd" value="RACF Primary"/>
+            <entry key="racfTest" value="RACF Secondary"/>
+          </Map>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</Custom>
