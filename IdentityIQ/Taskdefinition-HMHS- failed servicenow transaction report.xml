@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskDefinition created="1742580220959" executor="sailpoint.reporting.LiveReportExecutor" id="9d9a3a0c95b918d78195b9e0041f0a8b" modified="1745415004145" name="HMHS - ServiceDesk Failed Provisioning Transaction Object Report" progressMode="Percentage" resultAction="Rename" subType="Administration Reports" template="true" type="LiveReport">
+  <Attributes>
+    <Map>
+      <entry key="report">
+        <value>
+          <LiveReport title="ServiceDesk Failed Provisioning Transaction Object Report">
+            <DataSource objectType="ProvisioningTransaction" type="Filter">
+              <QueryParameters>
+                <Parameter argument="integration" property="integration">
+                  <ValueScript>
+                    <Source>
+                      return "IdentityIQ for ServiceNow Service Desk";            
+                    </Source>
+                  </ValueScript>
+                </Parameter>
+                <Parameter argument="status" property="status">
+                  <ValueScript>
+                    <Source>
+                      return "Failed";                    
+                    </Source>
+                  </ValueScript>
+                </Parameter>
+                <Parameter argument="Start Date" operation="GE" property="created">
+                  <ValueScript>
+                    <Source>
+
+                      import java.util.Calendar;
+                      Calendar cal=Calendar.getInstance();
+                      cal.add(Calendar.DATE, -1);
+                      return cal.getTime();
+                    </Source>
+                  </ValueScript>
+                </Parameter>
+                <Parameter argument="End Date" operation="LE" property="created">
+                  <ValueScript>
+                    <Source>
+
+                      import java.util.Calendar;
+                      Calendar cal=Calendar.getInstance();
+                      return cal.getTime();                    
+                    </Source>
+                  </ValueScript>
+                </Parameter>
+              </QueryParameters>
+            </DataSource>
+            <Columns>
+              <ReportColumnConfig field="name" header="report_provisioning_id" property="name" sortable="true" width="110">
+                <RenderScript>
+                  <Source>
+
+                    import sailpoint.tools.Util;
+                    return Util.stripLeadingChar(value, '0');
+
+                  </Source>
+                </RenderScript>
+              </ReportColumnConfig>
+              <ReportColumnConfig field="applicationName" header="report_provisioning_application" property="applicationName" sortable="true" width="110"/>
+              <ReportColumnConfig field="identityDisplayName" header="report_provisioning_identity_display" property="identityDisplayName" sortable="true" width="110"/>
+              <ReportColumnConfig field="identityName" header="report_provisioning_identity" property="identityName" sortable="true" width="110"/>
+              <ReportColumnConfig field="integration" header="report_provisioning_integration" property="integration" sortable="true" width="110"/>
+              <ReportColumnConfig field="nativeIdentity" header="report_provisioning_native_identity" property="nativeIdentity" sortable="true" width="110"/>
+              <ReportColumnConfig field="accountDisplayName" header="report_provisioning_account_display" property="accountDisplayName" sortable="true" width="110"/>
+              <ReportColumnConfig field="status" header="report_provisioning_status" property="status" sortable="true" width="110"/>
+              <ReportColumnConfig field="type" header="report_provisioning_type" property="type" sortable="true" width="110"/>
+              <ReportColumnConfig field="operation" header="report_provisioning_operation" property="operation" sortable="true" width="110"/>
+              <ReportColumnConfig field="source" header="report_provisioning_source" property="source" sortable="true" width="110"/>
+              <ReportColumnConfig field="created" header="report_provisioning_date" property="created" sortable="true" width="110"/>
+              <ReportColumnConfig field="forced" header="report_provisioning_forced" property="forced" sortable="true" width="110"/>
+            </Columns>
+          </LiveReport>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <Description>Displays provisioning transactions.</Description>
+  <RequiredRights>
+    <Reference class="sailpoint.object.SPRight" id="8a7b159665431d330165431d4fc8006a" name="FullAccessProvisioningTransactionReport"/>
+  </RequiredRights>
+</TaskDefinition>
